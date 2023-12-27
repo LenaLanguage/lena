@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "label": "Build LENA",
+    "type": "shell",
+    "command": "gcc",
+    "args": [
+        "src/main.c",
+        "-o",
+        "lena.exe",
+        "-O3",
+        "-Wextra"
+    ],
+    "options": {
+        "cwd": "${workspaceFolder}"
+    },
+    "problemMatcher": []
+}

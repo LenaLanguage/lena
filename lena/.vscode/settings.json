@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "lena.h": "c",
+        "stdout.h": "c",
+        "parser.h": "c"
+    },
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
+}

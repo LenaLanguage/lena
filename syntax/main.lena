@@ -1,0 +1,7 @@
+import std::console
+import std::os
+
+{
+    console.out("Hello Lena's World!")
+    os.exit(0)
+}
