@@ -77,6 +77,8 @@ uint32_t search_in_line(char* str, size_t len, char* sstr, size_t slen) {
     return UINT32_MAX;
 }
 
+char *std_libs[] = {"console", "os", "util", NULL};
+
 #define LENA_SUCCESSFULLY       0
 #define LENA_ITEM_NOT_EXISTS    1
 #define LENA_ERROR              2
@@ -110,9 +112,32 @@ uint8_t import_function(char str[], size_t len) {
         }
     }
     if (start_name != pos || end_name != pos){
+        
+        /* Creating a string from range */
+        size_t cname_len = 0;
+        char *name_buffer = malloc(sizeof(char) * (end_name - start_name));
         for(uint32_t i = start_name; i < end_name; ++i){
-            putc(str[i], stdout);
+            name_buffer[cname_len] = str[i];
+            ++cname_len;
         }
+        name_buffer[cname_len] = '\0';
+        
+        /* Search string in list */
+        {
+            bool in_list = false;
+            for(size_t i = 0; i < 2; ++i){
+                if(strcmp(name_buffer, std_libs[i]) == 0){
+                    in_list = true;
+                    break;
+                }
+            }
+            if(in_list == true){
+                printf("%s - standard library\n", name_buffer);
+            } else {
+                printf("%s - unknown library!\n", name_buffer);
+            }
+        }
+        free(name_buffer);
     } else {
         /* NAME DOESN'T SET */
         return LENA_ERROR;
@@ -129,7 +154,7 @@ void analize_code(FILE *src_fptr) {
         ++num_of_line;
         size_t clen = strlen(buffer);
         if(import_function(buffer, clen) == LENA_ERROR){
-            printf("[%I64u]: Name doesn't set!", num_of_line);
+           // printf("[%I64u]: Name doesn't set!", num_of_line);
         }
         // printf("%" PRIu64 "\n", search_in_line(buffer, clen, (char *)"console", 3));
     }

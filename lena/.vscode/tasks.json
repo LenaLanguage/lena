@@ -8,7 +8,8 @@
         "-o",
         "lena.exe",
         "-O3",
-        "-Wextra"
+        "-Wextra",
+        "-g"
     ],
     "options": {
         "cwd": "${workspaceFolder}"

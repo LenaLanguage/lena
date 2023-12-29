@@ -1,5 +1,6 @@
-import std::console
-import std::os
+import console
+import os
+import myOwn
 
 {
     console.out("Hello Lena's World!")
