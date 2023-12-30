@@ -1,8 +1,5 @@
 import console
-import os
-import myOwn
 
 {
     console.out("Hello Lena's World!")
-    os.exit(0)
 }

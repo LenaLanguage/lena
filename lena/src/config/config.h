@@ -3,6 +3,10 @@
 
 /* Lena programming language constants */
 
+/* Lena max path lenght */
+#define LENA_MAX_LENGHT             1024
+#define LML LENA_MAX_LENGHT
+
 /* SRC files max lenght for each line of code */
 #define SRC_FILE_MAX_LINE_LENGHT    4096
 #define SFMLL SRC_FILE_MAX_LINE_LENGHT

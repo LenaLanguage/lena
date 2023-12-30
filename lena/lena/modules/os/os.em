@@ -1,0 +1,1 @@
+os.exit(arg) @os_exit(arg)

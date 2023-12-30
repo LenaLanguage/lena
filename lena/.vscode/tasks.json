@@ -6,7 +6,7 @@
     "args": [
         "src/main.c",
         "-o",
-        "lena.exe",
+        "lena/lena.exe",
         "-O3",
         "-Wextra",
         "-g"
