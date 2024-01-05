@@ -1,1 +1,0 @@
-console.out(arg) @stdout(arg)

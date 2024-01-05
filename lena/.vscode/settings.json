@@ -3,7 +3,8 @@
         "lena.h": "c",
         "stdout.h": "c",
         "parser.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "stdlib.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }
