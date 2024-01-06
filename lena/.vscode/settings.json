@@ -10,7 +10,9 @@
         "w32api.h": "c",
         "stdint.h": "c",
         "windows.h": "c",
-        "wchar.h": "c"
+        "wchar.h": "c",
+        "stdconsole.h": "c",
+        "lconverter.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

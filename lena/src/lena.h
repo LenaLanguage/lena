@@ -18,6 +18,9 @@
 
 /* Libraries */
 #include "stdconsole/stdconsole.h"
+#include "stdconsole/stdconsole_color.h"
+
+#include "lfiles/lfiles.h"
 
 #else /* ERROR (__STDC_VERSION__ >= 201112L) */
 #error [lena.h]: Requires at least version C 2011 (__STDC_VERSION__ >= 201112L)
