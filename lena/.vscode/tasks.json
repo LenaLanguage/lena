@@ -9,8 +9,12 @@
                 "-o",
                 "lena/lena.exe",
                 "-O3",
-                "-Wall",
-                "-IC:\\Projects\\llibs\\", // Path for llibs
+                //"-Wall",
+                //"-IC:\\Projects\\llibs\\", // Path for llibs
+                "-Isrc/",
+                "-std=c11",
+                //"-mconsole",
+                "-municode",
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
