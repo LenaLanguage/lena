@@ -2,8 +2,8 @@
 #define __LENA_LCHAR_H__
 
 /**************************************************************************//**
- * @file     lchar.h
- * @brief    Project L - Lena programming language util/lchar library
+ * @file     lchar_t.h
+ * @brief    Project L - Lena programming language util/lchar_t library
  * @version  V0.0.1
  * @date     6. Jan 2024
  ******************************************************************************/
@@ -18,7 +18,7 @@
 #include <windows.h>
 #include <wchar.h>
 
-typedef wchar_t lchar;
+typedef wchar_t lchar_t;
 #define llen(str) wcslen(str)
 #define l(data) L##data
 
@@ -26,7 +26,7 @@ typedef wchar_t lchar;
 
 #include <string.h>
 
-typedef char lchar;
+typedef char lchar_t;
 #define llen(str) strlen(str)
 #define l(data) data
 

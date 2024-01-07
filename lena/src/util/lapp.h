@@ -26,7 +26,7 @@ enum lexit_codes {
 #include <windows.h>
 #define LMAIN(argc, argv) int wmain()
 #else /* UNIX */
-#define LMAIN(argc, argv) int main(int argc, lchar* argv[])
+#define LMAIN(argc, argv) int main(int argc, lchar_t* argv[])
 #endif
 
 #endif // __LENA_LAPP_H__

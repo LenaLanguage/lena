@@ -8,6 +8,8 @@
  * @date     6. Jan 2024
  ******************************************************************************/
 
+/* CAN BE REWRITTEN */
+
 #include <stdint.h>
 
 /* For Windows */
@@ -15,7 +17,7 @@
 
 #include <windows.h>
 
-HANDLE llibs_GetFileHandle(lchar fillibsme[]) {
+HANDLE llibs_GetFileHandle(lchar_t fillibsme[]) {
     return CreateFile(fillibsme, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 }
 
@@ -52,8 +54,8 @@ enum llibs_file_status{
     LLIBS_FILE_SIZE_FAILURE          = 4
 };
 
-llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar fillibsme[]){
-    llibs_file->fileHandle = llibs_GetFileHandle(fillibsme);
+llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar_t filename[]){
+    llibs_file->fileHandle = llibs_GetFileHandle(filename);
     if (llibs_file->fileHandle == NULL) { 
         CloseHandle(llibs_file->fileHandle);
         return LLIBS_FILE_OPEN_FAILURE; 
@@ -81,8 +83,8 @@ llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar fillibsme[]){
     return LLIBS_FILE_SUCCESS;
 }
 
-lchar* llibs_GetFilePointer(llibs_file_t llibs_file){
-    return (lchar *)(llibs_file.mapView);
+lchar_t* llibs_GetFilePointer(llibs_file_t llibs_file){
+    return (lchar_t *)(llibs_file.mapView);
 }
 
 void llibs_DeleteFile(llibs_file_t llibs_file){
@@ -95,7 +97,7 @@ void llibs_DeleteFile(llibs_file_t llibs_file){
 
 #include <stdio.h>
 
-FILE* llibs_GetfileHandle(lchar fillibsme[]){
+FILE* llibs_GetfileHandle(lchar_t fillibsme[]){
     return fopen(fillibsme, "rb");
 }
 
@@ -106,14 +108,14 @@ long llibs_GetFileSize(FILE *file){
     return size;
 }
 
-lchar* llibs_GetFileData(int64_t fileSize){
+lchar_t* llibs_GetFileData(int64_t fileSize){
     return malloc(fileSize);
 }
 
 typedef struct {
     FILE *fileHandle;
     int64_t fileSize;
-    lchar *filePointer;
+    lchar_t *filePointer;
 } llibs_file_t;
 
 typedef uint8_t llibs_file_status_t;
@@ -124,7 +126,7 @@ enum llibs_file_status{
     LLIBS_FILE_MEMORY_ALLOC_FAILURE  = 2,
 };
 
-llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar fillibsme[]){
+llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar_t fillibsme[]){
     llibs_file->fileHandle = llibs_GetfileHandle(fillibsme);
     if (llibs_file->fileHandle == NULL){
         return LLIBS_FILE_OPEN_FAILURE;
@@ -140,7 +142,7 @@ llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar fillibsme[]){
 }
 
 
-lchar* llibs_GetFilePointer(llibs_file_t llibs_file){
+lchar_t* llibs_GetFilePointer(llibs_file_t llibs_file){
     return (llibs_file.filePointer);
 }
 

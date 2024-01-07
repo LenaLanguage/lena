@@ -58,16 +58,16 @@ DWORD   ConsoleOutLen   = 0UL,
 /* STDOUT */
 
 inline
-bool lstdout_str(lchar *str, size_t len){
+bool lstdout_str(lchar_t *str, size_t len){
     return WriteConsole(hConsoleOut, str, len, &ConsoleOutLen, NULL);
 }
 
 bool lstdout_u64(uint64_t num){
     /* 21 characters for UINT64_MAX */
-    static lchar __l_stdout_u64_buffer[21] = {0};
+    static lchar_t __l_stdout_u64_buffer[21] = {0};
     static size_t __prev_u64_buffer_len = 21;
 
-    memset(__l_stdout_u64_buffer, 0, sizeof(lchar) * __prev_u64_buffer_len);
+    memset(__l_stdout_u64_buffer, 0, sizeof(lchar_t) * __prev_u64_buffer_len);
     _ui64tow(num, __l_stdout_u64_buffer, 10);
     __prev_u64_buffer_len = llen(__l_stdout_u64_buffer);
 
@@ -77,16 +77,16 @@ bool lstdout_u64(uint64_t num){
 /* STDERR */
 
 inline
-bool lstderr_str(lchar *str, size_t len){
+bool lstderr_str(lchar_t *str, size_t len){
     return WriteConsole(hConsoleErr, str, len, &ConsoleErrLen, NULL);
 }
 
 bool lstderr_u64(uint64_t num){
     /* 21 characters for UINT64_MAX */
-    static lchar __l_stderr_u64_buffer[21] = {0};
+    static lchar_t __l_stderr_u64_buffer[21] = {0};
     static size_t __prev_u64_buffer_len = 21;
 
-    memset(__l_stderr_u64_buffer, 0, sizeof(lchar) * __prev_u64_buffer_len);
+    memset(__l_stderr_u64_buffer, 0, sizeof(lchar_t) * __prev_u64_buffer_len);
     _ui64tow(num, __l_stderr_u64_buffer, 10);
     __prev_u64_buffer_len = llen(__l_stderr_u64_buffer);
 
@@ -96,7 +96,7 @@ bool lstderr_u64(uint64_t num){
 /* STDIN */
 
 inline
-bool lstdin_str(lchar *str, size_t len){
+bool lstdin_str(lchar_t *str, size_t len){
     return ReadConsole(hConsoleErr, str, len, &ConsoleInLen, NULL);
 }
 
