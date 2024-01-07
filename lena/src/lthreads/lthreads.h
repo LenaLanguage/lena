@@ -15,11 +15,15 @@
 
 typedef HANDLE lthread_t;
 
+void lthread_create();
+
 #else
 
 #include <pthread.h>
 
 typedef pthread_t lthread_t;
+
+void lthread_create();
 
 #endif
 #endif // __LENA_THREADS_H__
