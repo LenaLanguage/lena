@@ -14,7 +14,8 @@
         "stdconsole.h": "c",
         "lconverter.h": "c",
         "lfiles.h": "c",
-        "lthreads.h": "c"
+        "lthreads.h": "c",
+        "cstdlib": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }
