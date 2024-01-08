@@ -13,7 +13,8 @@
         "wchar.h": "c",
         "stdconsole.h": "c",
         "lconverter.h": "c",
-        "lfiles.h": "c"
+        "lfiles.h": "c",
+        "lthreads.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

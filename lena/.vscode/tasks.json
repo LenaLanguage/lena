@@ -9,7 +9,7 @@
                 "-o",
                 "lena/lena.exe",
                 "-O3",
-                //"-Wall",
+                "-Wall",
                 //"-IC:\\Projects\\llibs\\", // Path for llibs
                 "-Isrc/",
                 "-std=c11",
