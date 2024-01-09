@@ -12,9 +12,11 @@
 #if __STDC_VERSION__ >= 201112L
 
 /* Util libraires */
-#include "util/lchar.h"
 #include "util/lapp.h"
 #include "util/lconverter.h"
+
+/* Types */
+#include "ltypes/ltypes.h"
 
 /* Libraries */
 #include "stdconsole/stdconsole.h"

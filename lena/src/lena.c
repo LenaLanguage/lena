@@ -1,19 +1,24 @@
 #include <lena.h>
 
-lthread_func_t LENA_API threadFunction(LTHREAD_ARGS) {
-    for(int i = 0; i < 20; ++i){
-        lstderr_str(l("Call thread!\n"), 13);
-        ldelay(100);
+lthread_func_t LENA_API myThreadTest(LTHREAD_ARGS) {
+    for (int i = 0; i < 100; ++i){
+        lstdout_str(l("Call func!\n"), 12);
     }
+    lstdout_str(l("END!\n"), 4);
     return LTHREAD_CALLBACK;
 }
 
 LMAIN(LENA_ARGC, LENA_ARGV){
     if(!lstd_init()){ lexit(LENA_EXIT_FAILURE); };
-    lstderr_set_color(LENA_ERROR_COLOR);
-    lstderr_str(l("ERROR COLOR!\n"), 13);
-    lstderr_u64(16254126);
-    lthread_t myThread = lthread_create(threadFunction);
+    lstdout_set_color(LENA_ERROR_COLOR);
+    lstdout_str(l("Hello Lena API in Linux!\n\n"), 26);
+
+    lthread_t myThread = lthread_create(myThreadTest);
+    
     lthread_join(&myThread, LTHREAD_WAIT_INFINITE);
+
+    lstdout_set_color(LENA_LABEL_COLOR);
+    lstdout_str(l("Nice!, we see.\n"), 16);
+
     lexit(LENA_EXIT_SUCCESS);
 }
