@@ -15,14 +15,7 @@
 #include "lchar.h"
 #include "lstring.h"
 
-typedef uint8_t     lu8_t;
-typedef uint16_t    lu16_t;
-typedef uint32_t    lu32_t;
-typedef uint64_t    lu64_t;
 
-typedef int8_t     l8_t;
-typedef int16_t    l16_t;
-typedef int32_t    l32_t;
-typedef int64_t    l64_t;
+
 
 #endif // __LENA_TYPES_H__

@@ -10,15 +10,48 @@
 
 /* Standard libraries */
 #include <stdlib.h>
+#include <stdint.h>
+#include <stdbool.h>
 #include <string.h>
 #include <strings.h>
 
-/* lstring_t type */
+/* lstring macroses */
 
-typedef struct {
-    lchar_t* data;
-    size_t size;
-} lstring_t;
+#define LSTRING_EQUAL 0
 
+/* IF LCHAR == WCHAR (Windows) */
+#if LCHAR_MAX == WCHAR_MAX
+
+#include <wchar.h>
+
+lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src){
+    return wcscpy(dest, src);
+}
+
+lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
+    return wcscat(dest, src);
+}
+
+int lstrcmp(lchar_t* str1, lchar_t* str2){
+    return wcscmp(str1, str2);
+}
+
+#else
+
+lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src){
+    return strcpy(dest, src);
+}
+
+lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
+    return strcat(dest, src);
+}
+
+int lstrcmp(lchar_t* str1, lchar_t* str2){
+    return strcmp(str1, str2);
+}
+
+#endif
+
+/* lstren -> llen [lchar.h]*/
 
 #endif // __LENA_STRING_H__
