@@ -38,16 +38,16 @@ int lstrcmp(lchar_t* str1, lchar_t* str2){
 
 #else
 
-lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src){
-    return strcpy(dest, src);
+lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len){
+    return memcpy(dest, src, len);
 }
 
 lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
     return strcat(dest, src);
 }
 
-int lstrcmp(lchar_t* str1, lchar_t* str2){
-    return strcmp(str1, str2);
+int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
+    return memcmp(str1, str2, len);
 }
 
 #endif
