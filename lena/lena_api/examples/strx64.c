@@ -1,3 +1,6 @@
+
+/* EXPERIMENTAL ALGHORITM FOR FAST STRCPY */
+
 #include <lena.h>
 
 /* 0.5 Gb */

@@ -18,7 +18,9 @@
         "cstdlib": "c",
         "cstdint": "c",
         "compare": "c",
-        "pthread.h": "c"
+        "pthread.h": "c",
+        "largs.h": "c",
+        "lerror.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

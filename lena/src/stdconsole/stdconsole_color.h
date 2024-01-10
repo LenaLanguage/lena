@@ -10,7 +10,7 @@
 
 /* stdconsole_color.h is required */
 #ifndef __LENA_STDCONSOLE_H__
-#error [stdconsole_color.h]: stdconsole.h was not included!
+#error [stdconsole_color.h]: stdconsole.h was not included
 #else
 
 #ifdef _WIN32

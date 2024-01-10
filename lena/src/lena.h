@@ -4,7 +4,7 @@
 /**************************************************************************//**
  * @file     lena.h
  * @brief    Project L - Lena programming language main library
- * @version  V0.0.2
+ * @version  V0.1.2
  * @date     5. Jan 2024
  ******************************************************************************/
 
@@ -25,6 +25,11 @@
 #include "lfiles/lfiles.h"
 #include "lthreads/lthreads.h"
 #include "ldelay/ldelay.h"
+#include "lerrors/lerror.h"
+
+/* Interpreter libraries */
+#include "interpreter/llabels/llabels.h"
+#include "interpreter/largs/largs.h"
 
 #else /* ERROR (__STDC_VERSION__ >= 201112L) */
 #error [lena.h]: Requires at least version C 2011 (__STDC_VERSION__ >= 201112L)
