@@ -1,24 +1,38 @@
 #include <lena.h>
 
+/* 0.5 Gb */
+#define VL_SIZE 536870912
+
+lchar_t* very_longstr;
+lchar_t* very_longstr2;
 
 LMAIN(LENA_ARGC, LENA_ARGV){
     if(!lstd_init()){ lexit(LENA_EXIT_FAILURE); };
     
-    lchar_t* const_str = l("Hello Lena API!");
-    lchar_t mystr[20];
+    very_longstr = calloc(VL_SIZE, sizeof(lchar_t));
+    memset(very_longstr, l('a'), sizeof(lchar_t));
 
-    lstrcpy(mystr, const_str, 16);
-    lstdout_str(mystr, 16);
-
-    lchar_t* my_new_str = l("Hello AAAAAAA");
-
-    if (lstrcmp(mystr, my_new_str, 5) == LSTRING_EQUAL) {
-        lstdout_set_color(LENA_WARNING_COLOR);
-    } else {
-        lstdout_set_color(LENA_TEXT_COLOR);
+    very_longstr2 = malloc(VL_SIZE);
+    
+    
+    
+    {
+        size_t len = VL_SIZE;
+        len /= sizeof(int64_t);
+        size_t shift = 0;
+        
+        for (uint64_t i = 0; i < len; ++i) {
+            (*(int64_t*)(very_longstr2 + shift)) = (*(int64_t*)(very_longstr + shift));
+            shift += sizeof(int64_t);
+        }
     }
+    
+    
+    
+    //memcpy(very_longstr2, very_longstr, VL_SIZE);
 
-    lstdout_str("\nGood work!", 12);
-
+    free(very_longstr);
+    free(very_longstr2);
     lexit(LENA_EXIT_SUCCESS);
+    return 0;
 }

@@ -50,8 +50,16 @@ int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
     return memcmp(str1, str2, len);
 }
 
+/* Only with buffers when len % 8 = 0*/
+void lstrcpy_fast(void* data1, void* data2, size_t len) {
+    len /= 8;
+    size_t shift = 0;
+    for (uint64_t i = 0; i < len; ++i) {
+        (*(int64_t*)(data1 + shift)) = (int64_t)(int64_t*)(data2 + shift);
+        shift += 8;
+    }
+}
 #endif
-
 /* lstren -> llen [lchar.h]*/
 
 #endif // __LENA_STRING_H__
