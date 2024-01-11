@@ -20,7 +20,14 @@
         "compare": "c",
         "pthread.h": "c",
         "largs.h": "c",
-        "lerror.h": "c"
+        "lerror.h": "c",
+        "llogs.h": "c",
+        "ltypes.h": "c",
+        "lapp.h": "c",
+        "lerrno.h": "c",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

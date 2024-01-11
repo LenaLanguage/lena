@@ -19,8 +19,8 @@ typedef uint32_t lerror_index_t;
 
 /* List of errors */
 typedef enum {
-    LENA_NO_ARGS        = 0x00,
-    LENA_NO_INPUT_FILES = 0x01,
+    LENA_NO_ARGS            = 0x0000000000000000,
+    LENA_NO_INPUT_FILES     = 0x0000000000000001,
 } errno_t;
 
 /* Buffer for error list */

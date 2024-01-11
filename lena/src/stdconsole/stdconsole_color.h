@@ -13,6 +13,12 @@
 #error [stdconsole_color.h]: stdconsole.h was not included
 #else
 
+#include <stdbool.h>
+
+/* Use colors global variable */
+bool _use_lstdout_set_color = true;
+bool _use_lstderr_set_color = true;
+
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -43,12 +49,14 @@ typedef enum {
 
 inline
 void lstdout_set_color(lena_stdcolor_t color) {
-    SetConsoleTextAttribute(hConsoleOut, (WORD)(color));
+    if (_use_lstdout_set_color)
+        SetConsoleTextAttribute(hConsoleOut, (WORD)(color));
 }
 
 inline
 void lstderr_set_color(lena_stdcolor_t color) {
-    SetConsoleTextAttribute(hConsoleErr, (WORD)(color));
+    if (_use_lstderr_set_color)
+        SetConsoleTextAttribute(hConsoleErr, (WORD)(color));
 }
 
 #else /* UNIX */
@@ -68,14 +76,18 @@ const lchar_t* _lstdconsole_color_codes[] = {
 
 inline
 void lstdout_set_color(lena_stdcolor_t color){
-    lstdout_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
-    __LSTDCONSOLE_CODE_LENGHT);
+    if (_use_lstdout_set_color) {
+        lstdout_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
+        __LSTDCONSOLE_CODE_LENGHT);
+    }
 }
 
 inline
 void lstderr_set_color(lena_stdcolor_t color){
-    lstderr_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
-    __LSTDCONSOLE_CODE_LENGHT);
+    if (_use_lstderr_set_color) {
+        lstderr_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
+        __LSTDCONSOLE_CODE_LENGHT);
+    }
 }
 
 #endif 

@@ -11,12 +11,12 @@
 /* Check C standard */
 #if __STDC_VERSION__ >= 201112L
 
+/* Types */
+#include "ltypes/ltypes.h"
+
 /* Util libraires */
 #include "util/lapp.h"
 #include "util/lconverter.h"
-
-/* Types */
-#include "ltypes/ltypes.h"
 
 /* Libraries */
 #include "stdconsole/stdconsole.h"
@@ -31,7 +31,12 @@
 #include "interpreter/lconfig/lconfig.h"
 #include "interpreter/llabels/llabels.h"
 #include "interpreter/lerrors/lerror.h"
+#include "interpreter/llogs/llogs.h"
+#include "interpreter/ldebug/ldebug.h"
+
+
 #include "interpreter/largs/largs.h"
+
 
 #else /* ERROR (__STDC_VERSION__ >= 201112L) */
 #error [lena.h]: Requires at least version C 2011 (__STDC_VERSION__ >= 201112L)
