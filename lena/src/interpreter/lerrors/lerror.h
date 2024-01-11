@@ -11,6 +11,8 @@
 /* Standard libraries */
 #include "lerrno.h"
 
-#define LENA_ERROR(index, func, ...) func(__VA_ARGS__)
+#define LENA_ERROR(index, func, ...)    func(__VA_ARGS__);\
+                                        lerror_buffer[lerror_index] = index;\
+                                        lerror_index += 1;
 
 #endif // __LENA_ERROR_H__

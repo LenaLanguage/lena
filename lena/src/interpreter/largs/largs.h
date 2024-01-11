@@ -11,6 +11,8 @@
 /* Check lerror.h library */
 #ifdef __LENA_ERROR_H__
 
+#include "largsno.h"
+
 lerror_func_t lena_no_arguments(void) {
     lstderr_set_color(LENA_TEXT_COLOR);
     lstderr_str(LENA_LABEL_NAME, LENA_LABEL_NAME_L);
@@ -43,7 +45,12 @@ bool largs_check(int argc){
     return true;
 }
 
-
+void largs_handler(int argc, lchar_t* argv[]){
+    for (int i = 0; i < argc; ++i) {
+        lstdout_str(argv[i], llen(argv[i]));
+        lstdout_str("\n", 1);
+    }
+}
 
 #else
 #error [lena.h]: lerror.h was not included!

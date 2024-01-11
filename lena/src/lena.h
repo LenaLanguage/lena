@@ -25,10 +25,12 @@
 #include "lfiles/lfiles.h"
 #include "lthreads/lthreads.h"
 #include "ldelay/ldelay.h"
-#include "lerrors/lerror.h"
+
 
 /* Interpreter libraries */
+#include "interpreter/lconfig/lconfig.h"
 #include "interpreter/llabels/llabels.h"
+#include "interpreter/lerrors/lerror.h"
 #include "interpreter/largs/largs.h"
 
 #else /* ERROR (__STDC_VERSION__ >= 201112L) */
