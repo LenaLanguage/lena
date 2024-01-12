@@ -31,10 +31,18 @@ void lena_fout_logs(lchar_t* filename, size_t len) {
 }
 
 void lena_cout_logs(void) {
+    lstderr_str(l("\n[Lena][logs] "), 15);
+    lstderr_set_color(LENA_INFO_COLOR);
+    lstderr_str(l("Lena logs list:\n"), 17);
+    
     if (lerror_index != 0) {
         lchar_t cerror_buffer[LMXLSL];
-        lstrcpy(cerror_buffer, l("[Lena][logs]: Error index: 0x"), LLLL);
+        lstderr_set_color(LENA_TEXT_COLOR);
+        lstderr_str(l("|-> "), 5);
         lstderr_set_color(LENA_ERROR_COLOR);
+        lstderr_str(l("Error index: "), 14);
+        lstrcpy(cerror_buffer, l("0x"), LLLL);
+        lstderr_set_color(LENA_TEXT_COLOR);
         for (lerror_index_t i = 0; i < lerror_index; ++i) {
             lena_cout_logs_helper(lerror_buffer[i], cerror_buffer);
             lstderr_str(cerror_buffer, LMXLSL);

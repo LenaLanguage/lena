@@ -34,7 +34,11 @@
 #include "interpreter/llogs/llogs.h"
 #include "interpreter/ldebug/ldebug.h"
 
-
+/* Libraries error lists */
+#include "lfiles/lfiles_errors.h"
+#include "interpreter/largs/largs_errors.h"
+ 
+/* Executable libraries */
 #include "interpreter/largs/largs.h"
 
 

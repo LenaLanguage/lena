@@ -95,6 +95,7 @@ void llibs_DeleteFile(llibs_file_t llibs_file){
 
 #else       /* LINUX / UNIX */
 
+
 #include <stdio.h>
 
 FILE* llibs_GetfileHandle(lchar_t fillibsme[]){
@@ -151,7 +152,6 @@ void llibs_DeleteFile(llibs_file_t llibs_file){
     free(llibs_file.filePointer);
 }
 
+
 #endif
-
-
 #endif // __LENA_LFILES_COLOR_H__

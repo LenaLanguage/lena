@@ -12,30 +12,7 @@
 #ifdef __LENA_ERROR_H__
 
 #include "largsno.h"
-
-lerror_func_t lena_no_arguments(void) {
-    lstderr_set_color(LENA_TEXT_COLOR);
-    lstderr_str(LENA_LABEL_NAME, LENA_LABEL_NAME_L);
-    lstderr_set_color(LENA_INFO_COLOR);
-    lstderr_str(l("Info: No input files or flags.\n"), 32);
-
-    lstderr_set_color(LENA_TEXT_COLOR);
-    lstderr_str(LENA_LABEL_NAME, LENA_LABEL_NAME_L);
-    lstderr_set_color(LENA_HELP_COLOR);
-    lstderr_str(l("Help: You can run the file with construct:\n"), 44);
-
-    lstderr_set_color(LENA_TEXT_COLOR);
-    lstderr_str(l("|-> "), 5);
-
-    lstderr_set_color(LENA_LABEL_COLOR);
-    lstderr_str(l("lena "), 6);
-    lstderr_set_color(LENA_WARNING_COLOR);
-    lstderr_str(l("[main file path] "), 18);
-    lstderr_set_color(LENA_TEXT_COLOR);
-    lstderr_str(l("-[flags]"), 9);
-
-    lstderr_str(l("\n"), 1);
-}
+#include "largs_errors.h"
 
 bool largs_check(int argc){
     if (argc <= 1) {
@@ -46,9 +23,18 @@ bool largs_check(int argc){
 }
 
 void largs_handler(int argc, lchar_t* argv[]){
+    llibs_file_t mainfile;
+    llibs_file_status_t status = llibs_OpenFile(&mainfile, argv[1]);
+    if (status != LLIBS_FILE_SUCCESS) {
+        /* Only for test */
+        LENA_ERROR(LENA_OPEN_FILE_ERROR, lena_open_file_error, argv[1], llen(argv[1]));
+        lena_cout_logs();
+    } else {
+        lstdout_str(l("SUCCESS!"), 9);
+    }
     for (int i = 0; i < argc; ++i) {
-        lstdout_str(argv[i], llen(argv[i]));
-        lstdout_str("\n", 1);
+
+        
     }
 }
 
