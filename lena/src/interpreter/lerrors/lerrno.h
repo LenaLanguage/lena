@@ -23,10 +23,10 @@ typedef enum {
     LENA_NO_INPUT_FILES         = 0x0000000000000001,
     LENA_FLAG_DOES_NOT_EXIST    = 0x0000000000000002,
     LENA_OPEN_FILE_ERROR        = 0x0000000000000003,
-} errno_t;
+} lerrno_t;
 
 /* Buffer for error list */
-errno_t lerror_buffer[LMXEBL];
+lerrno_t lerror_buffer[LMXEBL];
 lerror_index_t lerror_index = 0;
 
 #endif

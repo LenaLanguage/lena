@@ -1,13 +1,37 @@
 {
     "tasks": [
         {
-            "label": "Build Lena with GCC compiler",
+            "label": "Build Lena with GCC x64 compiler",
             "type": "shell",
             "command": "gcc",
             "args": [
+                "-m64",
                 "src/lena.c",
                 "-o",
-                "lena/lena.exe",
+                "lena/win64/lena.exe",
+                "-O3",
+                "-Wall",
+                //"-IC:\\Projects\\llibs\\", // Path for llibs
+                "-Isrc/",
+                "-std=c11",
+                //"-mconsole",
+                "-municode",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+
+        {
+            "label": "Build Lena with GCC x86 compiler",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-m32",
+                "src/lena.c",
+                "-o",
+                "lena/win32/lena.exe",
                 "-O3",
                 "-Wall",
                 //"-IC:\\Projects\\llibs\\", // Path for llibs

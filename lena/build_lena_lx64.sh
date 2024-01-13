@@ -1,0 +1,1 @@
+gcc  src/lena.c -o lena/lena -O3 -Wall -Isrc/ -std=c11 -pthread

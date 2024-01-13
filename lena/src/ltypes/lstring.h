@@ -24,8 +24,17 @@
 
 #include <wchar.h>
 
-lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src){
-    return wcscpy(dest, src);
+#ifdef WINAPI_FAMILY_PARTITION
+
+#undef lstrcpy
+#undef lstrcat
+#undef lstrcmp
+
+#endif // undef lstr... functions
+
+
+lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len){
+    return memcpy(dest, src, len * sizeof(lchar_t));
 }
 
 lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
@@ -39,7 +48,7 @@ int lstrcmp(lchar_t* str1, lchar_t* str2){
 #else
 
 lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len){
-    return memcpy(dest, src, len);
+    return memcpy(dest, src, len * sizeof(lchar_t));
 }
 
 lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
