@@ -15,10 +15,7 @@
 
 typedef DWORD ldelay_ms_t;
 
-inline 
-void ldelay(ldelay_ms_t ms){ 
-    Sleep((DWORD)(ms));
-}
+extern inline void ldelay(ldelay_ms_t ms);
 
 #else
 
@@ -26,10 +23,7 @@ void ldelay(ldelay_ms_t ms){
 
 typedef unsigned int ldelay_ms_t;
 
-inline 
-void ldelay(ldelay_ms_t ms){ 
-    sleep((unsigned int)(ms));
-}
+extern inline void ldelay(ldelay_ms_t ms);
 
 
 #endif

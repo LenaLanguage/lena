@@ -44,6 +44,17 @@
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": []
+        },
+
+        {
+            "label": "Build Lena with mingw32-make",
+            "type": "shell",
+            "command": "mingw32-make",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
         }
     ],
     "version": "2.0.0"

@@ -41,8 +41,8 @@ lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
     return wcscat(dest, src);
 }
 
-int lstrcmp(lchar_t* str1, lchar_t* str2){
-    return wcscmp(str1, str2);
+int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
+    return memcmp(str1, str2, len * sizeof(lchar_t));
 }
 
 #else
@@ -56,7 +56,7 @@ lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
 }
 
 int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
-    return memcmp(str1, str2, len);
+    return memcmp(str1, str2, len * sizeof(lchar_t));
 }
 
 /* Only with buffers when len % 8 = 0*/

@@ -2,11 +2,22 @@
 #define __LENA_ARGSNO_H__
 
 /**************************************************************************//**
- * @file     largs.h
+ * @file     largsno.h
  * @brief    Project L - Lena programming language largsno
  * @version  V0.0.1
- * @date     11. Jan 2024
+ * @date     13. Jan 2024
  ******************************************************************************/
+
+/* --arg */
+
+void largs_double_dash(lchar_t* flagname) {
+    
+}
+
+/* -arg */
+
+
+/* arg */
 
 
 
