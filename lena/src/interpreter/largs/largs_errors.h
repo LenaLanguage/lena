@@ -15,7 +15,7 @@ lerror_func_t lena_no_arguments(void) {
     lstderr_set_color(LENA_TEXT_COLOR);
     lstderr_str(LENA_LABEL_NAME, LENA_LABEL_NAME_L);
     lstderr_set_color(LENA_INFO_COLOR);
-    lstderr_str(l("Info: No input files or flags.\n"), 32);
+    lstderr_str(l("Info: No input files or flags.\n"), 31);
 
     lstderr_set_color(LENA_TEXT_COLOR);
     lstderr_str(LENA_LABEL_NAME, LENA_LABEL_NAME_L);

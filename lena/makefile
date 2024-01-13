@@ -3,7 +3,7 @@
 
 CC=gcc
 
-CFLAGS=-O3 -Wall -std=c17 -Isrc -m64 -municode
+CFLAGS=-Wall -std=c17 -Isrc -m64 -municode -O3 -s -flto -fdata-sections -ffunction-sections -Wl,--gc-sections
 
 OUT=lena/win64/lena.exe
 
