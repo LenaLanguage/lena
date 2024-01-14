@@ -15,7 +15,7 @@
 
 typedef DWORD ldelay_ms_t;
 
-extern inline void ldelay(ldelay_ms_t ms);
+extern void ldelay(ldelay_ms_t ms);
 
 #else
 
@@ -23,7 +23,7 @@ extern inline void ldelay(ldelay_ms_t ms);
 
 typedef unsigned int ldelay_ms_t;
 
-extern inline void ldelay(ldelay_ms_t ms);
+extern void ldelay(ldelay_ms_t ms);
 
 
 #endif

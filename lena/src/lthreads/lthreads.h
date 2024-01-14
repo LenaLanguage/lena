@@ -60,7 +60,7 @@ typedef DWORD lthread_wait_t;
 void lthread_join(lthread_t* thread, lthread_wait_t wait_ms){
     WaitForSingleObject(thread->hThread, wait_ms);
     CloseHandle(thread->hThread);
-    thread = (lthread_t *){NULL, 0};
+    thread->IdThread = 0;
 }
 
 #else

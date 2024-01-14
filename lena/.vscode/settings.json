@@ -28,7 +28,8 @@
         "array": "c",
         "string_view": "c",
         "initializer_list": "c",
-        "largs_errors.h": "c"
+        "largs_errors.h": "c",
+        "time.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }
