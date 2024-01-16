@@ -28,9 +28,11 @@ endif
 
 ifeq ($(UNAME_S),Linux)
     ifeq ($(UNAME_M),x86_64)
+		CFLAGS+="-DLENA_BUILD_PLATFORM=l(\"Linux x86_64\")"
 		OUT=lena/linux64/lena
 	endif
 	ifeq ($(UNAME_M),x86)
+		CFLAGS+="-DLENA_BUILD_PLATFORM=l(\"Linux x86\")"
 		OUT=lena/linux32/lena
 	endif
 endif

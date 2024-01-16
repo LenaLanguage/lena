@@ -24,9 +24,6 @@ bool largs_check(int argc){
 
 void largs_handler(int argc, lchar_t* argv[]){
     for (int i = 0; i < argc; ++i) {
-        lstdout_str(l("Args: "), 7);
-        lstdout_str(argv[i], llen(argv[i]));
-        lstdout_str(l("\n"), 1);
         /* --version --help */
         if (argv[i][0] == l('-') && argv[i][1] == l('-')) {
             size_t c_arg_len = llen(argv[i]) - 2;

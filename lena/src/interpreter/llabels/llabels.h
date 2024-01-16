@@ -13,5 +13,7 @@
 #define LENA_LABEL_NAME     l("[Lena] ")
 #define LENA_LABEL_NAME_L   8
 
+#define LENA_LABEL_AUTHOR   l("Copyright (C) 2024 Digital Arms Alliance, Inc.")
+#define LENA_LABEL_AUTHOR_L 47
 
 #endif // __LENA_LABELS_H__
