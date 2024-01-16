@@ -10,148 +10,78 @@
 
 /* CAN BE REWRITTEN */
 
+/* Standard libraies */
 #include <stdint.h>
+
+/* Libraries */
+#include "ltypes/ltypes.h"
 
 /* For Windows */
 #ifdef _WIN32
 
 #include <windows.h>
 
-HANDLE llibs_GetFileHandle(lchar_t fillibsme[]) {
-    return CreateFile(fillibsme, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-}
+HANDLE llibs_GetFileHandle(lchar_t filename[]);
 
-HANDLE llibs_GetMapHandle(HANDLE fileHandle) {
-    return CreateFileMapping(fileHandle, NULL, PAGE_READONLY, 0, 0, NULL);
-}
+HANDLE llibs_GetMapHandle(HANDLE fileHandle);
 
-LPCVOID llibs_GetMapView(HANDLE mapHandle) {
-    return MapViewOfFile(mapHandle, FILE_MAP_READ, 0, 0, 0);
-}
+LPCVOID llibs_GetMapView(HANDLE mapHandle);
 
-LONGLONG llibs_GetFileSize(HANDLE fileHandle) {
-    LARGE_INTEGER fileSize;
-    if (!GetFileSizeEx(fileHandle, &fileSize)) {
-        return -1;
-    }
-    return fileSize.QuadPart;
-}
+LONGLONG llibs_GetFileSize(HANDLE fileHandle);
 
 typedef struct {
     HANDLE fileHandle;
     HANDLE mapHandle;
     LPCVOID mapView;
-    int64_t fileSize;
-} llibs_file_t;
+    int64_t size;
+} lfile_t;
 
-typedef uint8_t llibs_file_status_t;
+typedef uint8_t lfile_status_t;
 
-enum llibs_file_status{
-    LLIBS_FILE_SUCCESS               = 0,
-    LLIBS_FILE_OPEN_FAILURE          = 1,
-    LLIBS_FILE_MAP_HANDLE_FAILURE    = 2,
-    LLIBS_FILE_MAP_VIEW_FAILURE      = 3,
-    LLIBS_FILE_SIZE_FAILURE          = 4
+enum lfile_status{
+    LFILE_SUCCESS               = 0,
+    LFILE_OPEN_FAILURE          = 1,
+    LFILE_MAP_HANDLE_FAILURE    = 2,
+    LFILE_MAP_VIEW_FAILURE      = 3,
+    LFILE_SIZE_FAILURE          = 4
 };
 
-llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar_t filename[]){
-    llibs_file->fileHandle = llibs_GetFileHandle(filename);
-    if (llibs_file->fileHandle == NULL) { 
-        CloseHandle(llibs_file->fileHandle);
-        return LLIBS_FILE_OPEN_FAILURE; 
-    }
-    llibs_file->mapHandle = llibs_GetMapHandle(llibs_file->fileHandle);
-    if (llibs_file->mapHandle == NULL) {
-        CloseHandle(llibs_file->mapHandle);
-        CloseHandle(llibs_file->fileHandle);
-        return LLIBS_FILE_MAP_HANDLE_FAILURE;
-    };
-    llibs_file->mapView = llibs_GetMapView(llibs_file->mapHandle);
-    if (llibs_file->mapView == NULL) {
-        UnmapViewOfFile(llibs_file->mapView);
-        CloseHandle(llibs_file->mapHandle);
-        CloseHandle(llibs_file->fileHandle);
-        return LLIBS_FILE_MAP_VIEW_FAILURE;
-    };
-    llibs_file->fileSize = llibs_GetFileSize(llibs_file->fileHandle);
-    if (llibs_file->fileSize == -1) {
-        UnmapViewOfFile(llibs_file->mapView);
-        CloseHandle(llibs_file->mapHandle);
-        CloseHandle(llibs_file->fileHandle);
-        return LLIBS_FILE_SIZE_FAILURE; 
-    };
-    return LLIBS_FILE_SUCCESS;
-}
+/* lfiles cross-platform functions */
 
-lchar_t* llibs_GetFilePointer(llibs_file_t llibs_file){
-    return (lchar_t *)(llibs_file.mapView);
-}
+lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename);
+lchar_t* lfget_pointer(lfile_t* lfile);
+size_t lfget_len(lfile_t* lfile);
+void lfclose(lfile_t* lfile);
 
-void llibs_DeleteFile(llibs_file_t llibs_file){
-    UnmapViewOfFile(llibs_file.mapView);
-    CloseHandle(llibs_file.mapHandle);
-    CloseHandle(llibs_file.fileHandle);
-}
+#else  /* Linux */
 
-#else       /* LINUX / UNIX */
-
-
-#include <stdio.h>
-
-FILE* llibs_GetfileHandle(lchar_t fillibsme[]){
-    return fopen(fillibsme, "rb");
-}
-
-long llibs_GetFileSize(FILE *file){
-    fseek(file, 0, SEEK_END);
-    long size = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    return size;
-}
-
-lchar_t* llibs_GetFileData(int64_t fileSize){
-    return malloc(fileSize);
-}
+#include <fcntl.h>
+#include <unistd.h> 
+#include <sys/stat.h>
+#include <stdlib.h>
 
 typedef struct {
-    FILE *fileHandle;
-    int64_t fileSize;
-    lchar_t *filePointer;
-} llibs_file_t;
+    lchar_t* data;  // data pointer
+    int64_t size;   // size in bytes
+} lfile_t;
 
-typedef uint8_t llibs_file_status_t;
 
-enum llibs_file_status{
-    LLIBS_FILE_SUCCESS               = 0,
-    LLIBS_FILE_OPEN_FAILURE          = 1,
-    LLIBS_FILE_MEMORY_ALLOC_FAILURE  = 2,
+enum lfile_status{
+    LFILE_SUCCESS               = 0,
+    LFILE_OPEN_FAILURE          = 1,
+    LFILE_MEMORY_FAILURE        = 2,
+    LFILE_READING_FAILURE       = 3,
+    LFILE_SIZE_FAILURE          = 4
 };
 
-llibs_file_status_t llibs_OpenFile(llibs_file_t *llibs_file, lchar_t fillibsme[]){
-    llibs_file->fileHandle = llibs_GetfileHandle(fillibsme);
-    if (llibs_file->fileHandle == NULL){
-        return LLIBS_FILE_OPEN_FAILURE;
-    }
-    llibs_file->fileSize = llibs_GetFileSize(llibs_file->fileHandle);
-    llibs_file->filePointer = llibs_GetFileData(llibs_file->fileSize);
-    if (llibs_file->filePointer == NULL){
-        fclose(llibs_file->fileHandle);
-        return LLIBS_FILE_MEMORY_ALLOC_FAILURE;
-    }
-    fread(llibs_file->filePointer, 1, llibs_file->fileSize, llibs_file->fileHandle);
-    return LLIBS_FILE_SUCCESS;
-}
+typedef uint8_t lfile_status_t;
 
+/* lfiles cross-platform functions */
 
-lchar_t* llibs_GetFilePointer(llibs_file_t llibs_file){
-    return (llibs_file.filePointer);
-}
-
-void llibs_DeleteFile(llibs_file_t llibs_file){
-    fclose(llibs_file.fileHandle);
-    free(llibs_file.filePointer);
-}
-
+lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename);
+lchar_t* lfget_pointer(lfile_t* lfile);
+size_t lfget_len(lfile_t* lfile);
+void lfclose(lfile_t* lfile);
 
 #endif
 #endif // __LENA_LFILES_COLOR_H__

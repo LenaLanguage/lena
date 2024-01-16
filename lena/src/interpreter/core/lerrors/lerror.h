@@ -8,7 +8,7 @@
  * @date     10. Jan 2024
  ******************************************************************************/
 
-/* Standard libraries */
+/* ERRNO list */
 #include "lerrno.h"
 
 #define LENA_ERROR(index, func, ...)    func(__VA_ARGS__);\

@@ -4,22 +4,17 @@
 /**************************************************************************//**
  * @file     lconfig.h
  * @brief    Project L - Lena programming language largs
- * @version  V0.0.1
+ * @version  V0.0.2
  * @date     10. Jan 2024
  ******************************************************************************/
 
 /* Errors */
-#define LENA_MAX_ERROR_BUFFER_LENGHT (int)256
-#define LMXEBL LENA_MAX_ERROR_BUFFER_LENGHT
+#include "lconf_errors.h"
 
 /* Logs */
-#define LENA_LOGS_LABEL_LENGHT 2
-#define LLLL LENA_LOGS_LABEL_LENGHT
-#define LENA_MAX_LOGS_STR_LENGHT 16 + LENA_LOGS_LABEL_LENGHT
-#define LMXLSL LENA_MAX_LOGS_STR_LENGHT
+#include "lconf_logs.h"
 
 /* Args */
-#define LENA_MAX_ARGS_BUFFER_LENGHT (int)256
-#define LMABL LENA_MAX_ARGS_BUFFER_LENGHT
+#include "lconf_args.h"
 
 #endif // __LENA_MAIN_CONF_H__

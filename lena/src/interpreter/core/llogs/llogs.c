@@ -1,15 +1,15 @@
-#ifndef __LENA_LOGS_H__
-#define __LENA_LOGS_H__
 
-/**************************************************************************//**
- * @file     largs.h
- * @brief    Project L - Lena programming language largs
- * @version  V0.0.1
- * @date     10. Jan 2024
- ******************************************************************************/
+/* Libraries */
 
-/* Check lerror.h library */
-#ifdef __LENA_ERROR_H__
+/* non core */
+#include "lconsole/lconsole_color.h"
+
+/* core */
+#include "../lconfig/lconf_logs.h"
+#include "../lerrors/lerror.h"
+
+/* Variables */
+
 
 void lena_cout_logs_helper(unsigned int num, lchar_t *str) {
     const int size = LMXLSL -1;
@@ -51,9 +51,3 @@ void lena_cout_logs(void) {
         lstderr_str(l("[Lena][logs]: No output logs."), 30);
     }
 }
-
-
-#else
-#error [lena.h]: lerror.h was not included!
-#endif
-#endif // __LENA_LOGS_H__

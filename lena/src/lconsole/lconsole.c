@@ -4,13 +4,17 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/* Libraries */
 #include "ltypes/ltypes.h"
-#include "stdconsole.h"
+#include "lconsole.h"
 
 #ifdef _WIN32
 
 #include <windows.h>
 
+HANDLE  hConsoleOut = NULL, 
+        hConsoleErr = NULL, 
+        hConsoleIn = NULL;
 
 bool lstdout_init(void){
     hConsoleOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -41,6 +45,10 @@ bool lstd_init(void){
 }
 
 /* Basic functions */
+
+DWORD   ConsoleOutLen   = 0UL,
+        ConsoleErrLen   = 0UL,
+        ConsoleInLen    = 0UL;
 
 /* STDOUT */
 

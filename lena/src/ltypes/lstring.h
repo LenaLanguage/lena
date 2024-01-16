@@ -15,6 +15,7 @@
 #include <string.h>
 #include <strings.h>
 
+/* Libraries */
 #include "lchar.h"
 
 /* lstring macroses */

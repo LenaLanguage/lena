@@ -8,10 +8,12 @@
  * @date     6. Jan 2024
  ******************************************************************************/
 
-#include "ltypes/ltypes.h"
-#include "stdconsole.h"
-
+/* Standard libraries */
 #include <stdbool.h>
+
+/* Libraries */
+#include "ltypes/ltypes.h"
+#include "lconsole.h"
 
 #ifdef _WIN32
 #include <windows.h>

@@ -13,13 +13,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/* Libraries */
+#include "ltypes/ltypes.h"
+
 #ifdef _WIN32
 
 #include <windows.h>
-
-HANDLE  hConsoleOut = NULL, 
-        hConsoleErr = NULL, 
-        hConsoleIn = NULL;
 
 bool lstdout_init(void);
 
@@ -30,10 +29,6 @@ bool lstdin_init(void);
 bool lstd_init(void);
 
 /* Basic functions */
-
-DWORD   ConsoleOutLen   = 0UL,
-        ConsoleErrLen   = 0UL,
-        ConsoleInLen    = 0UL;
 
 /* Types */
 
@@ -90,4 +85,7 @@ lstdio_t lstdin_str(lchar_t* buffer, size_t len);
 
 
 #endif 
+
+#include "lconsole_color.h"
+
 #endif // __LENA_STDCONSOLE_H__

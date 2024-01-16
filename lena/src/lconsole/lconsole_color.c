@@ -1,6 +1,11 @@
 #include <stdbool.h>
 
-#include "stdconsole_color.h"
+#include "lconsole.h"
+#include "lconsole_color.h"
+
+/* Variables */
+
+extern HANDLE hConsoleOut, hConsoleErr, hConsoleIn;
 
 /* Use colors global variable */
 static bool _use_lstdout_set_color = true;

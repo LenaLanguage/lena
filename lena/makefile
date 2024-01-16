@@ -31,9 +31,11 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Windows)
     ifeq ($(UNAME_M),x86_64)
+        CFLAGS += "-DLENA_BUILD_PLATFORM=l(\"Windows x86_64\")"
         OUT=lena/win64/lena.exe
     endif
     ifeq ($(UNAME_M),x86)
+        CFLAGS += "-DLENA_BUILD_PLATFORM=l(\"Windows x86\")"
         OUT=lena/win32/lena.exe
     endif
 endif

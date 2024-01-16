@@ -2,13 +2,6 @@
 
 #ifdef _WIN32
 
-/* lthread basics */
-
-typedef struct {
-    HANDLE hThread;
-    DWORD IdThread;
-} lthread_t;
-
 /* lthread create */
 
 lthread_t lthread_create(LPTHREAD_START_ROUTINE func){

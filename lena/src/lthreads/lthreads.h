@@ -13,6 +13,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+/* Libraries */
+// No dependencies
+
 #ifdef _WIN32
 
 #include <windows.h>
@@ -51,7 +54,7 @@ typedef DWORD lthread_wait_t;
 
 void lthread_join(lthread_t* thread, lthread_wait_t wait_ms);
 
-#else
+#else /* Linux */
 
 #define _GNU_SOURCE
 #include <pthread.h>

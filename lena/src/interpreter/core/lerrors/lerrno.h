@@ -8,10 +8,11 @@
  * @date     10. Jan 2024
  ******************************************************************************/
 
-/* Configuration file must be included before */
-#ifndef __LENA_MAIN_CONF_H__
-#error [lerrno.h]: lconfig.h was not included
-#else
+/* Standard libraries */
+#include <stdint.h>
+
+/* Libraries */
+#include "../lconfig/lconf_errors.h"
 
 /* Error function type */
 typedef void lerror_func_t;
@@ -26,8 +27,7 @@ typedef enum {
 } lerrno_t;
 
 /* Buffer for error list */
-lerrno_t lerror_buffer[LMXEBL];
-lerror_index_t lerror_index = 0;
+extern lerrno_t lerror_buffer[LMXEBL];
+extern lerror_index_t lerror_index;
 
-#endif
 #endif // __LENA_ERRNO_H__

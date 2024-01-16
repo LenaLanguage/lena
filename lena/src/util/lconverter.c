@@ -1,4 +1,3 @@
-
 #include "ltypes/ltypes.h"
 
 void uint16_to_hex_string(unsigned int num, lchar_t *str) {

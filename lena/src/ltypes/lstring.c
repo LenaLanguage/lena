@@ -7,6 +7,7 @@
 #include <string.h>
 #include <strings.h>
 
+/* Libraries */
 #include "lchar.h"
 #include "lstring.h"
 
@@ -15,6 +16,7 @@
 
 #include <wchar.h>
 
+/* Undef WinAPI functions */
 #ifdef WINAPI_FAMILY_PARTITION
 
 #undef lstrcpy
@@ -23,6 +25,7 @@
 
 #endif // undef lstr... functions
 
+/* And define Lena API funcrions */
 
 lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len){
     return memcpy(dest, src, len * sizeof(lchar_t));
