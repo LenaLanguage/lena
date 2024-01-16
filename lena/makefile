@@ -1,20 +1,13 @@
-
 # Compiler ---------------------------------------------->
-
 CC=gcc
 
-# Flags ---------------------------------------------->
+# Flags ------------------------------------------------>
+CFLAGS=-Wall -std=c17 -Isrc -m64 -O3 -s -flto -ffunction-sections -fdata-sections -Wl,--gc-sections -MMD -MP
 
-#
-# -s -flto  -ffunction-sections -fdata-sections -Wl,--gc-sections
-#
-
-CFLAGS=-Wall -std=c17 -Isrc -m64 -O3 -s -flto  -ffunction-sections -fdata-sections -Wl,--gc-sections
-
-# Preparation
+# Platform-specific Flags ------------------------------>
 ifeq ($(OS),Windows_NT)
     UNAME_S := Windows
-	CFLAGS+=-municode
+    CFLAGS += -municode
     ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
         UNAME_M := x86_64
     endif
@@ -28,41 +21,42 @@ endif
 
 ifeq ($(UNAME_S),Linux)
     ifeq ($(UNAME_M),x86_64)
-		CFLAGS+="-DLENA_BUILD_PLATFORM=l(\"Linux x86_64\")"
-		OUT=lena/linux64/lena
-	endif
-	ifeq ($(UNAME_M),x86)
-		CFLAGS+="-DLENA_BUILD_PLATFORM=l(\"Linux x86\")"
-		OUT=lena/linux32/lena
-	endif
+        CFLAGS += "-DLENA_BUILD_PLATFORM=l(\"Linux x86_64\")"
+        OUT=lena/linux64/lena
+    endif
+    ifeq ($(UNAME_M),x86)
+        CFLAGS += "-DLENA_BUILD_PLATFORM=l(\"Linux x86\")"
+        OUT=lena/linux32/lena
+    endif
 endif
 ifeq ($(UNAME_S),Windows)
     ifeq ($(UNAME_M),x86_64)
-		OUT=lena/win64/lena.exe
-	endif
-	ifeq ($(UNAME_M),x86)
-		OUT=lena/win32/lena.exe
-	endif
+        OUT=lena/win64/lena.exe
+    endif
+    ifeq ($(UNAME_M),x86)
+        OUT=lena/win32/lena.exe
+    endif
 endif
 
-
+# Source and Object Files ------------------------------>
 SRC_FILES :=  $(shell python utils/find.py src .c)
-HDR_FILES :=  $(shell python utils/find.py src .h)
-
-
 OBJ_FILES := $(SRC_FILES:.c=.o)
+DEP_FILES := $(OBJ_FILES:.o=.d)
 
-# Default target
+# Default Target --------------------------------------->
 all: $(OUT)
 
-# Linking
+# Linking ---------------------------------------------->
 $(OUT): $(OBJ_FILES)
 	$(CC) $(CFLAGS) -o $(OUT) $(OBJ_FILES)
 
-# Compiling
-%.o: %.c $(HDR_FILES)
+# Compiling -------------------------------------------->
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean
+# Include generated dependencies ----------------------->
+-include $(DEP_FILES)
+
+# Clean ------------------------------------------------>
 clean:
-	rm -f $(OUT) $(OBJ_FILES)
+	rm -f $(OUT) $(OBJ_FILES) $(DEP_FILES)

@@ -27,5 +27,9 @@ typedef enum {
 largsno_t largs_buffer[LMABL];
 largsno_index_t largs_index = 0;
 
+/* Find functions */
+
+void largs_find(int argc, lchar_t* argv[]);
+
 #endif
 #endif // __LENA_ARGSNO_H__

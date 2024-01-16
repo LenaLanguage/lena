@@ -8,16 +8,10 @@
  * @date     6. Jan 2024
  ******************************************************************************/
 
-/* stdconsole_color.h is required */
-#ifndef __LENA_STDCONSOLE_H__
-#error [stdconsole_color.h]: stdconsole.h was not included
-#else
+#include "ltypes/ltypes.h"
+#include "stdconsole.h"
 
 #include <stdbool.h>
-
-/* Use colors global variable */
-bool _use_lstdout_set_color = true;
-bool _use_lstderr_set_color = true;
 
 #ifdef _WIN32
 #include <windows.h>
@@ -47,50 +41,25 @@ typedef enum {
 
 #ifdef _WIN32
 
-inline
-void lstdout_set_color(lena_stdcolor_t color) {
-    if (_use_lstdout_set_color)
-        SetConsoleTextAttribute(hConsoleOut, (WORD)(color));
-}
 
-inline
-void lstderr_set_color(lena_stdcolor_t color) {
-    if (_use_lstderr_set_color)
-        SetConsoleTextAttribute(hConsoleErr, (WORD)(color));
-}
+void lstdout_set_color(lena_stdcolor_t color);
+
+
+void lstderr_set_color(lena_stdcolor_t color);
 
 #else /* UNIX */
 
-/* ANSI codes for changing colors */
-const lchar_t* _lstdconsole_color_codes[] = {
-    l("\x1b[30m"), l("\x1b[31m"),
-    l("\x1b[32m"), l("\x1b[33m"),
-    l("\x1b[34m"), l("\x1b[34m"),
-    l("\x1b[35m"), l("\x1b[36m"),
-    l("\x1b[37m"), l("\x1b[38m"),
-    l("\x1b[39m") };
 
 /* Lenght of l("\x1b[3Xm") */
 #define __LSTDCONSOLE_CODE_LENGHT 6
 
 
-inline
-void lstdout_set_color(lena_stdcolor_t color){
-    if (_use_lstdout_set_color) {
-        lstdout_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
-        __LSTDCONSOLE_CODE_LENGHT);
-    }
-}
 
-inline
-void lstderr_set_color(lena_stdcolor_t color){
-    if (_use_lstderr_set_color) {
-        lstderr_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
-        __LSTDCONSOLE_CODE_LENGHT);
-    }
-}
+void lstdout_set_color(lena_stdcolor_t color);
+
+
+void lstderr_set_color(lena_stdcolor_t color);
 
 #endif 
 
-#endif // __LENA_STDCONSOLE_H__
 #endif // __LENA_STDCONSOLE_COLOR_H__

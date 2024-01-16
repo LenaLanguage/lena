@@ -29,7 +29,9 @@
         "string_view": "c",
         "initializer_list": "c",
         "largs_errors.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "lconfig.h": "c",
+        "stdconsole_color.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

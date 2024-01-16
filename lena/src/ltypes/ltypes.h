@@ -15,7 +15,4 @@
 #include "lchar.h"
 #include "lstring.h"
 
-
-
-
 #endif // __LENA_TYPES_H__

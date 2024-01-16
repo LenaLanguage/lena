@@ -25,11 +25,13 @@ bool largs_check(int argc){
 void largs_handler(int argc, lchar_t* argv[]){
     for (int i = 0; i < argc; ++i) {
         /* --version --help */
-        if (argv[i][0] == l('-') && argv[i][1] == l('-')) {
-            size_t c_arg_len = llen(argv[i]) - 2;
-            lchar_t* c_arg_data = (lchar_t *)(argv[i] + 2 * sizeof(lchar_t));
-            if (lstrcmp(c_arg_data, l("version"), c_arg_len) == LSTRING_EQUAL) {
-                lena_cout_version();
+        if (llen(argv[i]) >= 3) {
+            if (argv[i][0] == l('-') && argv[i][1] == l('-')) {
+                size_t c_arg_len = llen(argv[i]) - 2;
+                lchar_t* c_arg_data = (lchar_t *)(argv[i] + 2 * sizeof(lchar_t));
+                if (lstrcmp(c_arg_data, (lchar_t *)l("version"), c_arg_len) == LSTRING_EQUAL) {
+                    lena_cout_version();
+                }
             }
         }
     }
@@ -39,10 +41,10 @@ void largs_handler(int argc, lchar_t* argv[]){
 
     if (argv[i][0] == l('-') && argv[i + 1][1] == l('-')) {
             lena_cout_version();
-        } else if (argv[i][0] == l('-')) { /* -flag */
+        } else if (argv[i][0] == l('-')) {  -flag 
 
-        //} else { /* other (files) */
-            /*
+        //} else {  other (files) 
+            
                 llibs_file_t mainfile;
                 llibs_file_status_t status = llibs_OpenFile(&mainfile, argv[1]);
                 if (status != LLIBS_FILE_SUCCESS) {
