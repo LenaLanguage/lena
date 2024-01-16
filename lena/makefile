@@ -1,18 +1,4 @@
 
-# Preparation
-ifeq ($(OS),Windows_NT)
-    UNAME_S := Windows
-    ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-        UNAME_M := x86_64
-    endif
-    ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-        UNAME_M := x86
-    endif
-else
-    UNAME_S := $(shell uname -s)
-    UNAME_M := $(shell uname -m)
-endif
-
 # Compiler ---------------------------------------------->
 
 CC=gcc
@@ -23,7 +9,22 @@ CC=gcc
 # -s -flto  -ffunction-sections -fdata-sections -Wl,--gc-sections
 #
 
-CFLAGS=-Wall -std=c17 -Isrc -m64 -municode -O3
+CFLAGS=-Wall -std=c17 -Isrc -m64 -O3 -s -flto  -ffunction-sections -fdata-sections -Wl,--gc-sections
+
+# Preparation
+ifeq ($(OS),Windows_NT)
+    UNAME_S := Windows
+	CFLAGS+=-municode
+    ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+        UNAME_M := x86_64
+    endif
+    ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+        UNAME_M := x86
+    endif
+else
+    UNAME_S := $(shell uname -s)
+    UNAME_M := $(shell uname -m)
+endif
 
 ifeq ($(UNAME_S),Linux)
     ifeq ($(UNAME_M),x86_64)

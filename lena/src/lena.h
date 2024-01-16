@@ -28,11 +28,13 @@
 
 
 /* Interpreter libraries */
+#include "interpreter/version.h"
 #include "interpreter/lconfig/lconfig.h"
 #include "interpreter/llabels/llabels.h"
 #include "interpreter/lerrors/lerror.h"
 #include "interpreter/llogs/llogs.h"
 #include "interpreter/ldebug/ldebug.h"
+#include "interpreter/lmessages/lmessages.h"
 
 /* Libraries error lists */
 #include "lfiles/lfiles_errors.h"

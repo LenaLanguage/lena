@@ -8,17 +8,24 @@
  * @date     13. Jan 2024
  ******************************************************************************/
 
-/* --arg */
+/* Configuration file must be included before */
+#ifndef __LENA_MAIN_CONF_H__
+#error [largsno.h]: lconfig.h was not included
+#else
 
-void largs_double_dash(lchar_t* flagname) {
-    
-}
+/* Largs list */
 
-/* -arg */
+typedef uint8_t largsno_index_t;
 
+typedef enum {
+    LENA_ARG_DH_VERSION         = 0x00,  // --version
+    LENA_ARG_DH_HELP_GENERAL    = 0x01,  // --help
+    LENA_ARG_DH_HELP_ALL        = 0x02,  // --help-all
+} largsno_t; // uint8_t
 
-/* arg */
+/* Buffer for largs list */
+largsno_t largs_buffer[LMABL];
+largsno_index_t largs_index = 0;
 
-
-
+#endif
 #endif // __LENA_ARGSNO_H__
