@@ -26,7 +26,7 @@ void lena_cout_logs_helper(unsigned int num, lchar_t *str) {
     }
 }
 
-void lena_fout_logs(lchar_t* filename, size_t len) {
+void lena_fout_logs(lchar_t* filename) {
     /* later */
 }
 

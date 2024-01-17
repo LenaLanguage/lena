@@ -1,5 +1,5 @@
-#ifndef __LENA_LOGS_CONF_H__
-#define __LENA_LOGS_CONF_H__
+#ifndef __LENA_CORE_LOGS_CONF_H__
+#define __LENA_CORE_LOGS_CONF_H__
 
 /**************************************************************************//**
  * @file     lconf_errors.h
@@ -13,4 +13,4 @@
 #define LENA_MAX_LOGS_STR_LENGHT 16 + LENA_LOGS_LABEL_LENGHT
 #define LMXLSL LENA_MAX_LOGS_STR_LENGHT
 
-#endif // __LENA_LOGS_CONF_H__
+#endif // __LENA_CORE_LOGS_CONF_H__

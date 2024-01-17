@@ -1,5 +1,5 @@
-#ifndef __LENA_LOGS_H__
-#define __LENA_LOGS_H__
+#ifndef __LENA_CORE_LOGS_H__
+#define __LENA_CORE_LOGS_H__
 
 /**************************************************************************//**
  * @file     largs.h
@@ -19,7 +19,7 @@
 
 void lena_cout_logs_helper(unsigned int num, lchar_t *str);
 
-void lena_fout_logs(lchar_t* filename, size_t len);
+void lena_fout_logs(lchar_t* filename);
 void lena_cout_logs(void);
 
-#endif // __LENA_LOGS_H__
+#endif // __LENA_CORE_LOGS_H__

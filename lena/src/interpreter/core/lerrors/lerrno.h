@@ -1,5 +1,5 @@
-#ifndef __LENA_ERRNO_H__
-#define __LENA_ERRNO_H__
+#ifndef __LENA_CORE_ERRNO_H__
+#define __LENA_CORE_ERRNO_H__
 
 /**************************************************************************//**
  * @file     lerrno.h
@@ -30,4 +30,4 @@ typedef enum {
 extern lerrno_t lerror_buffer[LMXEBL];
 extern lerror_index_t lerror_index;
 
-#endif // __LENA_ERRNO_H__
+#endif // __LENA_CORE_ERRNO_H__

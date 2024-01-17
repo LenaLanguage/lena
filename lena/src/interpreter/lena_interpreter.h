@@ -19,5 +19,7 @@
 #include "core/ldebug/ldebug.h"
 #include "core/lmessages/lmessages.h"
 
+/* Include analyzer libraries */
+#include "analyzer/analyzer.h"
 
 #endif // __LENA_INTERPRETER_H__

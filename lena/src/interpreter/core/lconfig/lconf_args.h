@@ -1,5 +1,5 @@
-#ifndef __LENA_ARGS_CONF_H__
-#define __LENA_ARGS_CONF_H__
+#ifndef __LENA_CORE_ARGS_CONF_H__
+#define __LENA_CORE_ARGS_CONF_H__
 
 /**************************************************************************//**
  * @file     lconf_args.h
@@ -11,4 +11,4 @@
 #define LENA_MAX_ARGS_BUFFER_LENGHT (int)256
 #define LMABL LENA_MAX_ARGS_BUFFER_LENGHT
 
-#endif // __LENA_ARGS_CONF_H__
+#endif // __LENA_CORE_ARGS_CONF_H__

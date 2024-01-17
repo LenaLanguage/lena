@@ -1,9 +1,9 @@
-#ifndef __LENA_MAIN_CONF_H__
-#define __LENA_MAIN_CONF_H__
+#ifndef __LENA_CORE_CONF_H__
+#define __LENA_CORE_CONF_H__
 
 /**************************************************************************//**
  * @file     lconfig.h
- * @brief    Project L - Lena programming language largs
+ * @brief    Project L - Lena programming language lconfig
  * @version  V0.0.2
  * @date     10. Jan 2024
  ******************************************************************************/
@@ -17,4 +17,4 @@
 /* Args */
 #include "lconf_args.h"
 
-#endif // __LENA_MAIN_CONF_H__
+#endif // __LENA_CORE_CONF_H__

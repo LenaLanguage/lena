@@ -1,5 +1,5 @@
-#ifndef __LENA_ERROR_H__
-#define __LENA_ERROR_H__
+#ifndef __LENA_CORE_ERROR_H__
+#define __LENA_CORE_ERROR_H__
 
 /**************************************************************************//**
  * @file     lerror.h
@@ -15,4 +15,4 @@
                                         lerror_buffer[lerror_index] = index;\
                                         lerror_index += 1;
 
-#endif // __LENA_ERROR_H__
+#endif // __LENA_CORE_ERROR_H__

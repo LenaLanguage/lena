@@ -1,5 +1,5 @@
-#ifndef __LENA_DEBUG_H__
-#define __LENA_DEBUG_H__
+#ifndef __LENA_CORE_DEBUG_H__
+#define __LENA_CORE_DEBUG_H__
 
 /**************************************************************************//**
  * @file     ldebug.h
@@ -9,4 +9,4 @@
  ******************************************************************************/
 
 
-#endif // __LENA_DEBUG_H__
+#endif // __LENA_CORE_DEBUG_H__

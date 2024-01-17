@@ -1,5 +1,5 @@
-#ifndef __LENA_MESSAGES_H__
-#define __LENA_MESSAGES_H__
+#ifndef __LENA_CORE_MESSAGES_H__
+#define __LENA_CORE_MESSAGES_H__
 
 /**************************************************************************//**
  * @file     lmessages.h
@@ -23,4 +23,4 @@
 
 void lena_cout_version(void);
 
-#endif // __LENA_MESSAGES_H__
+#endif // __LENA_CORE_MESSAGES_H__
