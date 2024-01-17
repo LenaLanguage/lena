@@ -1,5 +1,5 @@
-import console
+import std::console
 
 {
-    console.out("Hello Lena's World!")
+    console.out("Hello world!")
 }

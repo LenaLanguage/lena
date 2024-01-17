@@ -18,6 +18,7 @@
 #include "core/llogs/llogs.h"
 #include "core/ldebug/ldebug.h"
 #include "core/lmessages/lmessages.h"
+#include "core/largs/largs.h"
 
 /* Include analyzer libraries */
 #include "analyzer/analyzer.h"

@@ -17,9 +17,9 @@
 #include "../lconfig/lconf_logs.h"
 #include "../lerrors/lerror.h"
 
-void lena_cout_logs_helper(unsigned int num, lchar_t *str);
+void core_cout_logs_helper(unsigned int num, lchar_t *str);
 
-void lena_fout_logs(lchar_t* filename);
-void lena_cout_logs(void);
+void core_fout_logs(lchar_t* filename);
+void core_cout_logs(void);
 
 #endif // __LENA_CORE_LOGS_H__

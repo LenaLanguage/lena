@@ -11,7 +11,7 @@
 /* Variables */
 
 
-void lena_cout_logs_helper(unsigned int num, lchar_t *str) {
+void core_cout_logs_helper(unsigned int num, lchar_t *str) {
     const int size = LMXLSL -1;
     str[size] = l('\n'); /* it must be a new war crime */
 
@@ -26,11 +26,11 @@ void lena_cout_logs_helper(unsigned int num, lchar_t *str) {
     }
 }
 
-void lena_fout_logs(lchar_t* filename) {
+void core_fout_logs(lchar_t* filename) {
     /* later */
 }
 
-void lena_cout_logs(void) {
+void core_cout_logs(void) {
     lstderr_str(l("\n[Lena][logs] "), 15);
     lstderr_set_color(LENA_INFO_COLOR);
     lstderr_str(l("Lena logs list:\n"), 17);
@@ -44,7 +44,7 @@ void lena_cout_logs(void) {
         lstrcpy(cerror_buffer, l("0x"), LLLL);
         lstderr_set_color(LENA_TEXT_COLOR);
         for (lerror_index_t i = 0; i < lerror_index; ++i) {
-            lena_cout_logs_helper(lerror_buffer[i], cerror_buffer);
+            core_cout_logs_helper(lerror_buffer[i], cerror_buffer);
             lstderr_str(cerror_buffer, LMXLSL);
         }
     } else {

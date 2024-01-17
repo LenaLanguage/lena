@@ -1,5 +1,5 @@
-#ifndef __LENA_CORE_ARGS_H__
-#define __LENA_CORE_ARGS_H__
+#ifndef __LENA_CORE_ARGSNO_H__
+#define __LENA_CORE_ARGSNO_H__
 
 /**************************************************************************//**
  * @file     largs.h
@@ -11,16 +11,15 @@
 /* Standard libraries */
 #include <stdint.h>
 
-/* Libraries */
+typedef uint32_t core_argsno_index_t;
+extern core_argsno_index_t ore_argsno_index;
 
-/* core */
-#include "largsno.h"
+typedef enum {
+    /* Double hyphen */
+    LENA_ARGS_HELP = 0,
+    /* Single hyphen */
 
-/* non-core */
-#include "ltypes/ltypes.h"
-#include "lconsole/lconsole.h"
+    /* Simple arg */
+} core_argsno_t;
 
-bool core_args_exist(int argc);
-void core_args_receiver(int argc, lchar_t* argv[]);
-
-#endif // __LENA_CORE_ARGS_H__
+#endif // __LENA_CORE_ARGSNO_H__
