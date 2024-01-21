@@ -20,7 +20,20 @@
 #include "ltypes/ltypes.h"
 #include "lconsole/lconsole.h"
 
+/* Finders for different arguments */
+
+/* Double hyphen */
+extern void lena_args_dh(lchar_t argv[]);
+
+/* Single hyphen */
+extern void lena_args_sh(lchar_t argv[]);
+
+/* Simple arg */
+extern void lena_args_sa(lchar_t argv[]);
+
 bool core_args_exist(int argc);
 void core_args_receiver(int argc, lchar_t* argv[]);
+
+/* DH SA SH funcitons (--args -args args) */
 
 #endif // __LENA_CORE_ARGS_H__

@@ -1,7 +1,11 @@
 #include <lena.h>
 
 LMAIN(LENA_ARGC, LENA_ARGV) {
-    core_args_exist(LENA_ARGC);
+    if (!lstd_init()) { lexit(LENA_EXIT_FAILURE); };
+    if (!core_args_exist(LENA_ARGC)) { 
+        lexit(LENA_EXIT_FAILURE); 
+    }
+    core_args_receiver(LENA_ARGC, LENA_ARGV);
     lexit(LENA_EXIT_SUCCESS);
 }
 

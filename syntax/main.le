@@ -1,52 +1,13 @@
-/* 1 до 100, каждое что делиться на 3 умножить на два */
 
-define array as i32[] = tranform (sequence from 1 to 100) { each % 3 == 0 -> each *= 2 }
+define quick_sort(array) {
 
-
-define array as i32[] = tranform (sequence from 1 to 100) { 
-    (index of each) % 3 == 0 -> each *= 2 
 }
 
-console << array
+define array as i32[20] with default (catalan sequence with n from 20 to 0)
+
+array[0] == 0 -> console << array[0]
 
 
-/* 2 strings в первой строке разделить все числа которые делятся на 3 разделить на 3 */
+select()
 
-define string1 as str
-define string2 as str
-define num_array1 as i32[]
-define num_array2 as i32[]
-
-
-console >> string1
-console >> string2
-
-num_array1 = transform (find <numbers> in string1) { each % 3 == 0 -> each /= 3 }
-num_array2 = transform (find <numbers> in string2) { each % 3 == 0 -> each /= 2 }
-
-console << num_array1 << " " << num_array2
-
-
-
-/* открыть файл и посчитать количество подстроки */
-
-define myfile = file("something.txt")
-define string_array as str[]
-
-string_array = (find "substr" in myfile)
-
-console << le
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+console << 

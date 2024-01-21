@@ -1,6 +1,6 @@
 /* Libraries */
 
-/* non core */
+/* non-core */
 #include "lconsole/lconsole.h"
 
 /* interpreter */

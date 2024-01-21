@@ -10,7 +10,7 @@
 
 /* Libraries */
 
-/* non core */
+/* non-core */
 #include "lconsole/lconsole_color.h"
 
 /* core */

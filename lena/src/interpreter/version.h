@@ -1,5 +1,5 @@
-#ifndef __LENA_VERSION_H__
-#define __LENA_VERSION_H__
+#ifndef __LENA_INTERPRETER_VERSION_H__
+#define __LENA_INTERPRETER_VERSION_H__
 
 /**************************************************************************//**
  * @file     version.h
@@ -14,4 +14,4 @@
 #define LENA_VERSION        0.0.1
 #define LENA_VERSION_STR    l("0.0.1")
 
-#endif // __LENA_VERSION_H__
+#endif // __LENA_INTERPRETER_VERSION_H__

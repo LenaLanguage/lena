@@ -40,7 +40,10 @@
         "ldebug.h": "c",
         "lmessages.h": "c",
         "version.h": "c",
-        "lena_interpreter.h": "c"
+        "lena_interpreter.h": "c",
+        "largsno.h": "c",
+        "initializer.h": "c",
+        "lchar.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

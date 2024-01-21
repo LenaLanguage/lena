@@ -11,22 +11,17 @@
 #include "ltypes/ltypes.h"
 #include "lconsole/lconsole.h"
 
-/* Unvisible functions */
+
+/* Finders for different arguments */
 
 /* Double hyphen */
-void __core_args_dh(lchar_t argv[]) {
-
-}
+void lena_args_dh(lchar_t argv[]);
 
 /* Single hyphen */
-void __core_args_sh(lchar_t argv[]) {
-
-}
+void lena_args_sh(lchar_t argv[]);
 
 /* Simple arg */
-void __core_args_sa(lchar_t argv[]) {
-
-}
+void lena_args_sa(lchar_t argv[]);
 
 /* Visible functions */
 
@@ -42,30 +37,23 @@ void core_args_receiver(int argc, lchar_t* argv[]) {
     /* argv[0] always equ 'lena' */
     for (int i = 1; i < argc; ++i) {
         size_t c_arg_len = llen(argv[i]);
-
         /* --arg */
-        if (c_arg_len >= 3) {
+        if (c_arg_len >= 3) { /* --x (3)*/
             if (argv[i][0] == l('-') && argv[i][1] == l('-')) {
-                __core_args_dh((lchar_t *)(argv[i] + 2 * sizeof(lchar_t)));
+                lena_args_dh((lchar_t *)(argv[i] + 2));
             } else {
                 goto sh_arg; /* Go to single hyphen */
             }
-        }
-
-        /* -arg */
-        if (c_arg_len >= 1) {
+        } else if (c_arg_len >= 2) { /* -x (2)*/
         sh_arg:
             if (argv[i][0] == l('-')) {
-                __core_args_sh((lchar_t *)(argv[i] + 1 * sizeof(lchar_t)));
+                lena_args_sh((lchar_t *)(argv[i] + 1));
             } else {
                 goto s_arg; /* Go to simple arg (without hyphen) */
             }
-        }
-
-        /* arg */
-        if (c_arg_len > 0) {
+        } else if (c_arg_len > 0) { /* x > 0 */
         s_arg:
-            __core_args_sa(argv[i]);
+            lena_args_sa(argv[i]);
         }
     }
 }

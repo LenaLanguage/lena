@@ -20,7 +20,22 @@
 #include "core/lmessages/lmessages.h"
 #include "core/largs/largs.h"
 
-/* Include analyzer libraries */
+/* Include initializer libraries (lena core, threads ...) */
+#include "initializer/initializer.h"
+
+/* Include executor libraries for analyzer (based on threads and initializer) */
+#include "executor/executor.h"
+
+/* Include analyzer libraries (parser, tokenizator ...) */
 #include "analyzer/analyzer.h"
+
+/**
+ *  Lena language construction:
+ * 
+ * 1 -> initializer downloads all files and functions
+ * 2 -> executor is a tool for analyzer
+ * 3 -> analyzer explore code and calls functions from 1 and 2 (in loop)
+ * 
+*/
 
 #endif // __LENA_INTERPRETER_H__

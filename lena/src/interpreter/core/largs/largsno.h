@@ -15,7 +15,7 @@
 #include "../lconfig/lconf_args.h"
 
 /* largsno index */
-extern core_argsno_index_t сore_argsno_index;
+extern core_argsno_index_t core_argsno_index;
 
 /* largsno buffer and list */
 
