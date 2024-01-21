@@ -10,6 +10,9 @@
 
 /* Libraries */
 
+/* Interpreter */
+#include "interpreter/lena_interpreter.h"
+
 
 
 #endif // __LENA_ANALYZER_H__

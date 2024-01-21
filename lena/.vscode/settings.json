@@ -39,7 +39,8 @@
         "lconsole_color.h": "c",
         "ldebug.h": "c",
         "lmessages.h": "c",
-        "version.h": "c"
+        "version.h": "c",
+        "lena_interpreter.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

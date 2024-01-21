@@ -6,8 +6,9 @@
 
 /* core */
 #include  "largsno.h"
+#include "../lconfig/lconf_args.h"
 
 /* non-core */
 
-core_argsno_index_t ore_argsno_index = 0;
-
+core_argsno_index_t сore_argsno_index = 0;
+core_argsno_t core_argsno[LMABL];

@@ -1,9 +1,0 @@
-import std::console
-import std::sys
-
-/* Infinity loop */
-{
-    loop {
-
-    }
-}

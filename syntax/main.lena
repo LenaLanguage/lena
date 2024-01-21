@@ -1,5 +1,0 @@
-import std::console
-
-{
-    console.out("Hello world!")
-}

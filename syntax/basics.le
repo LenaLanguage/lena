@@ -1,0 +1,44 @@
+# standard functions
+
+# streams
+
+console >> var
+console << var
+
+file >> var
+file << var
+
+# variables
+
+define var as i32                       # static typing
+define var                              # dincamic typing
+define var as i32 with default 23452    # static typing with initialization
+define VAR = 4096                       # constant
+
+define var as cstr with default "ABC" times 2000    # create var cstr "ABC" + "ABC".... 2000 times
+
+define sum(x, y) as i32 {
+    x + y -> sum
+} 
+
+define find_zeroes(array) {
+    (find 0 in array) -> find_zeroes
+}
+
+# void function
+
+define out_str_10_times(string) {
+    repeat: console << string
+}
+
+# loops
+
+repeat 1000: console << "Hello World!"
+
+define a as i32[20] with default 0 times 20
+
+# {0, 0, 0, 0, 0} = 0 times 5
+
+define b as i32[20] with default a
+
+convert b to i64[20]
