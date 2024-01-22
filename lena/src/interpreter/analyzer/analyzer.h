@@ -8,6 +8,7 @@
  * @date     21. Jan 2024
  ******************************************************************************/
 
-
+/* Include libraries */
+#include "tokenizer/tokenizer.h"
 
 #endif // __LENA_INTERPRETOR_ANALYZER_H__
