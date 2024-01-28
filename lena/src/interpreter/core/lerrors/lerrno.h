@@ -27,7 +27,7 @@ typedef enum {
 } lerrno_t;
 
 /* Buffer for error list */
-extern lerrno_t lerror_buffer[LMXEBL];
+extern lerrno_t lerror_buffer[LCMXEBL];
 extern lerror_index_t lerror_index;
 
 #endif // __LENA_CORE_ERRNO_H__

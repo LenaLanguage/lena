@@ -31,11 +31,11 @@
         },
         
         {
-            "name": "(gdb) Launch",
+            "name": "(gdb) Launch Win64",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/lena.exe",
-            "args": ["C:\\Projects\\LENA\\syntax\\main.lena"],
+            "program": "${workspaceFolder}/lena/win64/lena.exe",
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

@@ -12,7 +12,7 @@
 typedef uint32_t core_argsno_index_t;
 
 /* largsno buffer and list */
-#define LENA_MAX_ARGS_BUFFER_LENGHT (int)256
-#define LMABL LENA_MAX_ARGS_BUFFER_LENGHT
+#define LENA_CORE_MAX_ARGS_BUFFER_LENGHT (int)256
+#define LCMABL LENA_CORE_MAX_ARGS_BUFFER_LENGHT
 
 #endif // __LENA_CORE_ARGS_CONF_H__

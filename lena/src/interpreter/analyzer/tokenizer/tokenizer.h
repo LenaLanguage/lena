@@ -22,6 +22,14 @@ typedef enum {
     LENA_TOKEN_KW_TIMES,
 
     /* Symbols */
+    LENA_TOKEN_COMMA,           /* , */
+
+    /* Comments */
+    LENA_TOKEN_C_SEMICOLON,       /* ; */
+
+    /* Multiline comments */
+    LENA_TOKEN_MC_BEGIN,        // /* 
+    LENA_TOKEN_MC_END,          // */ 
 
     /* Arithmetic */
     LENA_TOKEN_AC_PLUS,     /* + */
@@ -29,7 +37,6 @@ typedef enum {
     LENA_TOKEN_AC_MUL,      /* * */
     LENA_TOKEN_AC_DIV,      /* / */
     LENA_TOKEN_AC_MOD,      /* % */
-
 
     /* Logic */
     LENA_TOKEN_LOGIC_NOT,   /* not */
@@ -59,12 +66,11 @@ typedef enum {
 
     LENA_TOKEN_IDENTIFIER_DTYPE_STR,
 
-    /* Data (Positive and Negative) */
-    LENA_TOKEN_DATA_PINTEGER,
-    LENA_TOKEN_DATA_NINTEGER,
+    /* Data */
+    LENA_TOKEN_DATA_INTEGER,
+    LENA_TOKEN_DATA_DECIMAL,
 
-    LENA_TOKEN_DATA_PDOUBLE,
-    LENA_TOKEN_DATA_NDOUBLE,
+    LENA_TOKEN_DATA_STRING,
 
     /* Brackets */
     LENA_TOKEN_SLBRACKET,       /* [ */
@@ -74,6 +80,11 @@ typedef enum {
     LENA_TOKEN_LBRACE,          /* { */
     LENA_TOKEN_RBRACE,          /* } */
 
+} ltoken_type_t;
+
+typedef struct {
+    ltoken_type_t type;
+    
 } ltoken_t;
 
 #endif // __LENA_INTERPRETOR_TOKENIZER_H__

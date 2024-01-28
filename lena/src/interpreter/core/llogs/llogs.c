@@ -12,10 +12,10 @@
 
 
 void core_cout_logs_helper(unsigned int num, lchar_t *str) {
-    const int size = LMXLSL -1;
+    const int size = LCMXLSL -1;
     str[size] = l('\n'); /* it must be a new war crime */
 
-    for (int i = size - 1; i >= LLLL; i--) {
+    for (int i = size - 1; i >= LCLLL; i--) {
         lchar_t digit = num & 0xF;
         if (digit < 10) {
             str[i] = l('0') + digit;
@@ -36,16 +36,16 @@ void core_cout_logs(void) {
     lstderr_str(l("Lena logs list:\n"), 17);
     
     if (lerror_index != 0) {
-        lchar_t cerror_buffer[LMXLSL];
+        lchar_t cerror_buffer[LCMXLSL];
         lstderr_set_color(LENA_TEXT_COLOR);
         lstderr_str(l("|-> "), 5);
         lstderr_set_color(LENA_ERROR_COLOR);
         lstderr_str(l("Error index: "), 14);
-        lstrcpy(cerror_buffer, l("0x"), LLLL);
+        lstrcpy(cerror_buffer, l("0x"), LCLLL);
         lstderr_set_color(LENA_TEXT_COLOR);
         for (lerror_index_t i = 0; i < lerror_index; ++i) {
             core_cout_logs_helper(lerror_buffer[i], cerror_buffer);
-            lstderr_str(cerror_buffer, LMXLSL);
+            lstderr_str(cerror_buffer, LCMXLSL);
         }
     } else {
         lstderr_str(l("[Lena][logs]: No output logs."), 30);

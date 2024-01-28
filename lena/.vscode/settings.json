@@ -43,7 +43,9 @@
         "lena_interpreter.h": "c",
         "largsno.h": "c",
         "initializer.h": "c",
-        "lchar.h": "c"
+        "lchar.h": "c",
+        "lconf_args.h": "c",
+        "lconf_logs.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

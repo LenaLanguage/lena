@@ -40,6 +40,6 @@ typedef enum {
 } core_argsno_t;
 
 /* Args buffer */
-extern core_argsno_t core_argsno[LMABL];
+extern core_argsno_t core_argsno[LCMABL];
 
 #endif // __LENA_CORE_ARGSNO_H__
