@@ -49,7 +49,7 @@ void lstdout_set_color(lena_stdcolor_t color);
 
 void lstderr_set_color(lena_stdcolor_t color);
 
-#else /* UNIX */
+#else /* LINUX */
 
 
 /* Lenght of l("\x1b[3Xm") */

@@ -2,10 +2,22 @@
 
 LMAIN(LENA_ARGC, LENA_ARGV) {
     if (!lstd_init()) { lexit(LENA_EXIT_FAILURE); };
-    if (!core_args_exist(LENA_ARGC)) { 
-        lexit(LENA_EXIT_FAILURE); 
+    if (!core_args_exist(LENA_ARGC)) {
+        lexit(LENA_EXIT_FAILURE);
     }
-    core_args_receiver(LENA_ARGC, LENA_ARGV);
+    ltoken_buffer_t buffer;
+    if (!ltoken_buffer_init(&buffer)) {
+        lexit(LENA_EXIT_FAILURE);
+    }
+    lchar_t* string = l("General 234235235 32424.525324 234234.5234 23434");
+    ltoken_get(&string, &buffer);
+    core_args_receiver(LENA_ARGC, LENA_ARGV); 
+
+    for(size_t i = 0; i < buffer.index; ++i) {
+        printf("%d ", buffer.token[i].type);
+    }
+
+    ltoken_buffer_deinit(&buffer);
     lexit(LENA_EXIT_SUCCESS);
 }
 

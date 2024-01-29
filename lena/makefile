@@ -2,7 +2,7 @@
 CC=gcc
 
 # Flags ------------------------------------------------>
-CFLAGS=-Wall -std=c17 -Isrc -m64 -O3 -g
+CFLAGS=-Wall -std=c17 -Isrc -m64 -O3 -s -flto -ffunction-sections -fdata-sections -Wl,--gc-sections -MMD -MP
 
 # for debug -Wall -std=c17 -Isrc -m64 -O3 -g
 # for realise -Wall -std=c17 -Isrc -m64 -O3 -s -flto -ffunction-sections -fdata-sections -Wl,--gc-sections -MMD -MP

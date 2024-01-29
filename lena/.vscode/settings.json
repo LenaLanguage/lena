@@ -45,7 +45,11 @@
         "initializer.h": "c",
         "lchar.h": "c",
         "lconf_args.h": "c",
-        "lconf_logs.h": "c"
+        "lconf_logs.h": "c",
+        "analyzer.h": "c",
+        "tokenizer.h": "c",
+        "string": "c",
+        "conf_tokenizer.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

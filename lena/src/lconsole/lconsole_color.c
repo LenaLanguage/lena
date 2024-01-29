@@ -29,7 +29,7 @@ void lstderr_set_color(lena_stdcolor_t color) {
         SetConsoleTextAttribute(hConsoleErr, (WORD)(color));
 }
 
-#else /* UNIX */
+#else /* LINUX */
 
 /* ANSI codes for changing colors */
 static const lchar_t* _lstdconsole_color_codes[] = {

@@ -28,7 +28,7 @@ enum lexit_codes {
 #ifdef __LENA_MESSAGES__
 #pragma message("[lapp.h]: Using Windows OS...")
 #endif
-#else /* UNIX */
+#else /* LINUX */
 #define LMAIN(argc, argv) int main(int argc, lchar_t* argv[])
 #ifdef __LENA_MESSAGES__
 #pragma message("[lapp.h]: Using Windows OS...")

@@ -97,12 +97,12 @@ lstdio_t lstdin_str(lchar_t *buffer, size_t len){
 
 
 
-#else /* UNIX */
+#else /* LINUX */
 
 #include <unistd.h>
 
 
-/* Unix doesn't requre initialization */
+/* LINUX doesn't requre initialization */
 bool lstd_init(void) {
     return true;
 }

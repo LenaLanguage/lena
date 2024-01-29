@@ -1,24 +1,5 @@
-use console
 
-define execute_brainfuck(string:str) as bool {
-    define execute_instruction(string:str, i_s:i32, data:i8[], i_d:i32) as bool{
-        match str[i] {
-            ">" -> execute_instruction(str, i + 1, data, i_d + 1)
-            "<" -> execute_instruction(str, i - 1, data, i_d - 1)
-            "+" -> execute_instruction(str, i + 1, data, i_d)
-        }
-    }
+a = 2000 ; Это комментарий
+b = 213414
 
-    define MEMORY_SIZE = 30000
-    define value as i8[MEMORY_SIZE] with default 0 times MEMORY_SIZE
-    define string_len as i32 with default len(string)
-    execute_instruction(str, )
-}
-
-define code as str with default "++[++>---<]>."
-
-select(execute_brainfuck(code),
-    console << "Success!",
-    console << "Error!" as error )
-
-    
+console << "Hello World!" << a + b

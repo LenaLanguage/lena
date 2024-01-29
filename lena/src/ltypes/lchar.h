@@ -8,6 +8,8 @@
  * @date     6. Jan 2024
  ******************************************************************************/
 
+/* Include libraries */
+#include <stdbool.h>
 
 #ifdef _WIN32 /* WINDOWS */
 
@@ -23,7 +25,7 @@ typedef wchar_t lchar_t;
 #define llen(str) wcslen(str)
 #define l(data) L##data
 
-#else /* UNIX */
+#else /* LINUX */
 
 #include <string.h>
 
@@ -33,5 +35,16 @@ typedef char lchar_t;
 #define l(data) data
 
 #endif
+
+/* Functions */
+
+/**
+ * @brief Determining whether a character is a digit
+*/
+bool is_ldigit(lchar_t sym);
+/**
+ * @brief Determining whether a character is a letter
+*/
+bool is_lletter(lchar_t sym);
 
 #endif // __LENA_LCHAR_H__
