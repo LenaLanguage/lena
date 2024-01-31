@@ -1,4 +1,11 @@
+#include <stdio.h>
 #include <lena.h>
+
+void print_t_data(ltoken_t token) {
+    for(size_t i = 0; i < token.len; ++i) {
+        putchar(token.data[i]);
+    }
+}
 
 LMAIN(LENA_ARGC, LENA_ARGV) {
     if (!lstd_init()) { lexit(LENA_EXIT_FAILURE); };
@@ -9,12 +16,15 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
     if (!ltoken_buffer_init(&buffer)) {
         lexit(LENA_EXIT_FAILURE);
     }
-    lchar_t* string = l("General 234235235 32424.525324 234234.5234 23434");
+    lchar_t* string = l("a:=default with + - 654623");
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 
 
     for(size_t i = 0; i < buffer.index; ++i) {
-        printf("%d ", buffer.token[i].type);
+        printf("Current token: %ld \t ID:%d\n", i, buffer.token[i].type);
+        printf("Current token: %ld \t data:", i); 
+        print_t_data(buffer.token[i]); putchar('\n');
+        printf("Current token: %ld \t len:%ld\n", i, buffer.token[i].len);
     }
 
     ltoken_buffer_deinit(&buffer);

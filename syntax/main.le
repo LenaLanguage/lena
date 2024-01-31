@@ -1,5 +1,5 @@
 
-a = 2000 ; Это комментарий
+a:i32 = 2000 ; Это комментарий
 b = 213414
 
-console << "Hello World!" << a + b
+cout << "Hello World!" << a + b

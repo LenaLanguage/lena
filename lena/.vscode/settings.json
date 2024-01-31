@@ -49,7 +49,8 @@
         "analyzer.h": "c",
         "tokenizer.h": "c",
         "string": "c",
-        "conf_tokenizer.h": "c"
+        "conf_tokenizer.h": "c",
+        "lstring.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

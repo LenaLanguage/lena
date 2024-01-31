@@ -30,7 +30,7 @@ static bool is_trash(lchar_t sym) {
 
 static void token_pass_trash(lchar_t* input[]) {
 	while (is_trash((**input))) {
-		(*input)++;
+		++(*input);
 	}
 }
 
@@ -38,12 +38,42 @@ static void token_pass_trash(lchar_t* input[]) {
 
 /* ---------------- Simple tokens ---------------- */
 
+/* -------- Private data type -------- */
+
+typedef enum {
+
+    /* Symbols */
+    LENA_TOKEN_ST_COMMA = l(','),       /* , */
+	LENA_TOKEN_ST_COLON = l(':'),		/* : */
+
+    /* Comments */
+    LENA_TOKEN_ST_C_SEMICOLON = l(';'),	/* ; */
+
+
+    /* Arithmetic */
+	LENA_TOKEN_ST_AC_EQU   	= l('='),    /* = */
+	LENA_TOKEN_ST_AC_PLUS  	= l('+'),    /* + */
+    LENA_TOKEN_ST_AC_MINUS 	= l('-'),    /* - */
+    LENA_TOKEN_ST_AC_MUL   	= l('*'),    /* * */
+    LENA_TOKEN_ST_AC_DIV   	= l('/'),    /* / */
+    LENA_TOKEN_ST_AC_MOD   	= l('%'),    /* % */
+
+    /* Binary */
+    LENA_TOKEN_ST_BIN_NOT  	= l('!'),    /* ! */
+    LENA_TOKEN_ST_BIN_AND  	= l('&'),    /* & */
+    LENA_TOKEN_ST_BIN_OR   	= l('|'),    /* | */
+    LENA_TOKEN_ST_BIN_XOR  	= l('^'),    /* ^ */
+
+} ltoken_stoken_list_t;
+
 static const ltoken_type_t lookup_stoken_table[LCHAR_MAX + 1] = {
 	/* Comma */
 	[LENA_TOKEN_ST_COMMA]		= LENA_TOKEN_COMMA,
 
-	/* Comments */
+	/* Symbols */
 	[LENA_TOKEN_ST_C_SEMICOLON] = LENA_TOKEN_C_SEMICOLON,
+	[LENA_TOKEN_ST_COLON] 	= LENA_TOKEN_COLON,
+	[LENA_TOKEN_ST_AC_EQU] 	= LENA_TOKEN_AC_EQU,
 
 	/* Arithmetic */
 	[LENA_TOKEN_ST_AC_PLUS]     = LENA_TOKEN_AC_PLUS,
@@ -70,7 +100,7 @@ static ltoken_type_t _token_simple(lchar_t* input[], ltoken_buffer_t* buffer) {
 	buffer->token[buffer->index].data = (*input);
 	buffer->token[buffer->index].len = 1;
 	if (stoken_type != LENA_TOKEN_NON_SIMPLE)
-		(*input)++;
+		++(*input);
 	return stoken_type;
 }
 
@@ -93,8 +123,7 @@ static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
                 break;
             }
         }
-		putchar((**input));
-		(*input)++; len++;
+		++(*input); ++len;
 	}
 	buffer->token[buffer->index].len = len;
 }
@@ -102,21 +131,7 @@ static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
 /* ---------------- Identifer tokens ---------------- */
 
 /* Helper function, for recognizing keywords */
-extern bool __token_identifier_kw(lchar_t* input[], ltoken_buffer_t* buffer);
-
-static void _token_identifier(lchar_t* input[], ltoken_buffer_t* buffer) {
-	/* If it's not a keyword */
-	if (!__token_identifier_kw(input, buffer)) {
-		buffer->token[buffer->index].type = LENA_TOKEN_IDENTIFIER_GENERAL;
-		buffer->token[buffer->index].data = (*input);
-		size_t len = 0;
-		while (is_lletter((**input))) {
-			putchar((**input));
-			(*input)++; len++;
-		}
-		buffer->token[buffer->index].len = len;
-	}
-}
+extern bool __token_identifier(lchar_t* input[], ltoken_buffer_t* buffer);
 
 void token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 
@@ -135,22 +150,24 @@ void token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 	
 	{
 		/* Recognize simple tokens */
-		if (_token_simple(input, buffer) != LENA_TOKEN_NON_SIMPLE) {
+		if (_token_simple(input, buffer) != LENA_TOKEN_NON_SIMPLE) { 
 			/* Terminate if it's simple token */
 			return;
 		} else {
 			/* Recognize non-simple tokens */
 
 			/* If it's a digit */
+			
 			if (is_ldigit((**input))) {
 				_token_number(input, buffer);
 			} else if (is_lletter((**input))) {
 				/* If it's an identifier */
-				_token_identifier(input, buffer);
+				__token_identifier(input, buffer);
 			} else {
 				buffer->token[buffer->index].type = LENA_TOKEN_KW_DEFAULT;
 				buffer->token[buffer->index].data = (*input);
 				buffer->token[buffer->index].len = 1;
+				(*input)++;
 			}
 		}
 	}

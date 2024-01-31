@@ -90,6 +90,29 @@ console << le
 
 
 
+/* NEW VERSION */
+
+a:i32 = 10, b = "Hello world"
+
+cout << something
+cin >> variables
+cerr << something
+
+a = file() ; type = stream
+
+try (a = file()) {
+    cout << 
+} except(file::FILE_OPEN_FAILURE)() {
+    cerr << "Error!"
+}
+
+
+/* Macroses */
+
+(0 times 50) -> new array
+repeat n: -> repeat something n times
+
+
 
 
 
