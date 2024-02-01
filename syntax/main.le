@@ -1,5 +1,11 @@
-
 a:i32 = 2000 ; Это комментарий
 b = 213414
 
-cout << "Hello World!" << a + b
+cout << "Hello World!" << a // b
+
+array1 = (10 times 20) ; одномерный массив
+array2 = ({5, 232, 4568} times 20) ; двумерный массив
+
+repeat 10 {
+    cout << array1 << '\n'
+}

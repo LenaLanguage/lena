@@ -35,21 +35,35 @@
 
 #endif // undef lstr... functions
 
+/* -------- Functions -------- */
 
-lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len);
-lchar_t* lstrcat(lchar_t* dest, const lchar_t* src);
-int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len);
+extern lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len);
+extern lchar_t* lstrcat(lchar_t* dest, const lchar_t* src);
+extern int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len);
+
+/* -------- Experimental functions -------- */
+
+extern bool lstrcmp_x64_8(lchar_t* str1, lchar_t* str2);
+extern bool lstrcmp_x64_4(lchar_t* str1, lchar_t* str2);
+extern bool lstrcmp_x64_2(lchar_t* str1, lchar_t* str2);
+extern bool lstrcmp_x64_1(lchar_t* str1, lchar_t* str2);
 
 #else
 
-lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len);
-lchar_t* lstrcat(lchar_t* dest, const lchar_t* src);
-int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len);
+/* -------- Functions -------- */
 
-/* Only with buffers when len % 8 = 0*/
-void lstrcpy_fast(void* data1, void* data2, size_t len);
+extern lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len);
+extern lchar_t* lstrcat(lchar_t* dest, const lchar_t* src);
+extern int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len);
+
+/* -------- Experimental functions -------- */
+
+extern bool lstrcmp_x64_8(lchar_t* str1, lchar_t* str2);
+extern bool lstrcmp_x64_4(lchar_t* str1, lchar_t* str2);
+extern bool lstrcmp_x64_2(lchar_t* str1, lchar_t* str2);
+extern bool lstrcmp_x64_1(lchar_t* str1, lchar_t* str2);
+
 
 #endif
-/* lstren -> llen [lchar.h]*/
 
 #endif // __LENA_STRING_H__

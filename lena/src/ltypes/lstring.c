@@ -39,6 +39,33 @@ int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
     return memcmp(str1, str2, len * sizeof(lchar_t));
 }
 
+/* -------- Experimental functions -------- */
+
+typedef uint64_t lstring_x4_t;
+typedef uint32_t lstring_x2_t;
+typedef uint16_t lstring_x1_t;
+
+#define LSTRING_4_CMP(data) (*(lstring_x4_t*)(data))
+#define LSTRING_2_CMP(data) (*(lstring_x2_t*)(data))
+#define LSTRING_1_CMP(data) (*(lstring_x1_t*)(data))
+
+bool lstrcmp_x64_8(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_4_CMP(str1) == LSTRING_4_CMP(str2)
+        && LSTRING_4_CMP(str1 + 8) == LSTRING_4_CMP(str2 + 8));
+}
+
+bool lstrcmp_x64_4(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_4_CMP(str1) == LSTRING_4_CMP(str2));
+}
+
+bool lstrcmp_x64_2(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_2_CMP(str1) == LSTRING_2_CMP(str2));
+}
+
+bool lstrcmp_x64_1(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_1_CMP(str1) == LSTRING_1_CMP(str2));
+}
+
 #else
 
 lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len){
@@ -53,14 +80,32 @@ int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
     return memcmp(str1, str2, len * sizeof(lchar_t));
 }
 
-/* Only with buffers when len % 8 = 0*/
-void lstrcpy_fast(void* data1, void* data2, size_t len) {
-    len /= 8;
-    size_t shift = 0;
-    for (uint64_t i = 0; i < len; ++i) {
-        (*(int64_t*)(data1 + shift)) = (int64_t)(int64_t*)(data2 + shift);
-        shift += 8;
-    }
+/* -------- Experimental functions -------- */
+
+typedef uint64_t lstring_x8_t;
+typedef uint32_t lstring_x4_t;
+typedef uint16_t lstring_x2_t;
+typedef uint8_t lstring_x1_t;
+
+#define LSTRING_8_CMP(data) (*(lstring_x4_t*)(data))
+#define LSTRING_4_CMP(data) (*(lstring_x4_t*)(data))
+#define LSTRING_2_CMP(data) (*(lstring_x2_t*)(data))
+#define LSTRING_1_CMP(data) (*(lstring_x1_t*)(data))
+
+bool lstrcmp_x64_8(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_8_CMP(str1) == LSTRING_8_CMP(str2));
 }
+
+bool lstrcmp_x64_4(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_4_CMP(str1) == LSTRING_4_CMP(str2));
+}
+
+bool lstrcmp_x64_2(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_2_CMP(str1) == LSTRING_2_CMP(str2));
+}
+
+bool lstrcmp_x64_1(lchar_t* str1, lchar_t* str2) {
+    return (bool)(LSTRING_1_CMP(str1) == LSTRING_1_CMP(str2));
+}
+
 #endif
-/* lstren -> llen [lchar.h]*/

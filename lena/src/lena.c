@@ -12,21 +12,23 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
     if (!core_args_exist(LENA_ARGC)) {
         lexit(LENA_EXIT_FAILURE);
     }
+    
     ltoken_buffer_t buffer;
     if (!ltoken_buffer_init(&buffer)) {
         lexit(LENA_EXIT_FAILURE);
     }
-    lchar_t* string = l("a:=default with + - 654623");
+
+    lchar_t* string = argv[1];
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 
-
+    
     for(size_t i = 0; i < buffer.index; ++i) {
-        printf("Current token: %ld \t ID:%d\n", i, buffer.token[i].type);
-        printf("Current token: %ld \t data:", i); 
+        printf("Current token:%ld\n\t ID:%d\n", i, buffer.token[i].type);
+        printf("\t data:"); 
         print_t_data(buffer.token[i]); putchar('\n');
-        printf("Current token: %ld \t len:%ld\n", i, buffer.token[i].len);
+        printf("\t len:%ld\n", buffer.token[i].len);
     }
-
+    
     ltoken_buffer_deinit(&buffer);
     lexit(LENA_EXIT_SUCCESS);
 }

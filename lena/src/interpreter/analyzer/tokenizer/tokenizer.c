@@ -64,6 +64,15 @@ typedef enum {
     LENA_TOKEN_ST_BIN_OR   	= l('|'),    /* | */
     LENA_TOKEN_ST_BIN_XOR  	= l('^'),    /* ^ */
 
+	/* Brackets */
+	LENA_TOKEN_ST_SLBRACKET		= l('['),    /* [ */
+    LENA_TOKEN_ST_SRBRACKET		= l(']'),    /* ] */
+	LENA_TOKEN_ST_LPARENTHESIS	= l('('),    /* ( */
+    LENA_TOKEN_ST_RPARENTHESIS	= l(')'),    /* ) */
+	LENA_TOKEN_ST_LBRACE		= l('{'),	 /* { */
+	LENA_TOKEN_ST_RBRACE		= l('}'),	 /* } */
+
+
 } ltoken_stoken_list_t;
 
 static const ltoken_type_t lookup_stoken_table[LCHAR_MAX + 1] = {
@@ -88,6 +97,12 @@ static const ltoken_type_t lookup_stoken_table[LCHAR_MAX + 1] = {
 	[LENA_TOKEN_ST_BIN_OR]      = LENA_TOKEN_BIN_OR,
 	[LENA_TOKEN_ST_BIN_XOR]   	= LENA_TOKEN_BIN_XOR,
 
+	/* Brackets */
+	[LENA_TOKEN_ST_SLBRACKET] 		= LENA_TOKEN_SLBRACKET,
+	[LENA_TOKEN_ST_SRBRACKET]		= LENA_TOKEN_SRBRACKET,
+	[LENA_TOKEN_ST_LPARENTHESIS] 	= LENA_TOKEN_LPARENTHESIS,
+	[LENA_TOKEN_ST_LBRACE]			= LENA_TOKEN_LBRACE,
+	[LENA_TOKEN_ST_RBRACE]			= LENA_TOKEN_RBRACE,
 };
 
 /* Macros to detect non-simple token */
@@ -114,6 +129,7 @@ static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
 	size_t len = 0;
 	bool double_dot = false;
 	while (is_ldigit((**input)) || (**input) == l('.')) {
+		/* Check cases when number has more than 1 dot */
 		if ((**input) == l('.')) {
             if (!double_dot) {
                 double_dot = true;
@@ -125,6 +141,10 @@ static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
         }
 		++(*input); ++len;
 	}
+	/* If the last symbol is '.' -> LENA_TOKEN_ERROR_SYNTAX */
+	if ((*(*input - 1)) == l('.')) {
+        buffer->token[buffer->index].type = LENA_TOKEN_ERROR_SYNTAX;
+	}
 	buffer->token[buffer->index].len = len;
 }
 
@@ -133,7 +153,7 @@ static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
 /* Helper function, for recognizing keywords */
 extern bool __token_identifier(lchar_t* input[], ltoken_buffer_t* buffer);
 
-void token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
+void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 	/* Terminate process if it's EOF */
 	if ((**input) == l('\0')) {
@@ -196,8 +216,9 @@ void ltoken_buffer_deinit(ltoken_buffer_t* buffer) {
 
 void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer) {
 	while (true) {
-		token_get_new(input, buffer);
+		_token_get_new(input, buffer);
 		if (!is_token_valid(buffer)) {
+			buffer->index++;
 			break;
 		}
 		buffer->index++;

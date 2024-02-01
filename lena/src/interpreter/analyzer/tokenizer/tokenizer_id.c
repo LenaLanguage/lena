@@ -31,6 +31,7 @@ size_t __token_identifier_get_len(lchar_t* input[]) {
  *      u8
  *      as
  *      or
+ *      if
  * 
  * 3 symbols:
  *  LENA_TOKEN_LOGIC_NOT,   
@@ -53,6 +54,8 @@ size_t __token_identifier_get_len(lchar_t* input[]) {
 
  * 4 symbols:
     LENA_TOKEN_KW_WITH,
+    LENA_TOKEN_LOGIC_ELSE,  
+    LENA_TOKEN_LOGIC_ELIF, 
 
    5 symbols:
     LENA_TOKEN_KW_TIMES
@@ -92,22 +95,15 @@ ltoken_type_t __token_identifier_separate_2(lchar_t* id) {
             return LENA_TOKEN_IDENTIFIER_GENERAL;
         }
     } else {
-        /* -------- 'as' and 'or' keywords -------- */
-        if (id[0] == l('a')) {
-            /* -------- as -------- */
-            if (id[1] == l('s')) {
-                return LENA_TOKEN_KW_AS;
-            } else {
-                return LENA_TOKEN_IDENTIFIER_GENERAL;
-            }
-        } else if (id[0] == l('o')) {
-            /* -------- or -------- */
-            if (id[1] == l('r')) {
-                return LENA_TOKEN_LOGIC_OR;
-            } else {
-                return LENA_TOKEN_IDENTIFIER_GENERAL;
-            }
-        } // else {
+        /* -------- 'as', 'or', 'if' keywords -------- */
+        if (id[0] == l('a') && id[1] == l('s')) {
+            return LENA_TOKEN_KW_AS;
+        } else if (id[0] == l('o') && id[1] == l('r')) {
+            return LENA_TOKEN_LOGIC_OR;
+        } else if (id[0] == l('i') && id[1] == l('f')) {
+            return LENA_TOKEN_LOGIC_IF;
+        } 
+        // else {
             /* -------- Other 2-symbols keywords don't exist -------- */
         // }
     }
@@ -165,7 +161,14 @@ ltoken_type_t __token_identifier_separate_3(lchar_t* id) {
 /* ---------------- 4 ----------------*/
 
 ltoken_type_t __token_identifier_separate_4(lchar_t* id) {
-    if (lstrcmp(id, (lchar_t *)(l("with")), 4) == 0) {
+
+    if (lstrcmp(id, (lchar_t *)(l("else")), 4) == 0) {
+        /* -------- 'else' keyword -------- */
+        return LENA_TOKEN_LOGIC_ELSE;
+    } else if (lstrcmp(id, (lchar_t *)(l("elif")), 4) == 0) {
+        /* -------- 'elif' keyword -------- */
+        return LENA_TOKEN_LOGIC_ELIF;
+    } else if (lstrcmp(id, (lchar_t *)(l("with")), 4) == 0) {
         /* -------- 'with' keyword -------- */
         return LENA_TOKEN_KW_WITH;
     } else {

@@ -29,7 +29,7 @@ typedef enum {
     /* -------- Simple tokens -------- */
 
     /* Symbols */
-    LENA_TOKEN_COMMA,       /* , */
+    LENA_TOKEN_COMMA,     /* , */
     LENA_TOKEN_COLON,     /* : */
 
     /* Comments */
@@ -65,6 +65,11 @@ typedef enum {
     LENA_TOKEN_MC_END,      // */
 
     /* Logic */
+
+    LENA_TOKEN_LOGIC_IF,    /* if */
+    LENA_TOKEN_LOGIC_ELSE,  /* else */
+    LENA_TOKEN_LOGIC_ELIF,  /* elif */
+
     LENA_TOKEN_LOGIC_NOT,   /* not */
     LENA_TOKEN_LOGIC_AND,   /* and */
     LENA_TOKEN_LOGIC_OR,    /* or */
@@ -105,6 +110,11 @@ typedef enum {
     LENA_TOKEN_IDENTIFIER_GENERAL,
 
     /* -------- Specific identitiers -------- */
+
+    /* Logic */
+    LENA_TOKEN_KW_TRUE,
+    LENA_TOKEN_KW_FALSE,
+
     LENA_TOKEN_KW_AS,
     LENA_TOKEN_KW_WITH,
     LENA_TOKEN_KW_DEFAULT,
@@ -135,26 +145,17 @@ typedef struct {
 
 /* -------- Functions -------- */
 
-/* private */
-
 /**
- *  is_token_valid()
- *  
+ * @brief Initialization of buffer token
 */
-
-/* helpers */
-
-/**
- * token_get_new()
-*/
-
-/* public */
-
 bool ltoken_buffer_init(ltoken_buffer_t* buffer);
+/**
+ * @brief Free memory that was allocated for buffer
+*/
 void ltoken_buffer_deinit(ltoken_buffer_t* buffer);
-
-void token_get_new(lchar_t* input[], ltoken_buffer_t* buffer);
-
+/**
+ * @brief Main function to recognize tokens from data lchar_t pointer
+*/
 void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer);
 
 
