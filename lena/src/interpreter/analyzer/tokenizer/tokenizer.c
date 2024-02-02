@@ -34,7 +34,40 @@ static void token_pass_trash(lchar_t* input[]) {
 	}
 }
 
-/* token handlers */
+/* ---------------- token handlers ---------------- */
+
+/* ---------------- String tokens ---------------- */
+
+static bool is_string_separator(lchar_t sym) {
+	return (bool)(sym == l('\'') || sym == l('\"'));
+}
+
+static void __token_string(lchar_t* input[], ltoken_buffer_t* buffer) {
+	
+	lchar_t sep_sym = (**input);
+	++(*input);
+
+	lchar_t* str_start = (*input);
+	size_t len = 0;
+	bool is_islash = true;
+
+	while ((**input) != sep_sym || is_islash) {
+		if ((**input) == l('\0')) {
+			buffer->token[buffer->index].type = LENA_TOKEN_ERROR_SYNTAX;
+			return;
+		}
+		is_islash = ((**input) == l('\\'));
+		++(*input); ++len;
+	}
+
+	buffer->token[buffer->index].type = LENA_TOKEN_DATA_STRING;
+	buffer->token[buffer->index].data = (len > 0)? str_start : NULL;
+	buffer->token[buffer->index].len = len;
+
+	++(*input);
+}
+
+/* + it must be saved in another buffer with \x symbols */
 
 /* ---------------- Simple tokens ---------------- */
 
@@ -81,8 +114,8 @@ static const ltoken_type_t lookup_stoken_table[LCHAR_MAX + 1] = {
 
 	/* Symbols */
 	[LENA_TOKEN_ST_C_SEMICOLON] = LENA_TOKEN_C_SEMICOLON,
-	[LENA_TOKEN_ST_COLON] 	= LENA_TOKEN_COLON,
-	[LENA_TOKEN_ST_AC_EQU] 	= LENA_TOKEN_AC_EQU,
+	[LENA_TOKEN_ST_COLON] 		= LENA_TOKEN_COLON,
+	[LENA_TOKEN_ST_AC_EQU] 		= LENA_TOKEN_AC_EQU,
 
 	/* Arithmetic */
 	[LENA_TOKEN_ST_AC_PLUS]     = LENA_TOKEN_AC_PLUS,
@@ -98,7 +131,7 @@ static const ltoken_type_t lookup_stoken_table[LCHAR_MAX + 1] = {
 	[LENA_TOKEN_ST_BIN_XOR]   	= LENA_TOKEN_BIN_XOR,
 
 	/* Brackets */
-	[LENA_TOKEN_ST_SLBRACKET] 		= LENA_TOKEN_SLBRACKET,
+	[LENA_TOKEN_ST_SLBRACKET]		= LENA_TOKEN_SLBRACKET,
 	[LENA_TOKEN_ST_SRBRACKET]		= LENA_TOKEN_SRBRACKET,
 	[LENA_TOKEN_ST_LPARENTHESIS] 	= LENA_TOKEN_LPARENTHESIS,
 	[LENA_TOKEN_ST_LBRACE]			= LENA_TOKEN_LBRACE,
@@ -150,10 +183,12 @@ static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 /* ---------------- Identifer tokens ---------------- */
 
+/* (from tokenizer_id.h) */
+
 /* Helper function, for recognizing keywords */
 extern bool __token_identifier(lchar_t* input[], ltoken_buffer_t* buffer);
 
-void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
+static void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 	/* Terminate process if it's EOF */
 	if ((**input) == l('\0')) {
@@ -177,8 +212,10 @@ void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 			/* Recognize non-simple tokens */
 
 			/* If it's a digit */
-			
-			if (is_ldigit((**input))) {
+			if (is_string_separator((**input))) {
+    			printf("String!\n");
+				__token_string(input, buffer);
+			} else if (is_ldigit((**input))) {
 				_token_number(input, buffer);
 			} else if (is_lletter((**input))) {
 				/* If it's an identifier */

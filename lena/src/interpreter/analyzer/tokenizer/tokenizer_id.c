@@ -12,8 +12,8 @@
 /* tokenizer */
 #include "tokenizer.h"
 
-/* Extern funcrions */
-size_t __token_identifier_get_len(lchar_t* input[]) {
+/* Function */
+static size_t __token_identifier_get_len(lchar_t* input[]) {
     /* Clean function doesn't change (*input) pointer */
     lchar_t* identifier = (*input); size_t len = 0;
     while (is_lletter(*identifier) || is_ldigit(*identifier)) {

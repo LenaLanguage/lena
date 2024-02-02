@@ -2,8 +2,12 @@
 #include <lena.h>
 
 void print_t_data(ltoken_t token) {
-    for(size_t i = 0; i < token.len; ++i) {
-        putchar(token.data[i]);
+    if (token.data != NULL) {
+        for(size_t i = 0; i < token.len; ++i) {
+            putchar(token.data[i]);
+        }
+    } else {
+        printf("NULL");
     }
 }
 
@@ -18,9 +22,11 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         lexit(LENA_EXIT_FAILURE);
     }
 
-    lchar_t* string = argv[1];
+    lchar_t* string = l(" \" \\0 500000000\"\0");
+    printf("%s", string);
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 
+    
     
     for(size_t i = 0; i < buffer.index; ++i) {
         printf("Current token:%ld\n\t ID:%d\n", i, buffer.token[i].type);
@@ -29,6 +35,7 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         printf("\t len:%ld\n", buffer.token[i].len);
     }
     
+
     ltoken_buffer_deinit(&buffer);
     lexit(LENA_EXIT_SUCCESS);
 }
