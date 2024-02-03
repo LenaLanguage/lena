@@ -20,7 +20,7 @@
 #include <windows.h>
 #include <wchar.h>
 
-#define LCHAR_MAX WCHAR_MAX
+#define LCHAR_MAX sizeof(wchar_t)
 typedef wchar_t lchar_t;
 #define llen(str) wcslen(str)
 #define l(data) L##data
@@ -29,7 +29,7 @@ typedef wchar_t lchar_t;
 
 #include <string.h>
 
-#define LCHAR_MAX INT8_MAX
+#define LCHAR_MAX sizeof(char)
 typedef char lchar_t;
 #define llen(str) strlen(str)
 #define l(data) data

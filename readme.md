@@ -2,16 +2,14 @@
 
 ## Main information
 
-* Interpreted programming language
+* Interpreted/JIT compilation + virtual machine programming language
 
-* Lightweight Execution and Native Adaptability (LENA)
+* Lightning Execution and Native Adaptability (LENA)
 
-* Syntax = Python + Rust + C
-
-* It is a related to the Lina and Lisa programming languages [https://github.com/robotsvision/lina-lang](URL)
+* Syntax = Python + C/C++ + NASM (No OOP)
 
 
-## The language uses alternative methods for interpreting code, which can affect performance and improve the quality of interpreted programming languages.
+## The language uses alternative methods for interpreting and executing code, which can affect performance and improve the quality of interpreted programming languages.
 
 ## Areas of application:
 
@@ -21,13 +19,16 @@
 
 * Computing and working with data
 
+* Thread-oriented programming
+
 ```rust
 
-/* Hello World example */
-import std::console
+/* Hello World example 1 */
+cout << "Hello World!"
 
-{
-    console.out("Hello World!")
-}
+; Or
+
+/* Hello World example 2 */
+"Hello World!" >> cout
 
 ```
