@@ -1,9 +1,9 @@
-#ifndef __LENA_MAIN_H__
-#define __LENA_MAIN_H__
+#ifndef __LENA_I_MAIN_H__
+#define __LENA_I_MAIN_H__
 
 /**************************************************************************//**
- * @file     lena.h
- * @brief    Project L - Lena programming language main library
+ * @file     lena-i.h
+ * @brief    Project L - Lena programming language interpreter main library
  * @version  V0.1.2
  * @date     5. Jan 2024
  ******************************************************************************/
@@ -29,6 +29,6 @@
 #include "interpreter/lena_interpreter.h"
 
 #else /* ERROR (__STDC_VERSION__ >= 201112L) */
-#error [lena.h]: Requires at least version C 2011 (__STDC_VERSION__ >= 201112L)
+#error [lena-i.h]: Requires at least version C 2011 (__STDC_VERSION__ >= 201112L)
 #endif
-#endif // __LENA_MAIN_H__
+#endif // __LENA_I_MAIN_H__

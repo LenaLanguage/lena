@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <lena.h>
+#include <lena-i.h>
 
 void print_t_data(ltoken_t token) {
     if (token.data != NULL) {
