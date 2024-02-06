@@ -22,7 +22,7 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         lexit(LENA_EXIT_FAILURE);
     }
 
-    lchar_t* string = l(" \" \\0 500000000\"\0");
+    lchar_t* string = l("\" \\x{} \"");
     printf("%s", string);
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 
@@ -35,7 +35,6 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         printf("\t len:%ld\n", buffer.token[i].len);
     }
     
-
     ltoken_buffer_deinit(&buffer);
     lexit(LENA_EXIT_SUCCESS);
 }

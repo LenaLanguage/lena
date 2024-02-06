@@ -38,12 +38,83 @@ static void token_pass_trash(lchar_t* input[]) {
 
 /* ---------------- String tokens ---------------- */
 
+/**
+ * "\x0000"
+ * "\d0000"
+ * "\o0000"
+ * "\b0000"
+ * 
+ * "\n"
+ * "\t"
+ * "\\"
+ * "\'"
+ * "\""
+*/
+
+static bool is_esc_sym_divider(lchar_t sym) {
+	return (sym == l('x') || sym == l('d')
+			|| sym == l('o') || sym == l('b'));
+}
+
+static bool is_esc_sym(lchar_t sym) {
+	return (sym == l('n') || sym == l('t')
+			|| sym == l('a') || sym == l('r'));
+}
+
+static size_t __token_string_get_len(lchar_t* input[]) {
+	
+	lchar_t* string = (*input);
+
+	lchar_t sep_sym = (*string);
+	++string;
+
+	size_t len = 0;
+	bool is_islash = true;
+
+	while ((*string) != sep_sym) {
+		if ((*string) == l('\0')) {
+			return 0;
+		}
+
+		if ((*string) == l('\\')) {
+			/* If the next symbol is esc divider */
+			if (is_esc_sym_divider(*(++string))) {
+				/* like "\x{1000}" */
+				if (*(++string) == l('{')) {
+					while (*(++string) != l('}')) {
+						if ((*string) == sep_sym) {
+							goto syntax_error;
+						}
+					}
+				} else {
+					/* like "\x" */
+					goto syntax_error;
+				}
+			} else if (is_esc_sym((*string))) {
+				++len;
+			}
+			is_islash = true;
+		} else {
+			is_islash = false;
+			++len;
+		}
+
+		++string; 
+	}
+	return len;
+
+syntax_error:
+	return 0;
+}
+
 static bool is_string_separator(lchar_t sym) {
 	return (bool)(sym == l('\'') || sym == l('\"'));
 }
 
 static void __token_string(lchar_t* input[], ltoken_buffer_t* buffer) {
 	
+	printf("len = %ld\n", __token_string_get_len(input));
+
 	lchar_t sep_sym = (**input);
 	++(*input);
 
