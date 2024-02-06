@@ -1,5 +1,5 @@
-#ifndef __LENA_STRING_H__
-#define __LENA_STRING_H__
+#ifndef __LENA_TYPES_STRING_H__
+#define __LENA_TYPES_STRING_H__
 
 /**************************************************************************//**
  * @file     lstring.h
@@ -66,4 +66,4 @@ extern bool lstrcmp_x64_1(lchar_t* str1, lchar_t* str2);
 
 #endif
 
-#endif // __LENA_STRING_H__
+#endif // __LENA_TYPES_STRING_H__

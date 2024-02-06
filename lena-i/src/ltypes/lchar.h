@@ -1,5 +1,5 @@
-#ifndef __LENA_LCHAR_H__
-#define __LENA_LCHAR_H__
+#ifndef __LENA_TYPES_LCHAR_H__
+#define __LENA_TYPES_LCHAR_H__
 
 /**************************************************************************//**
  * @file     lchar_t.h
@@ -47,4 +47,4 @@ bool is_ldigit(lchar_t sym);
 */
 bool is_lletter(lchar_t sym);
 
-#endif // __LENA_LCHAR_H__
+#endif // __LENA_TYPES_LCHAR_H__

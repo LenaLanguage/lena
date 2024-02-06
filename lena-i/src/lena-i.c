@@ -22,7 +22,7 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         lexit(LENA_EXIT_FAILURE);
     }
 
-    lchar_t* string = l("\" \\x{} \"");
+    lchar_t* string = argv[1];
     printf("%s", string);
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 

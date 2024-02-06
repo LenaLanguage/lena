@@ -3,8 +3,8 @@
 
 /**************************************************************************//**
  * @file     lena-i.h
- * @brief    Project L - Lena programming language interpreter main library
- * @version  V0.1.2
+ * @brief    Project L - Lena programming language interpreter / main library
+ * @version  V0.2.0
  * @date     5. Jan 2024
  ******************************************************************************/
 

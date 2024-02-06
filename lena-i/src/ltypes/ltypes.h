@@ -8,10 +8,8 @@
  * @date     9. Jan 2024
  ******************************************************************************/
 
-/* Standard libraries */
-#include <stdint.h>
-
 /* Libraries */
+#include "lerror.h"
 #include "lchar.h"
 #include "lstring.h"
 

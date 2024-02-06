@@ -44,6 +44,14 @@ typedef enum {
     LENA_TOKEN_AC_DIV,      /* / */
     LENA_TOKEN_AC_MOD,      /* % */
 
+    /* Comparison */
+    LENA_TOKEN_CMP_E,       /* == */
+    LENA_TOKEN_CMP_G,       /* > */
+    LENA_TOKEN_CMP_L,       /* < */
+    LENA_TOKEN_CMP_GE,      /* >= */
+    LENA_TOKEN_CMP_LE,      /* <= */
+
+
     /* Binary */
     LENA_TOKEN_BIN_NOT,   /* ! */
     LENA_TOKEN_BIN_AND,   /* & */
@@ -77,19 +85,21 @@ typedef enum {
 
     /* -------- Data type identifers  -------- */
 
-    LENA_TOKEN_IDENTIFIER_DTYPE_I8,
-    LENA_TOKEN_IDENTIFIER_DTYPE_U8,
-    LENA_TOKEN_IDENTIFIER_DTYPE_I16,
-    LENA_TOKEN_IDENTIFIER_DTYPE_U16,
-    LENA_TOKEN_IDENTIFIER_DTYPE_I32,
-	LENA_TOKEN_IDENTIFIER_DTYPE_U32,
-    LENA_TOKEN_IDENTIFIER_DTYPE_I64,
-    LENA_TOKEN_IDENTIFIER_DTYPE_U64,
+    LENA_TOKEN_IDENTIFIER_DTYPE_BOOL,   /* bool */
 
-    LENA_TOKEN_IDENTIFIER_DTYPE_F32,
-    LENA_TOKEN_IDENTIFIER_DTYPE_F64,
+    LENA_TOKEN_IDENTIFIER_DTYPE_I8,     /* i8 */
+    LENA_TOKEN_IDENTIFIER_DTYPE_U8,     /* u8 */
+    LENA_TOKEN_IDENTIFIER_DTYPE_I16,    /* i16 */
+    LENA_TOKEN_IDENTIFIER_DTYPE_U16,    /* u16 */
+    LENA_TOKEN_IDENTIFIER_DTYPE_I32,    /* i32 */
+	LENA_TOKEN_IDENTIFIER_DTYPE_U32,    /* u32 */
+    LENA_TOKEN_IDENTIFIER_DTYPE_I64,    /* i64 */
+    LENA_TOKEN_IDENTIFIER_DTYPE_U64,    /* u64 */
 
-    LENA_TOKEN_IDENTIFIER_DTYPE_STR,
+    LENA_TOKEN_IDENTIFIER_DTYPE_F32,    /* f32 */
+    LENA_TOKEN_IDENTIFIER_DTYPE_F64,    /* f64 */
+
+    LENA_TOKEN_IDENTIFIER_DTYPE_STR,    /* "" or '' */
 
     /* Data */
     LENA_TOKEN_DATA_INTEGER,
@@ -114,6 +124,8 @@ typedef enum {
     /* Logic */
     LENA_TOKEN_KW_TRUE,
     LENA_TOKEN_KW_FALSE,
+
+    /* Other keywords */
 
     LENA_TOKEN_KW_AS,
     LENA_TOKEN_KW_WITH,
@@ -148,15 +160,15 @@ typedef struct {
 /**
  * @brief Initialization of buffer token
 */
-bool ltoken_buffer_init(ltoken_buffer_t* buffer);
+extern bool ltoken_buffer_init(ltoken_buffer_t* buffer);
 /**
  * @brief Free memory that was allocated for buffer
 */
-void ltoken_buffer_deinit(ltoken_buffer_t* buffer);
+extern void ltoken_buffer_deinit(ltoken_buffer_t* buffer);
 /**
  * @brief Main function to recognize tokens from data lchar_t pointer
 */
-void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer);
+extern void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer);
 
 
 #endif // __LENA_INTERPRETOR_TOKENIZER_H__
