@@ -23,7 +23,7 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
     }
 
     lchar_t* string = argv[1];
-    printf("%s", string);
+    //printf("%s", string);
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 
     

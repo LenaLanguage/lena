@@ -1,6 +1,7 @@
 
 /* Standard library */
 #include <stdlib.h>
+#include <stddef.h>
 
 #include "lmem.h"
 

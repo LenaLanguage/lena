@@ -50,7 +50,8 @@
         "tokenizer.h": "c",
         "string": "c",
         "conf_tokenizer.h": "c",
-        "lstring.h": "c"
+        "lstring.h": "c",
+        "stddef.h": "c"
     },
     "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\gcc.exe"
 }

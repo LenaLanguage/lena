@@ -35,6 +35,10 @@ typedef enum {
     /* Comments */
     LENA_TOKEN_C_SEMICOLON, /* ; */
 
+    /* Multiline comments */
+    LENA_TOKEN_MC_BEGIN,    // /* 
+    LENA_TOKEN_MC_END,      // */
+
     /* Arithmetic */
     LENA_TOKEN_AC_EQU,      /* = */
 
@@ -67,10 +71,6 @@ typedef enum {
     /* Сonsequences */
     LENA_TOKEN_LCONS,       /* <- */
     LENA_TOKEN_RCONS,       /* -> */
-
-    /* Multiline comments */
-    LENA_TOKEN_MC_BEGIN,    // /* 
-    LENA_TOKEN_MC_END,      // */
 
     /* Logic */
 

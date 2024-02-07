@@ -13,11 +13,9 @@
 /* tokenizer */
 #include "tokenizer.h"
 
-/* -------- Functions -------- */
+/* -------------------------------- FUNCTIONS -------------------------------- */
 
-/* private */
-
-/* helpers */
+/* ---------------- HELPERS ---------------- */
 
 static inline bool is_token_valid(ltoken_buffer_t* buffer) {
 	return (bool)(buffer->token[buffer->index].type != LENA_TOKEN_ERROR_SYNTAX 
@@ -26,6 +24,10 @@ static inline bool is_token_valid(ltoken_buffer_t* buffer) {
 
 static inline bool is_trash(lchar_t sym) {
 	return (bool)(sym == l(' ') || sym == l('\t'));
+}
+
+static inline bool is_null(lchar_t sym) {
+	return (bool)(sym == l('\0'));
 }
 
 /* token helpers */
@@ -44,7 +46,7 @@ static void token_pass_trash(lchar_t* input[]) {
 #define LENA_EOF 0x02
 
 static inline lerror_t _token_eof(lchar_t* input[], ltoken_buffer_t* buffer) {
-	if ((**input) == l('\0')) {
+	if (is_null(**input)) {
 		buffer->token[buffer->index].type = LENA_TOKEN_EOF;
 		buffer->token[buffer->index].data = NULL;
 		buffer->token[buffer->index].len = 1;
@@ -106,67 +108,49 @@ static lerror_t _token_non_simple2(lchar_t* input[], ltoken_buffer_t* buffer) {
 /* ---------------- String tokens ---------------- */
 
 /**
- * "\x0000"
- * "\d0000"
- * "\o0000"
- * "\b0000"
+ * "\{000}"
+ * "\{0xFF}"
+ * "\{0o377}"
+ * "\{0b11111111}"
  * 
- * "\n"
- * "\t"
- * "\\"
- * "\'"
- * "\""
 */
 
-static bool is_esc_sym_divider(lchar_t sym) {
-	return (sym == l('x') || sym == l('d')
-			|| sym == l('o') || sym == l('b'));
-}
-
-static bool is_esc_sym(lchar_t sym) {
-	return (sym == l('n') || sym == l('t')
-			|| sym == l('a') || sym == l('r'));
-}
-
 static lerror_t __token_string_get_len(lchar_t* input[], size_t* restrict len) {
-	
+	/* Preparation */
 	lchar_t* string = (*input);
-
-	lchar_t sep_sym = (*string);
+	lchar_t separator = (*string);
 	++string;
 
-	bool is_islash = true;
-
-	while ((*string) != sep_sym) {
-		if ((*string) == l('\0')) {
+	/* Calculating */
+	while((*string) != separator) {
+		if (is_null(*string)) {
 			return LENA_ERROR;
 		}
 
+		/* Start analyzing \symbol */
 		if ((*string) == l('\\')) {
-			++(*len);
-			/* If the next symbol is esc divider */
-			if (is_esc_sym_divider(*(++string))) {
-				/* like "\x{1000}" */
-				if (*(++string) == l('{')) {
-					while (*(++string) != l('}')) {
-						if ((*string) == sep_sym) {
-							return LENA_ERROR;
-						}
+			++string;
+			if ((*string) == l('{')) {
+				/* Like "\{0xff} ..." */
+				do {
+					++string;
+					if (is_null(*string)) {
+						return LENA_ERROR;
 					}
-				} else {
-					/* like "\x" */
-					return LENA_ERROR;
-				}
-			} else if (!is_esc_sym((*string))) {
-				return LENA_ERROR;
+				} while((*string) != l('}'));
+				/* Pass last '}' and inc len */
+				++string;
+				++(*len);
+			} else {
+				/* Like "\a ..." */
+				/* Pass only one symbol */
+				++string;
 			}
-			is_islash = true;
 		} else {
-			is_islash = false;
+			/* Increment len */
+			++string;
 			++(*len);
 		}
-
-		++string; 
 	}
 	return LENA_OK;
 }
@@ -175,7 +159,28 @@ static bool is_string_separator(lchar_t sym) {
 	return (bool)(sym == l('\'') || sym == l('\"'));
 }
 
+/* only for __token_string_get_esc_sym */
+#include <stdlib.h>
+
+/* Inpermanent solution */
+static lchar_t __token_string_get_esc_sym(lchar_t* restrict string) {
+	lchar_t end;
+	return wcstol(string, &end, 10);
+}
+
+static void __token_fill_string(lchar_t* restrict string, lchar_t* input[], size_t len) {
+	for(size_t i = 0; i < len; ++i) {
+		if (i[*input] == l('\\')) {
+			i[string] = __token_string_get_esc_sym(string);
+		} else {
+			i[string] = i[*input];
+		}
+	}
+}
+
 static void __token_string(lchar_t* input[], ltoken_buffer_t* buffer) {
+
+	/* Calculating correct len of string */
 
 	size_t len = 0;
 
@@ -186,28 +191,12 @@ static void __token_string(lchar_t* input[], ltoken_buffer_t* buffer) {
 		return;
 	}
 
-	/* Set sep_sym like ' or " "*/
-	lchar_t sep_sym = (**input);
-	++(*input);
-
-	lchar_t* str_start = (*input);
-	len = 0;
-	bool is_islash = true;
-
-	while ((**input) != sep_sym || is_islash) {
-		if ((**input) == l('\0')) {
-			buffer->token[buffer->index].type = LENA_TOKEN_ERROR_SYNTAX;
-			return;
-		}
-		is_islash = ((**input) == l('\\'));
-		++(*input); ++len;
-	}
+	lchar_t* string = lmalloc(len * sizeof(lchar_t));
+	__token_fill_string(string, input, len);
 
 	buffer->token[buffer->index].type = LENA_TOKEN_DATA_STRING;
-	buffer->token[buffer->index].data = (len > 0)? str_start : NULL;
+	buffer->token[buffer->index].data = string;
 	buffer->token[buffer->index].len = len;
-
-	++(*input);
 }
 
 /* + it must be saved in another buffer with \x symbols */
@@ -301,6 +290,13 @@ static lerror_t _token_simple(lchar_t* input[], ltoken_buffer_t* buffer) {
 	buffer->token[buffer->index].len = 1;
 	if (IS_LENA_TOKEN_SIMPLE(type)) {
 		++(*input);
+		/* Exception comment like "; comment" */
+		if (type == LENA_TOKEN_C_SEMICOLON) {
+			/* Pass comment */
+			while ((**input) != l('\n') && (**input) != l('\0')){
+				++(*input);
+			}
+		}
 		return LENA_OK;
 	}
 	return LENA_NO_SIMPLE_TOKEN;
