@@ -3,7 +3,7 @@
 
 void print_t_data(ltoken_t token) {
     if (token.data != NULL) {
-        for(size_t i = 0; i < token.len; ++i) {
+        for (size_t i = 0; i < token.len; ++i) {
             putchar(token.data[i]);
         }
     } else {
@@ -12,11 +12,13 @@ void print_t_data(ltoken_t token) {
 }
 
 LMAIN(LENA_ARGC, LENA_ARGV) {
-    if (!lstd_init()) { lexit(LENA_EXIT_FAILURE); };
+    if (!lstd_init()) {
+        lexit(LENA_EXIT_FAILURE);
+    }
     if (!core_args_exist(LENA_ARGC)) {
         lexit(LENA_EXIT_FAILURE);
     }
-    
+
     ltoken_buffer_t buffer;
     if (!ltoken_buffer_init(&buffer)) {
         lexit(LENA_EXIT_FAILURE);
