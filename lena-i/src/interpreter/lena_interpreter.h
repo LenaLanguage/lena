@@ -13,6 +13,7 @@
 
 /* Include core libraries */
 #include "core/lconfig/lconfig.h"
+#include "core/lencoders/lencoder.h"
 #include "core/llabels/llabels.h"
 #include "core/lerrors/lerror.h"
 #include "core/llogs/llogs.h"

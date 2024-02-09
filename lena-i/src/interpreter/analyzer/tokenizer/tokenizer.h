@@ -12,6 +12,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+/* core */
+#include "interpreter/core/lencoders/lencoder.h"
+
 /* non-core */
 #include "ltypes/lchar.h"
 

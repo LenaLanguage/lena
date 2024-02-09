@@ -11,3 +11,7 @@ bool is_lletter(lchar_t sym) {
     return (bool)(((sym) >= l('a') && (sym) <= l('z')) 
         || ((sym) >= l('A') && (sym) <= l('Z')));
 }
+
+bool is_lnull(lchar_t sym) {
+    return (bool)((sym) == l('\0'));
+}

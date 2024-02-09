@@ -41,10 +41,15 @@ typedef char lchar_t;
 /**
  * @brief Determining whether a character is a digit
 */
-bool is_ldigit(lchar_t sym);
+extern bool is_ldigit(lchar_t sym);
 /**
  * @brief Determining whether a character is a letter
 */
-bool is_lletter(lchar_t sym);
+extern bool is_lletter(lchar_t sym);
+
+/**
+ * @brief Determining whether a character is a null '\0'
+*/
+extern bool is_lnull(lchar_t sym);
 
 #endif // __LENA_TYPES_LCHAR_H__

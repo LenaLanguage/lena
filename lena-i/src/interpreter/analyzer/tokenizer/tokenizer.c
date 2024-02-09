@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+/* core */
+#include "interpreter/core/lencoders/lencoder.h"
+
 /* non-core */
 #include "ltypes/lerror.h"
 #include "ltypes/lchar.h"
@@ -32,26 +35,23 @@ static inline bool _is_null(lchar_t sym) {
 
 /* token helpers */
 
-static void _pass_trash(lchar_t* input[]) {
-	while (_is_trash((**input))) {
-		++(*input);
-	}
-}
-
-/* ---------------- TOKEN HANDLERS ---------------- */
-
-
 /* ---------------- END OF FILE ---------------- */
 
 #define LENA_EOF 0x02
-static inline lerror_t _token_eof(lchar_t* input[], ltoken_buffer_t* buffer) {
-	if (_is_null(**input)) {
-		buffer->token[buffer->index].type = LENA_TOKEN_EOF;
-		buffer->token[buffer->index].data = NULL;
-		buffer->token[buffer->index].len = 1;
-		return LENA_EOF;
-	} else {
-		return LENA_OK;
+static lerror_t _pass_trash_eof(lchar_t* input[], ltoken_buffer_t* buffer) {
+	while (true) {
+		if (_is_null(**input)) {
+			buffer->token[buffer->index].type = LENA_TOKEN_EOF;
+			buffer->token[buffer->index].data = NULL;
+			buffer->token[buffer->index].len = 1;
+			++(*input);
+			printf("THIS IS EOF!");
+			return LENA_EOF;
+		}
+		if (!_is_trash((**input))) {
+			return LENA_OK;
+		}
+		++(*input);
 	}
 }
 
@@ -149,12 +149,7 @@ static bool _is_string_sep(lchar_t sym) {
 }
 
 static lchar_t _encode_esc_string(lchar_t* input, size_t* restrict counter) {
-	/* actions */
-	if ((*input) == l('0')) {
-
-	} else {
-		
-	}
+	return l('a');
 }
 
 static void _fill_string(lchar_t* restrict string, lchar_t* input[], size_t len) {
@@ -193,7 +188,12 @@ static void _token_string(lchar_t* input[], ltoken_buffer_t* buffer) {
 	}
 
 	lchar_t* string = lmalloc(len * sizeof(lchar_t));
-	_fill_string(string, input, len);
+
+	lchar_t result = 0;
+	printf("CODE = %d\n", lencode_lchar((*(input)+1), &result));
+	printf("VALUE = %d\n", result);
+
+	//_fill_string(string, input, len);
 
 	buffer->token[buffer->index].type = LENA_TOKEN_DATA_STRING;
 	buffer->token[buffer->index].data = string;
@@ -339,25 +339,25 @@ extern bool _token_identifier(lchar_t* input[], ltoken_buffer_t* buffer);
 
 static void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 
+	/* Pass "trash" symbols */
 	/* Terminate process if it's EOF */
-	if (_token_eof(input, buffer) != LENA_OK) {
+	if (_pass_trash_eof(input, buffer) != LENA_OK) {
 		return;
 	}
-
-	/* Pass "trash" symbols */
-	_pass_trash(input);
 
 	/* Recognize type of token */
 	
 	{
 		/* for tokens like: << >> <- -> */
 		if (_token_non_simple2(input, buffer) == LENA_OK) {
+			printf("non simple!");
 			/* Terminate if it's non-simple token */
 			return;
 		}
 
 		/* Recognize simple tokens */
 		if (_token_simple(input, buffer) != LENA_NO_SIMPLE_TOKEN) { 
+			printf("simple!");
 			/* Terminate if it's simple token */
 			return;
 		} else {
@@ -365,15 +365,19 @@ static void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 			if (_is_string_sep((**input))) {
 				/* If it's a string "string" */
+				printf("string!");
 				_token_string(input, buffer);
 			} else if (is_ldigit((**input))) {
 				/* If it's a digit */
+				printf("digit!");
 				_token_number(input, buffer);
 			} else if (is_lletter((**input))) {
 				/* If it's an identifier */
+				printf("identifier!");
 				_token_identifier(input, buffer);
 			} else {
-				buffer->token[buffer->index].type = LENA_TOKEN_ERROR_SYNTAX;
+				printf("else!");
+				buffer->token[buffer->index].type = LENA_TOKEN_KW_EXCEPT;
 				buffer->token[buffer->index].data = NULL;
 				buffer->token[buffer->index].len = 1;
 				(*input)++;
