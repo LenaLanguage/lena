@@ -20,4 +20,5 @@ _Provide a detailed description of what your PR changes or adds. Specify any pro
 _Provide code examples (if applicable) that demonstrate the changes you are proposing. This will help understand the essence of the changes without needing to delve deeply into your code._
 
 ```lena
-// Example code in Lena
+;Example code in Lena
+```
