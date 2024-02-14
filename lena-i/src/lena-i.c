@@ -19,12 +19,21 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         lexit(LENA_EXIT_FAILURE);
     }
 
+    lfile_t src_file;
+    lfile_status_t stat = lfopen(&src_file, LENA_ARGV[1]);
+    if (stat != LFILE_SUCCESS) {
+        printf("%d", stat);
+        lstdout_str(LENA_ARGV[1], llen(LENA_ARGV[1]));
+        return LENA_EXIT_FAILURE;
+    }
+
+
     ltoken_buffer_t buffer;
     if (!ltoken_buffer_init(&buffer)) {
         lexit(LENA_EXIT_FAILURE);
     }
 
-    lchar_t* string = argv[1];
+    lchar_t* string = lfget_pointer(&src_file);
     //printf("%s", string);
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 

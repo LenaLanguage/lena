@@ -140,8 +140,14 @@ typedef enum {
     LENA_TOKEN_KW_TRY,
     LENA_TOKEN_KW_EXCEPT,
 
+    /* New line */
+    LENA_TOKEN_NEWLINE,
+
+    /* Only errors after LENA_TOKEN_ERROR_SYNTAX */
+
     /* Error */
     LENA_TOKEN_ERROR_SYNTAX,
+    LENA_TOKEN_ERROR_INVALID_SYMBOL,
 } ltoken_type_t;
 
 /* Struct of every token */
@@ -163,7 +169,7 @@ typedef struct {
 /**
  * @brief Initialization of buffer token
 */
-extern bool ltoken_buffer_init(ltoken_buffer_t* buffer);
+extern lerror_t ltoken_buffer_init(ltoken_buffer_t* buffer);
 /**
  * @brief Free memory that was allocated for buffer
 */

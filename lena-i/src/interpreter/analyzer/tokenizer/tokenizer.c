@@ -20,8 +20,11 @@
 
 /* ---------------- HELPERS ---------------- */
 
+
+#define LENA_ERROR_ADR LENA_TOKEN_ERROR_SYNTAX
+
 static inline bool _is_token_valid(ltoken_buffer_t* buffer) {
-	return (bool)(buffer->token[buffer->index].type != LENA_TOKEN_ERROR_SYNTAX 
+	return (bool)(buffer->token[buffer->index].type < LENA_ERROR_ADR
 		&& buffer->token[buffer->index].type != LENA_TOKEN_EOF);
 }
 
@@ -54,7 +57,10 @@ static lerror_t _pass_trash_eof(lchar_t* input[], ltoken_buffer_t* buffer) {
 	}
 }
 
-/* ---------------- Non-simple operators ---------------- */
+/* ---------------- Non-simple operators (2 symbols) ---------------- */
+
+
+
 
 #define LENA_UNRECOGNIZED_TOKEN 0x03
 static lerror_t _token_non_simple2(lchar_t* input[], ltoken_buffer_t* buffer) {
@@ -366,8 +372,12 @@ static void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 			return;
 		} else {
 			/* Recognize non-simple tokens */
-
-			if (_is_string_sep((**input))) {
+			if ((**input) == l('\n')) {
+				buffer->token[buffer->index].type = LENA_TOKEN_NEWLINE;
+				buffer->token[buffer->index].data = NULL;
+				buffer->token[buffer->index].len = 1;
+				(*input)++;
+			} else if (_is_string_sep((**input))) {
 				/* If it's a string "string" */
 				_token_string(input, buffer);
 			} else if (is_ldigit((**input))) {
@@ -377,8 +387,8 @@ static void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 				/* If it's an identifier */
 				_token_identifier(input, buffer);
 			} else {
-				buffer->token[buffer->index].type = LENA_TOKEN_KW_EXCEPT;
-				buffer->token[buffer->index].data = NULL;
+				buffer->token[buffer->index].type = LENA_TOKEN_ERROR_INVALID_SYMBOL;
+				buffer->token[buffer->index].data = (*input);
 				buffer->token[buffer->index].len = 1;
 				(*input)++;
 			}
@@ -389,16 +399,16 @@ static void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 /* public */
 
-bool ltoken_buffer_init(ltoken_buffer_t* buffer) {
+lerror_t ltoken_buffer_init(ltoken_buffer_t* buffer) {
 	ltoken_t* token_claster = lmalloc(LTTCS * sizeof(ltoken_t));
 	/* size in bytes can be calculated like ^^^^^^^ */
 	if (token_claster == NULL) {
-		return false;
+		return LENA_ERROR;
 	}
 	buffer->len = LTTCS;
 	buffer->token = token_claster;
 	buffer->index = 0;
-	return true;
+	return LENA_OK;
 }
 
 void ltoken_buffer_deinit(ltoken_buffer_t* buffer) {
