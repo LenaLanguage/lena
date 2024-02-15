@@ -15,6 +15,10 @@
 
 * `transmitter:(type)` - it is a variable with `type` type
 
+### CIO data types
+
+* `cout`, `cerr`, `cin` - private data type `@stream`
+
 ## FIO
 
 * `file(path:str)` - stream/function to open file, return stream

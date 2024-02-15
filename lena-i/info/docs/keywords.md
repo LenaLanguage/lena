@@ -17,6 +17,8 @@
 * `while`
 * `for`
 
+* `operator`
+
 ### Traditional operators
 
 Arithmetic
@@ -68,7 +70,7 @@ Streams
 * `>>`
 * `<<`
 
-### Word operators
+### Word-operators
 
 * `times`
 
