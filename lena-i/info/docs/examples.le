@@ -1,0 +1,136 @@
+
+; Подключение внешних модулей
+
+import module
+
+; Переменные и типы данных
+
+a = none
+a:i32 = 100
+a = 100
+
+; Объявление других типов
+
+; Компоненты
+
+port:component {
+
+    private {
+        gpio:u8,
+        name:str,
+    }
+
+    public {
+        function():i32 {
+            ; возвращаем некоторое значение
+        }
+    }
+    ; Остальная часть всегда публична
+    (port.gpio >> int) {
+    
+    }
+}
+
+
+; Примеры с использованием определителя типов
+
+my_flexible_function2(a):i32 {
+    
+}
+
+my_flexible_function(a) {
+    match (type(a)) {
+        u8 ->   "This is U8!"   >> cout
+        u16 ->  "This is U16!"  >> cout
+        u32 ->  "This is U32!"  >> cout
+        u64 ->  "This is U64!"  >> cout
+        
+        i8 ->   "This is I8!"   >> cout
+        i16 ->  "This is I16!"  >> cout
+        i32 ->  "This is I32!"  >> cout
+        i64 ->  "This is I64!"  >> cout
+    }
+}
+
+
+; Потоки и перегрузка операторов
+
+mul(a:(i8|i16|i32|i64), b:(i8|i16|i32|i64)):operator:i32 {
+    return a * b;
+}
+
+/*
+    Пример использования 5 mul 10
+*/
+
+uart:stream {
+    ; Отправка из uart
+    (uart >> int) {
+
+    }
+    ; Приём в uart
+    (uart << int) {
+
+    }
+}
+
+; Стандартные функции, использовать @, аналог ключевого слова extern
+
+@cout:stream
+@cerr:stream
+@cin:stream
+
+
+; Условия, потоки и их разделение
+
+if () {
+
+} elif () {
+
+} else if () {
+
+} else {
+
+}
+
+while () {
+
+}
+
+do {
+
+} while()
+
+for (0..100, i, 1) {
+
+}
+
+/* По умолчанию +1 */ 
+for (0..100, i) {
+
+}
+
+/* Простейшее повторение */
+repeat (100) {
+
+}
+
+; Клонирование функций
+
+my_first(a:i32):i32 {
+    return a + 1
+}
+
+my_newfunc(i:i32) = &my_first
+
+/* Пример программы для работы с потоками */
+
+import os
+
+myThread = new thread("ID", &my_first)
+
+myThread.start()
+
+; ла ла ла
+
+myThread.join()
