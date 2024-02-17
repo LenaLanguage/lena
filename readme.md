@@ -10,7 +10,7 @@
 
 * Syntax = Python + Assembler + C/C++
 
-* [Research link]("https://docs.google.com/document/d/18Vgb9FWkAmmvgFri58sekGLDtFrS8Uyf9xnZg77Jj1I/edit?usp=sharing")
+* [Research link](https://docs.google.com/document/d/18Vgb9FWkAmmvgFri58sekGLDtFrS8Uyf9xnZg77Jj1I/edit?usp=sharing)
 
 ## The language uses alternative methods for interpreting and executing code, which can affect performance and improve the quality of interpreted programming languages
 
