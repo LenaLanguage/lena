@@ -4,16 +4,17 @@
 
 ## Main information
 
-* Interpreted/JIT compilation + virtual machine programming language
+* Interpreted/Compiled programming language
 
 * Lightning Execution and Native Adaptability (LENA)
 
 * Syntax = Python + Assembler + C/C++
 
+* [Research link]("https://docs.google.com/document/d/18Vgb9FWkAmmvgFri58sekGLDtFrS8Uyf9xnZg77Jj1I/edit?usp=sharing")
 
-## The language uses alternative methods for interpreting and executing code, which can affect performance and improve the quality of interpreted programming languages.
+## The language uses alternative methods for interpreting and executing code, which can affect performance and improve the quality of interpreted programming languages
 
-## Areas of application:
+## Areas of application
 
 * Neural networks
 
