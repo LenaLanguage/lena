@@ -11,6 +11,6 @@ repeat 10: cout << array1 << '\n'
 "This is sequence from 0 to 10" >> cout
 
 for (i, 0..10) {
-    cout << "i = "
-    i >> cout << "\n"
+    "i = " >> i >> cout << "\n"
 }
+
