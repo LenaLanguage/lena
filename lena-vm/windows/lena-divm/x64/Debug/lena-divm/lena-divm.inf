@@ -1,0 +1,80 @@
+;
+; lena-divm.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=lena-divm.cat
+DriverVer = 02/19/2024,13.14.10.531
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+lena-divm_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+lena-divm.sys  = 1,,
+;
+
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NTamd64
+
+[Standard.NTamd64]
+%lena-divm.DeviceDesc%=lena-divm_Device, Root\lena-divm ; TODO: edit hw-id
+
+[lena-divm_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+lena-divm.sys
+
+;-------------- Service installation
+[lena-divm_Device.NT.Services]
+AddService = lena-divm,%SPSVCINST_ASSOCSERVICE%, lena-divm_Service_Inst
+
+; -------------- lena-divm driver install sections
+[lena-divm_Service_Inst]
+DisplayName    = %lena-divm.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\lena-divm.sys
+
+;
+;--- lena-divm_Device Coinstaller installation ------
+;
+
+[lena-divm_Device.NT.CoInstallers]
+AddReg=lena-divm_Device_CoInstaller_AddReg
+CopyFiles=lena-divm_Device_CoInstaller_CopyFiles
+
+[lena-divm_Device_CoInstaller_AddReg]
+;
+
+
+[lena-divm_Device_CoInstaller_CopyFiles]
+;
+
+
+[lena-divm_Device.NT.Wdf]
+KmdfService =  lena-divm, lena-divm_wdfsect
+[lena-divm_wdfsect]
+KmdfLibraryVersion = 1.15
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName = "lena-divm Installation Disk"
+lena-divm.DeviceDesc = "lena-divm Device"
+lena-divm.SVCDESC = "lena-divm Service"

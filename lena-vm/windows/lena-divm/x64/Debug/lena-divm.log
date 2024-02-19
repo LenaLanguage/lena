@@ -1,0 +1,18 @@
+﻿  Building 'lena-divm' with toolset 'WindowsKernelModeDriver10.0' and the 'Desktop' target platform.
+  Stamping x64\Debug\lena-divm.inf
+  Stamping [Version] section with DriverVer=02/19/2024,13.14.10.531
+  lena-divm.vcxproj -> C:\Projects\lena-lang\lena-vm\windows\lena-divm\x64\Debug\lena-divm.sys
+  .........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Projects\lena-lang\lena-vm\windows\lena-divm\x64\Debug\lena-divm\lena-divm.cat
+  Done Adding Additional Store
+  Successfully signed: C:\Projects\lena-lang\lena-vm\windows\lena-divm\x64\Debug\lena-divm\lena-divm.cat
+  
