@@ -10,7 +10,7 @@
 
 #include <windows.h>
 
-HANDLE llibs_GetFileHandle(lchar_t filename[]) {
+HANDLE llibs_GetFileHandle(lnchar_t filename[]) {
     return CreateFileW(filename, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 }
 
@@ -30,7 +30,7 @@ LONGLONG llibs_GetFileSize(HANDLE fileHandle) {
     return size.QuadPart;
 }
 
-lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename){
+lfile_status_t lfopen(lfile_t* lfile, lnchar_t* filename){
     lfile->fileHandle = llibs_GetFileHandle(filename);
     if (lfile->fileHandle == NULL) { 
         CloseHandle(lfile->fileHandle);
@@ -59,8 +59,8 @@ lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename){
     return LFILE_SUCCESS;
 }
 
-lchar_t* lfget_pointer(lfile_t* lfile){
-    return (lchar_t *)(lfile->mapView);
+lnchar_t* lfget_pointer(lfile_t* lfile){
+    return (lnchar_t *)(lfile->mapView);
 }
 
 void lfclose(lfile_t* lfile){
@@ -77,7 +77,7 @@ void lfclose(lfile_t* lfile){
 #include <sys/stat.h>
 #include <stdlib.h>
 
-lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename) {
+lfile_status_t lfopen(lfile_t* lfile, lnchar_t* filename) {
     int file_descriptor;
     size_t size;
     struct stat file_stat;
@@ -94,7 +94,7 @@ lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename) {
     }
 
     size = file_stat.st_size;
-    buffer = (lchar_t*)malloc(size);
+    buffer = (lnchar_t*)malloc(size);
     if (buffer == NULL) {
         close(file_descriptor);
         return LFILE_MEMORY_FAILURE;
@@ -114,8 +114,8 @@ lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename) {
     return LFILE_SUCCESS;
 }
 
-lchar_t* lfget_pointer(lfile_t* lfile){
-    return (lchar_t *)(lfile->data);
+lnchar_t* lfget_pointer(lfile_t* lfile){
+    return (lnchar_t *)(lfile->data);
 }
 
 void lfclose(lfile_t* lfile) {
@@ -128,5 +128,5 @@ void lfclose(lfile_t* lfile) {
 
 /* Cross-platform funcrion */
 size_t lfget_len(lfile_t* lfile){
-    return (size_t)(lfile->size * sizeof(lchar_t));
+    return (size_t)(lfile->size * sizeof(lnchar_t));
 }

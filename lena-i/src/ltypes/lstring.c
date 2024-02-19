@@ -27,16 +27,16 @@
 
 /* And define Lena API funcrions */
 
-lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len){
-    return memcpy(dest, src, len * sizeof(lchar_t));
+lnchar_t* lstrcpy(lnchar_t* dest, const lnchar_t* src, size_t len){
+    return memcpy(dest, src, len * sizeof(lnchar_t));
 }
 
-lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
+lnchar_t* lstrcat(lnchar_t* dest, const lnchar_t* src){
     return wcscat(dest, src);
 }
 
-int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
-    return memcmp(str1, str2, len * sizeof(lchar_t));
+int lstrcmp(lnchar_t* str1, lnchar_t* str2, size_t len){
+    return memcmp(str1, str2, len * sizeof(lnchar_t));
 }
 
 /* -------- Experimental functions -------- */
@@ -49,35 +49,35 @@ typedef uint16_t lstring_x1_t;
 #define LSTRING_2_CMP(data) (*(lstring_x2_t*)(data))
 #define LSTRING_1_CMP(data) (*(lstring_x1_t*)(data))
 
-bool lstrcmp_x64_8(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_8(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_4_CMP(str1) == LSTRING_4_CMP(str2)
         && LSTRING_4_CMP(str1 + 8) == LSTRING_4_CMP(str2 + 8));
 }
 
-bool lstrcmp_x64_4(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_4(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_4_CMP(str1) == LSTRING_4_CMP(str2));
 }
 
-bool lstrcmp_x64_2(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_2(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_2_CMP(str1) == LSTRING_2_CMP(str2));
 }
 
-bool lstrcmp_x64_1(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_1(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_1_CMP(str1) == LSTRING_1_CMP(str2));
 }
 
 #else
 
-lchar_t* lstrcpy(lchar_t* dest, const lchar_t* src, size_t len){
-    return memcpy(dest, src, len * sizeof(lchar_t));
+lnchar_t* lstrcpy(lnchar_t* dest, const lnchar_t* src, size_t len){
+    return memcpy(dest, src, len * sizeof(lnchar_t));
 }
 
-lchar_t* lstrcat(lchar_t* dest, const lchar_t* src){
+lnchar_t* lstrcat(lnchar_t* dest, const lnchar_t* src){
     return strcat(dest, src);
 }
 
-int lstrcmp(lchar_t* str1, lchar_t* str2, size_t len){
-    return memcmp(str1, str2, len * sizeof(lchar_t));
+int lstrcmp(lnchar_t* str1, lnchar_t* str2, size_t len){
+    return memcmp(str1, str2, len * sizeof(lnchar_t));
 }
 
 /* -------- Experimental functions -------- */
@@ -92,19 +92,19 @@ typedef uint8_t lstring_x1_t;
 #define LSTRING_2_CMP(data) (*(lstring_x2_t*)(data))
 #define LSTRING_1_CMP(data) (*(lstring_x1_t*)(data))
 
-bool lstrcmp_x64_8(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_8(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_8_CMP(str1) == LSTRING_8_CMP(str2));
 }
 
-bool lstrcmp_x64_4(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_4(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_4_CMP(str1) == LSTRING_4_CMP(str2));
 }
 
-bool lstrcmp_x64_2(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_2(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_2_CMP(str1) == LSTRING_2_CMP(str2));
 }
 
-bool lstrcmp_x64_1(lchar_t* str1, lchar_t* str2) {
+bool lstrcmp_x64_1(lnchar_t* str1, lnchar_t* str2) {
     return (bool)(LSTRING_1_CMP(str1) == LSTRING_1_CMP(str2));
 }
 

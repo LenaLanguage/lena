@@ -21,7 +21,7 @@
 
 #include <windows.h>
 
-HANDLE llibs_GetFileHandle(lchar_t filename[]);
+HANDLE llibs_GetFileHandle(lnchar_t filename[]);
 
 HANDLE llibs_GetMapHandle(HANDLE fileHandle);
 
@@ -48,8 +48,8 @@ enum lfile_status{
 
 /* lfiles cross-platform functions */
 
-lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename);
-lchar_t* lfget_pointer(lfile_t* lfile);
+lfile_status_t lfopen(lfile_t* lfile, lnchar_t* filename);
+lnchar_t* lfget_pointer(lfile_t* lfile);
 size_t lfget_len(lfile_t* lfile);
 void lfclose(lfile_t* lfile);
 
@@ -61,7 +61,7 @@ void lfclose(lfile_t* lfile);
 #include <stdlib.h>
 
 typedef struct {
-    lchar_t* data;  // data pointer
+    lnchar_t* data;  // data pointer
     int64_t size;   // size in bytes
 } lfile_t;
 
@@ -78,8 +78,8 @@ typedef uint8_t lfile_status_t;
 
 /* lfiles cross-platform functions */
 
-lfile_status_t lfopen(lfile_t* lfile, lchar_t* filename);
-lchar_t* lfget_pointer(lfile_t* lfile);
+lfile_status_t lfopen(lfile_t* lfile, lnchar_t* filename);
+lnchar_t* lfget_pointer(lfile_t* lfile);
 size_t lfget_len(lfile_t* lfile);
 void lfclose(lfile_t* lfile);
 

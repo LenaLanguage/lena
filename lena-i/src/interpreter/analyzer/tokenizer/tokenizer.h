@@ -153,7 +153,7 @@ typedef enum {
 /* Struct of every token */
 typedef struct {
     ltoken_type_t type;
-    lchar_t* data;
+    lnchar_t* data;
     size_t len;
 } ltoken_t;
 
@@ -175,9 +175,9 @@ extern lerror_t ltoken_buffer_init(ltoken_buffer_t* buffer);
 */
 extern void ltoken_buffer_deinit(ltoken_buffer_t* buffer);
 /**
- * @brief Main function to recognize tokens from data lchar_t pointer
+ * @brief Main function to recognize tokens from data lnchar_t pointer
 */
-extern void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer);
+extern void ltoken_get(lnchar_t* input[], ltoken_buffer_t* buffer);
 
 
 #endif // __LENA_INTERPRETOR_TOKENIZER_H__

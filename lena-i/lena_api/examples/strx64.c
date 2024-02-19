@@ -6,14 +6,14 @@
 /* 0.5 Gb */
 #define VL_SIZE 536870912
 
-lchar_t* very_longstr;
-lchar_t* very_longstr2;
+lnchar_t* very_longstr;
+lnchar_t* very_longstr2;
 
 LMAIN(LENA_ARGC, LENA_ARGV){
     if(!lstd_init()){ lexit(LENA_EXIT_FAILURE); };
     
-    very_longstr = calloc(VL_SIZE, sizeof(lchar_t));
-    memset(very_longstr, l('a'), sizeof(lchar_t));
+    very_longstr = calloc(VL_SIZE, sizeof(lnchar_t));
+    memset(very_longstr, l('a'), sizeof(lnchar_t));
 
     very_longstr2 = malloc(VL_SIZE);
     

@@ -24,9 +24,9 @@ enum lexit_codes {
 
 #ifdef _WIN32 /* WINDOWS */
 #include <windows.h>
-#define LMAIN(argc, argv) int wmain(int argc, lchar_t* argv[])
+#define LMAIN(argc, argv) int wmain(int argc, lnchar_t* argv[])
 #else /* LINUX */
-#define LMAIN(argc, argv) int main(int argc, lchar_t* argv[])
+#define LMAIN(argc, argv) int main(int argc, lnchar_t* argv[])
 #endif
 
 #endif // __LENA_LAPP_H__

@@ -11,12 +11,12 @@
 /* Variables */
 
 
-void core_cout_logs_helper(unsigned int num, lchar_t *str) {
+void core_cout_logs_helper(unsigned int num, lnchar_t *str) {
     const int size = LCMXLSL -1;
     str[size] = l('\n'); /* it must be a new war crime */
 
     for (int i = size - 1; i >= LCLLL; i--) {
-        lchar_t digit = num & 0xF;
+        lnchar_t digit = num & 0xF;
         if (digit < 10) {
             str[i] = l('0') + digit;
         } else {
@@ -26,7 +26,7 @@ void core_cout_logs_helper(unsigned int num, lchar_t *str) {
     }
 }
 
-void core_fout_logs(lchar_t* filename) {
+void core_fout_logs(lnchar_t* filename) {
     /* later */
 }
 
@@ -36,7 +36,7 @@ void core_cout_logs(void) {
     lstderr_str(l("Lena logs list:\n"), 17);
     
     if (lerror_index != 0) {
-        lchar_t cerror_buffer[LCMXLSL];
+        lnchar_t cerror_buffer[LCMXLSL];
         lstderr_set_color(LENA_TEXT_COLOR);
         lstderr_str(l("|-> "), 5);
         lstderr_set_color(LENA_ERROR_COLOR);

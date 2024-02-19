@@ -23,16 +23,16 @@
 /* Finders for different arguments */
 
 /* Double hyphen */
-extern void lena_args_dh(lchar_t argv[]);
+extern void lena_args_dh(lnchar_t argv[]);
 
 /* Single hyphen */
-extern void lena_args_sh(lchar_t argv[]);
+extern void lena_args_sh(lnchar_t argv[]);
 
 /* Simple arg */
-extern void lena_args_sa(lchar_t argv[]);
+extern void lena_args_sa(lnchar_t argv[]);
 
 bool core_args_exist(int argc);
-void core_args_receiver(int argc, lchar_t* argv[]);
+void core_args_receiver(int argc, lnchar_t* argv[]);
 
 /* DH SA SH funcitons (--args -args args) */
 

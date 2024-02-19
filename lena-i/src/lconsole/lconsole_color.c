@@ -32,7 +32,7 @@ void lstderr_set_color(lena_stdcolor_t color) {
 #else /* LINUX */
 
 /* ANSI codes for changing colors */
-static const lchar_t* _lstdconsole_color_codes[] = {
+static const lnchar_t* _lstdconsole_color_codes[] = {
     l("\x1b[30m"), l("\x1b[31m"),
     l("\x1b[32m"), l("\x1b[33m"),
     l("\x1b[34m"), l("\x1b[34m"),
@@ -43,7 +43,7 @@ static const lchar_t* _lstdconsole_color_codes[] = {
 inline
 void lstdout_set_color(lena_stdcolor_t color){
     if (_use_lstdout_set_color) {
-        lstdout_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
+        lstdout_str((lnchar_t *)(_lstdconsole_color_codes[(int)(color)]),
         __LSTDCONSOLE_CODE_LENGHT);
     }
 }
@@ -51,7 +51,7 @@ void lstdout_set_color(lena_stdcolor_t color){
 inline
 void lstderr_set_color(lena_stdcolor_t color){
     if (_use_lstderr_set_color) {
-        lstderr_str((lchar_t *)(_lstdconsole_color_codes[(int)(color)]),
+        lstderr_str((lnchar_t *)(_lstdconsole_color_codes[(int)(color)]),
         __LSTDCONSOLE_CODE_LENGHT);
     }
 }

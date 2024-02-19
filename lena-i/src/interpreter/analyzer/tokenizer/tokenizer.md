@@ -16,7 +16,7 @@
 
 `void ltoken_buffer_deinit(ltoken_buffer_t* buffer)` - deinitialization
 
-`void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer)` - get tokens to the structure
+`void ltoken_get(lnchar_t* input[], ltoken_buffer_t* buffer)` - get tokens to the structure
 
 ## [tokenizer.c](tokenizer.c) file
 
@@ -26,4 +26,4 @@
 
 ### Private functions
 
-`void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer)` - get tokens to the structure
+`void ltoken_get(lnchar_t* input[], ltoken_buffer_t* buffer)` - get tokens to the structure

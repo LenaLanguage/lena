@@ -31,6 +31,6 @@ enum lencode_error_codes {
 /* Temporary solution for tokenizer.c */
 
 /* For encoding different types of number: 0x00 0b00 0o00 */
-extern lerror_t lencode_lchar(lchar_t* input, lchar_t* restrict result, size_t* restrict len);
+extern lerror_t lencode_lchar(lnchar_t* input, lnchar_t* restrict result, size_t* restrict len);
 
 #endif // __LENA_CORE_ENCODER_H__

@@ -13,9 +13,9 @@
 #include "tokenizer.h"
 
 /* Function */
-static size_t _token_identifier_get_len(lchar_t* input[]) {
+static size_t _token_identifier_get_len(lnchar_t* input[]) {
     /* Clean function doesn't change (*input) pointer */
-    lchar_t* identifier = (*input); size_t len = 0;
+    lnchar_t* identifier = (*input); size_t len = 0;
     while (is_lletter(*identifier) || is_ldigit(*identifier)) {
         ++len; ++identifier;
     }
@@ -86,7 +86,7 @@ typedef enum {
 
 /* ---------------- 2 ----------------*/
 
-ltoken_type_t _token_identifier_separate_2(lchar_t* id) {
+ltoken_type_t _token_identifier_separate_2(lnchar_t* id) {
     /* -------- this is 8 bit identifier -------- */
     if (id[1] == l('8')) {
         if (id[0] == l('i') || id[0] == l('u')) {
@@ -112,7 +112,7 @@ ltoken_type_t _token_identifier_separate_2(lchar_t* id) {
 
 /* ---------------- 3 ----------------*/
 
-ltoken_type_t _token_identifier_separate_3(lchar_t* id) {
+ltoken_type_t _token_identifier_separate_3(lnchar_t* id) {
     /* it can be 16, 32 or 64 bir identidtifier */
     if (id[1] == l('1')) {
         if (id[2] == l('6')) {
@@ -160,15 +160,15 @@ ltoken_type_t _token_identifier_separate_3(lchar_t* id) {
 
 /* ---------------- 4 ----------------*/
 
-ltoken_type_t _token_identifier_separate_4(lchar_t* id) {
+ltoken_type_t _token_identifier_separate_4(lnchar_t* id) {
 
-    if (lstrcmp(id, (lchar_t *)(l("else")), 4) == 0) {
+    if (lstrcmp(id, (lnchar_t *)(l("else")), 4) == 0) {
         /* -------- 'else' keyword -------- */
         return LENA_TOKEN_LOGIC_ELSE;
-    } else if (lstrcmp(id, (lchar_t *)(l("elif")), 4) == 0) {
+    } else if (lstrcmp(id, (lnchar_t *)(l("elif")), 4) == 0) {
         /* -------- 'elif' keyword -------- */
         return LENA_TOKEN_LOGIC_ELIF;
-    } else if (lstrcmp(id, (lchar_t *)(l("with")), 4) == 0) {
+    } else if (lstrcmp(id, (lnchar_t *)(l("with")), 4) == 0) {
         /* -------- 'with' keyword -------- */
         return LENA_TOKEN_KW_WITH;
     } else {
@@ -179,8 +179,8 @@ ltoken_type_t _token_identifier_separate_4(lchar_t* id) {
 
 /* ---------------- 5 ----------------*/
 
-ltoken_type_t _token_identifier_separate_5(lchar_t* id) {
-    if (lstrcmp(id, (lchar_t *)(l("times")), 5) == 0) {
+ltoken_type_t _token_identifier_separate_5(lnchar_t* id) {
+    if (lstrcmp(id, (lnchar_t *)(l("times")), 5) == 0) {
         /* -------- 'with' keyword -------- */
         return LENA_TOKEN_KW_TIMES;
     } else {
@@ -191,8 +191,8 @@ ltoken_type_t _token_identifier_separate_5(lchar_t* id) {
 
 /* ---------------- 6 ----------------*/
 
-ltoken_type_t _token_identifier_separate_6(lchar_t* id) {
-    if (lstrcmp(id, (lchar_t *)(l("repeat")), 5) == 0) {
+ltoken_type_t _token_identifier_separate_6(lnchar_t* id) {
+    if (lstrcmp(id, (lnchar_t *)(l("repeat")), 5) == 0) {
         /* -------- 'with' keyword -------- */
         return LENA_TOKEN_KW_REPEAT;
     } else {
@@ -203,8 +203,8 @@ ltoken_type_t _token_identifier_separate_6(lchar_t* id) {
 
 /* ---------------- 7 ----------------*/
 
-ltoken_type_t _token_identifier_separate_7(lchar_t* id) {
-    if (lstrcmp(id, (lchar_t *)(l("repeat")), 7) == 0) {
+ltoken_type_t _token_identifier_separate_7(lnchar_t* id) {
+    if (lstrcmp(id, (lnchar_t *)(l("repeat")), 7) == 0) {
         /* -------- 'with' keyword -------- */
         return LENA_TOKEN_KW_DEFAULT;
     } else {
@@ -215,9 +215,9 @@ ltoken_type_t _token_identifier_separate_7(lchar_t* id) {
 
 
 /* This is clear but unsecure function */
-ltoken_type_t _token_identifier_separator(lchar_t* input[], size_t len) {
+ltoken_type_t _token_identifier_separator(lnchar_t* input[], size_t len) {
 
-    lchar_t* id = (*input);
+    lnchar_t* id = (*input);
 
     switch (len) {
         case 2:{
@@ -249,13 +249,13 @@ ltoken_type_t _token_identifier_separator(lchar_t* input[], size_t len) {
 }
 
 /* -------- Pass used symbols -------- */
-void _token_identifier_pass(lchar_t* input[], size_t len) { 
+void _token_identifier_pass(lnchar_t* input[], size_t len) { 
     while (len) {
         ++(*input); --len;
     }
 }
 
-void _token_identifier(lchar_t* input[], ltoken_buffer_t* buffer) {
+void _token_identifier(lnchar_t* input[], ltoken_buffer_t* buffer) {
 
     size_t len = _token_identifier_get_len(input);
     ltoken_type_t type = _token_identifier_separator(input, len);

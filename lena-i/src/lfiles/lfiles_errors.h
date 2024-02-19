@@ -11,7 +11,7 @@
 /* Check lerror.h library */
 #ifdef __LENA_ERROR_H__
 
-lerror_func_t lena_open_file_error(lchar_t* filename, size_t len) {
+lerror_func_t lena_open_file_error(lnchar_t* filename, size_t len) {
    
 }
 

@@ -38,21 +38,21 @@ typedef BOOL lstdio_t;
 /* STDOUT */
 
 
-extern lstdio_t lstdout_str(lchar_t *str, size_t len);
+extern lstdio_t lstdout_str(lnchar_t *str, size_t len);
 
 extern lstdio_t lstdout_u64(uint64_t num);
 
 /* STDERR */
 
 
-extern lstdio_t lstderr_str(lchar_t *str, size_t len);
+extern lstdio_t lstderr_str(lnchar_t *str, size_t len);
 
 extern lstdio_t lstderr_u64(uint64_t num);
 
 /* STDIN */
 
 
-extern lstdio_t lstdin_str(lchar_t *buffer, size_t len);
+extern lstdio_t lstdin_str(lnchar_t *buffer, size_t len);
 
 #else /* LINUX */
 
@@ -71,17 +71,17 @@ typedef ssize_t lstdio_t;
 /* STDOUT */
 
  
-lstdio_t lstdout_str(lchar_t* str, size_t len);
+lstdio_t lstdout_str(lnchar_t* str, size_t len);
 
 /* STDERR */
 
  
-lstdio_t lstderr_str(lchar_t* str, size_t len);
+lstdio_t lstderr_str(lnchar_t* str, size_t len);
 
 /* STDERR */
 
  
-lstdio_t lstdin_str(lchar_t* buffer, size_t len);
+lstdio_t lstdin_str(lnchar_t* buffer, size_t len);
 
 
 #endif 

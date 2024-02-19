@@ -33,7 +33,7 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         lexit(LENA_EXIT_FAILURE);
     }
 
-    lchar_t* string = lfget_pointer(&src_file);
+    lnchar_t* string = lfget_pointer(&src_file);
     //printf("%s", string);
     ltoken_get(&string, &buffer);
     core_args_receiver(LENA_ARGC, LENA_ARGV); 
@@ -45,7 +45,7 @@ LMAIN(LENA_ARGC, LENA_ARGV) {
         print_t_data(buffer.token[i]); putchar('\n');
         printf("\t len:%ld\n", buffer.token[i].len);
     }
-    
+
     ltoken_buffer_deinit(&buffer);
     lexit(LENA_EXIT_SUCCESS);
 }

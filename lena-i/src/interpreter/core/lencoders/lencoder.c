@@ -25,11 +25,11 @@ static int64_t _binpow(int64_t a, int64_t n) {
 
 /* ---------------- Binary ---------------- */
 
-static inline bool _is_bin_sym(lchar_t sym) {
+static inline bool _is_bin_sym(lnchar_t sym) {
     return (bool)((sym == l('0') || sym == l('1')));
 }
 
-static lerror_t _lencode_lchar_bin(lchar_t* input, lchar_t* restrict result, size_t* restrict len) {
+static lerror_t _lencode_lchar_bin(lnchar_t* input, lnchar_t* restrict result, size_t* restrict len) {
     /* pass '0b' */
     input += 2;
     while (_is_bin_sym(*input)) {
@@ -49,11 +49,11 @@ static lerror_t _lencode_lchar_bin(lchar_t* input, lchar_t* restrict result, siz
 
 /* ---------------- Octal ---------------- */
 
-static inline bool _is_oct_sym(lchar_t sym) {
+static inline bool _is_oct_sym(lnchar_t sym) {
     return (bool)(sym >= l('0') && sym <= l('7'));
 }
 
-static lerror_t _lencode_lchar_oct(lchar_t* input, lchar_t* restrict result, size_t* restrict len) {
+static lerror_t _lencode_lchar_oct(lnchar_t* input, lnchar_t* restrict result, size_t* restrict len) {
     /* pass '0o' */
     input += 2;
     while (_is_oct_sym(*input)) {
@@ -63,7 +63,7 @@ static lerror_t _lencode_lchar_oct(lchar_t* input, lchar_t* restrict result, siz
         return LENA_ENCODE_ERROR_SIZE_EXCEEDED;
     }
     --input;
-    lchar_t shift = 0;
+    lnchar_t shift = 0;
     for (size_t i = 0; i < (*len); ++i) {
         (*result) += (((*input) - l('0')) * _binpow(8, shift));
         --input;
@@ -74,13 +74,13 @@ static lerror_t _lencode_lchar_oct(lchar_t* input, lchar_t* restrict result, siz
 
 /* ---------------- Hexadecimal ---------------- */
 
-static inline bool _is_hex_sym(lchar_t sym) {
+static inline bool _is_hex_sym(lnchar_t sym) {
     return (bool)((sym >= l('0') && sym <= l('9')) 
         || (sym >= l('A') && sym <= l('F'))
         || (sym >= l('a') && sym <= l('f')));
 }
 
-static inline uint8_t _get_hex_value(lchar_t sym) {
+static inline uint8_t _get_hex_value(lnchar_t sym) {
     if (sym >= l('0') && sym <= l('9')) {
         return (sym - l('0'));
     } else if ((sym >= l('A') && sym <= l('F'))) {
@@ -91,7 +91,7 @@ static inline uint8_t _get_hex_value(lchar_t sym) {
     return 0;
 }
 
-static lerror_t _lencode_lchar_hex(lchar_t* input, lchar_t* restrict result, size_t* restrict len) {
+static lerror_t _lencode_lchar_hex(lnchar_t* input, lnchar_t* restrict result, size_t* restrict len) {
     /* pass '0x' */
     input += 2;
     while (_is_hex_sym(*input)) {
@@ -101,7 +101,7 @@ static lerror_t _lencode_lchar_hex(lchar_t* input, lchar_t* restrict result, siz
         return LENA_ENCODE_ERROR_SIZE_EXCEEDED;
     }
     --input;
-    lchar_t shift = 0;
+    lnchar_t shift = 0;
     for (size_t i = 0; i < (*len); ++i) {
         (*result) += (_get_hex_value((*input)) * _binpow(16, shift));
         --input; ++shift;
@@ -112,11 +112,11 @@ static lerror_t _lencode_lchar_hex(lchar_t* input, lchar_t* restrict result, siz
 
 /* ---------------- Decimental ---------------- */
 
-static inline bool _is_dec_sym(lchar_t sym) {
+static inline bool _is_dec_sym(lnchar_t sym) {
     return (is_ldigit(sym));
 }
 
-static lerror_t _lencode_lchar_dec(lchar_t* input, lchar_t* restrict result, size_t* restrict len) {
+static lerror_t _lencode_lchar_dec(lnchar_t* input, lnchar_t* restrict result, size_t* restrict len) {
     /* direct recognition */
     while (_is_dec_sym((*input))) {
         ++input; ++(*len);
@@ -125,7 +125,7 @@ static lerror_t _lencode_lchar_dec(lchar_t* input, lchar_t* restrict result, siz
         return LENA_ENCODE_ERROR_SIZE_EXCEEDED;
     }
     --input;
-    lchar_t shift = 1;
+    lnchar_t shift = 1;
     for (size_t i = 0; i < (*len); ++i) {
         (*result) += (shift * ((*input) - l('0')));
         --input; shift *= 10;
@@ -136,7 +136,7 @@ static lerror_t _lencode_lchar_dec(lchar_t* input, lchar_t* restrict result, siz
 
 /* Public */
 
-lerror_t lencode_lchar(lchar_t* input, lchar_t* restrict result, size_t* restrict len) {
+lerror_t lencode_lchar(lnchar_t* input, lnchar_t* restrict result, size_t* restrict len) {
     if (input[0] == l('0')) {
         /* Translate to the number */
         switch (input[1]) {

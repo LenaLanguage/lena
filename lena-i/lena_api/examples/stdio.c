@@ -3,7 +3,7 @@
 LMAIN(LENA_ARGC, LENA_ARGV){
     if(!lstd_init()){ lexit(LENA_EXIT_FAILURE); };
 
-    lchar_t* label = l("Hello Lena API!");
+    lnchar_t* label = l("Hello Lena API!");
     size_t label_len = llen(label);
 
     /* Set color (optional)*/
@@ -19,7 +19,7 @@ LMAIN(LENA_ARGC, LENA_ARGV){
     lstdout_str(label, label_len);
 
     /* Buffer */
-    lchar_t buffer[10];
+    lnchar_t buffer[10];
 
     /* STDIN */
     lstdin_str(buffer, 10);

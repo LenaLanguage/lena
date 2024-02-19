@@ -53,16 +53,16 @@ DWORD   ConsoleOutLen   = 0UL,
 /* STDOUT */
 
 inline
-lstdio_t lstdout_str(lchar_t *str, size_t len){
+lstdio_t lstdout_str(lnchar_t *str, size_t len){
     return (lstdio_t)(WriteConsole(hConsoleOut, str, len, &ConsoleOutLen, NULL));
 }
 
 lstdio_t lstdout_u64(uint64_t num){
     /* 21 characters for UINT64_MAX */
-    static lchar_t __l_stdout_u64_buffer[21] = {0};
+    static lnchar_t __l_stdout_u64_buffer[21] = {0};
     static size_t __prev_u64_buffer_len = 21;
 
-    memset(__l_stdout_u64_buffer, 0, sizeof(lchar_t) * __prev_u64_buffer_len);
+    memset(__l_stdout_u64_buffer, 0, sizeof(lnchar_t) * __prev_u64_buffer_len);
     _ui64tow(num, __l_stdout_u64_buffer, 10);
     __prev_u64_buffer_len = llen(__l_stdout_u64_buffer);
 
@@ -72,16 +72,16 @@ lstdio_t lstdout_u64(uint64_t num){
 /* STDERR */
 
 inline
-lstdio_t lstderr_str(lchar_t *str, size_t len){
+lstdio_t lstderr_str(lnchar_t *str, size_t len){
     return WriteConsole(hConsoleErr, str, len, &ConsoleErrLen, NULL);
 }
 
 lstdio_t lstderr_u64(uint64_t num){
     /* 21 characters for UINT64_MAX */
-    static lchar_t __l_stderr_u64_buffer[21] = {0};
+    static lnchar_t __l_stderr_u64_buffer[21] = {0};
     static size_t __prev_u64_buffer_len = 21;
 
-    memset(__l_stderr_u64_buffer, 0, sizeof(lchar_t) * __prev_u64_buffer_len);
+    memset(__l_stderr_u64_buffer, 0, sizeof(lnchar_t) * __prev_u64_buffer_len);
     _ui64tow(num, __l_stderr_u64_buffer, 10);
     __prev_u64_buffer_len = llen(__l_stderr_u64_buffer);
 
@@ -91,7 +91,7 @@ lstdio_t lstderr_u64(uint64_t num){
 /* STDIN */
 
 inline
-lstdio_t lstdin_str(lchar_t *buffer, size_t len){
+lstdio_t lstdin_str(lnchar_t *buffer, size_t len){
     return (lstdio_t)(ReadConsole(hConsoleErr, buffer, len, &ConsoleInLen, NULL));
 }
 
@@ -112,21 +112,21 @@ bool lstd_init(void) {
 /* STDOUT */
 
 inline 
-lstdio_t lstdout_str(lchar_t* str, size_t len) {
+lstdio_t lstdout_str(lnchar_t* str, size_t len) {
     return write(STDOUT_FILENO, str, len);
 }
 
 /* STDERR */
 
 inline 
-lstdio_t lstderr_str(lchar_t* str, size_t len) {
+lstdio_t lstderr_str(lnchar_t* str, size_t len) {
     return write(STDERR_FILENO, str, len);
 }
 
 /* STDERR */
 
 inline 
-lstdio_t lstdin_str(lchar_t* buffer, size_t len) {
+lstdio_t lstdin_str(lnchar_t* buffer, size_t len) {
     return read(STDIN_FILENO, buffer, len);
 }
 

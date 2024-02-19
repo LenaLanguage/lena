@@ -15,13 +15,13 @@
 /* Finders for different arguments */
 
 /* Double hyphen */
-void lena_args_dh(lchar_t argv[]);
+void lena_args_dh(lnchar_t argv[]);
 
 /* Single hyphen */
-void lena_args_sh(lchar_t argv[]);
+void lena_args_sh(lnchar_t argv[]);
 
 /* Simple arg */
-void lena_args_sa(lchar_t argv[]);
+void lena_args_sa(lnchar_t argv[]);
 
 /* Visible functions */
 
@@ -33,21 +33,21 @@ bool core_args_exist(int argc) {
     }
 }
 
-void core_args_receiver(int argc, lchar_t* argv[]) {
+void core_args_receiver(int argc, lnchar_t* argv[]) {
     /* argv[0] always equ 'lena' */
     for (int i = 1; i < argc; ++i) {
         size_t c_arg_len = llen(argv[i]);
         /* --arg */
         if (c_arg_len >= 3) { /* --x (3)*/
             if (argv[i][0] == l('-') && argv[i][1] == l('-')) {
-                lena_args_dh((lchar_t *)(argv[i] + 2));
+                lena_args_dh((lnchar_t *)(argv[i] + 2));
             } else {
                 goto sh_arg; /* Go to single hyphen */
             }
         } else if (c_arg_len >= 2) { /* -x (2)*/
         sh_arg:
             if (argv[i][0] == l('-')) {
-                lena_args_sh((lchar_t *)(argv[i] + 1));
+                lena_args_sh((lnchar_t *)(argv[i] + 1));
             } else {
                 goto s_arg; /* Go to simple arg (without hyphen) */
             }

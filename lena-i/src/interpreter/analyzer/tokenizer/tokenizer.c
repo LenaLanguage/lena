@@ -28,11 +28,11 @@ static inline bool _is_token_valid(ltoken_buffer_t* buffer) {
 		&& buffer->token[buffer->index].type != LENA_TOKEN_EOF);
 }
 
-static inline bool _is_trash(lchar_t sym) {
+static inline bool _is_trash(lnchar_t sym) {
 	return (bool)(sym == l(' ') || sym == l('\t'));
 }
 
-static inline bool _is_null(lchar_t sym) {
+static inline bool _is_null(lnchar_t sym) {
 	return (bool)(sym == l('\0'));
 }
 
@@ -41,7 +41,7 @@ static inline bool _is_null(lchar_t sym) {
 /* ---------------- END OF FILE ---------------- */
 
 #define LENA_EOF 0x02
-static lerror_t _pass_trash_eof(lchar_t* input[], ltoken_buffer_t* buffer) {
+static lerror_t _pass_trash_eof(lnchar_t* input[], ltoken_buffer_t* buffer) {
 	while (true) {
 		if (_is_null(**input)) {
 			buffer->token[buffer->index].type = LENA_TOKEN_EOF;
@@ -63,8 +63,8 @@ static lerror_t _pass_trash_eof(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 
 #define LENA_UNRECOGNIZED_TOKEN 0x03
-static lerror_t _token_non_simple2(lchar_t* input[], ltoken_buffer_t* buffer) {
-	lchar_t* input_ptr = (*input);
+static lerror_t _token_non_simple2(lnchar_t* input[], ltoken_buffer_t* buffer) {
+	lnchar_t* input_ptr = (*input);
 	ltoken_type_t type;
 	switch ((*input_ptr)) {
 		case l('<'): {
@@ -109,10 +109,10 @@ static lerror_t _token_non_simple2(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 /* ---------------- String tokens ---------------- */
 
-static lerror_t _string_get_len(lchar_t* input[], size_t* restrict len) {
+static lerror_t _string_get_len(lnchar_t* input[], size_t* restrict len) {
 	/* Preparation */
-	lchar_t* string = (*input);
-	lchar_t separator = (*string);
+	lnchar_t* string = (*input);
+	lnchar_t separator = (*string);
 	++string;
 
 	/* Calculating */
@@ -149,11 +149,11 @@ static lerror_t _string_get_len(lchar_t* input[], size_t* restrict len) {
 	return LENA_OK;
 }
 
-static bool _is_string_sep(lchar_t sym) {
+static bool _is_string_sep(lnchar_t sym) {
 	return (bool)(sym == l('\'') || sym == l('\"'));
 }
 
-static lerror_t _encode_esc_string(lchar_t* input, lchar_t* restrict result, size_t* restrict counter) {
+static lerror_t _encode_esc_string(lnchar_t* input, lnchar_t* restrict result, size_t* restrict counter) {
 	size_t len = 0;
 	lerror_t res = lencode_lchar(input, result, &len);
 	if (res != LENA_ENCODE_SUCCESS_DEC) {
@@ -163,7 +163,7 @@ static lerror_t _encode_esc_string(lchar_t* input, lchar_t* restrict result, siz
 	return res;
 }
 
-static void _fill_string(lchar_t* restrict string, lchar_t* input[], size_t len) {
+static void _fill_string(lnchar_t* restrict string, lnchar_t* input[], size_t len) {
 	/* pass ' or " */
 	++(*input);
 	size_t real_len = 0;
@@ -174,7 +174,7 @@ static void _fill_string(lchar_t* restrict string, lchar_t* input[], size_t len)
 			if ((*input)[real_len] == l('{') ) {
 				/* "\{0000}" "\"*/
 				++real_len; /* pass { */
-				lchar_t result = 0;
+				lnchar_t result = 0;
 				_encode_esc_string((*input + real_len), &result, &real_len);
 				string[i] = result;
 				++real_len; /* pass } */
@@ -190,7 +190,7 @@ static void _fill_string(lchar_t* restrict string, lchar_t* input[], size_t len)
 	(*input) += real_len;
 }
 
-static void _token_string(lchar_t* input[], ltoken_buffer_t* buffer) {
+static void _token_string(lnchar_t* input[], ltoken_buffer_t* buffer) {
 
 	/* Calculating correct len of string */
 
@@ -203,7 +203,7 @@ static void _token_string(lchar_t* input[], ltoken_buffer_t* buffer) {
 		return;
 	}
 
-	lchar_t* string = lmalloc(len * sizeof(lchar_t));
+	lnchar_t* string = lmalloc(len * sizeof(lnchar_t));
 
 	_fill_string(string, input, len);
 
@@ -293,7 +293,7 @@ static const ltoken_type_t lookup_stoken_table[LCHAR_MAX + 1] = {
 #define IS_LENA_TOKEN_SIMPLE(token) (token != LENA_TOKEN_EOF)
 #define LENA_NO_SIMPLE_TOKEN 0x02
 
-static lerror_t _token_simple(lchar_t* input[], ltoken_buffer_t* buffer) {
+static lerror_t _token_simple(lnchar_t* input[], ltoken_buffer_t* buffer) {
 	/* This function can recognize EOF Token */
 	ltoken_type_t type = lookup_stoken_table[(int)(**input)];
 	buffer->token[buffer->index].type = type;
@@ -317,7 +317,7 @@ static lerror_t _token_simple(lchar_t* input[], ltoken_buffer_t* buffer) {
 
 #define LENA_TOKEN_INT_TO_DECIMAL(var) var+=(LENA_TOKEN_DATA_DECIMAL - LENA_TOKEN_DATA_INTEGER)
 
-static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
+static void _token_number(lnchar_t* input[], ltoken_buffer_t* buffer) {
 	buffer->token[buffer->index].type = LENA_TOKEN_DATA_INTEGER;
 	buffer->token[buffer->index].data = (*input);
 	size_t len = 0;
@@ -347,9 +347,9 @@ static void _token_number(lchar_t* input[], ltoken_buffer_t* buffer) {
 /* (from tokenizer_id.h) */
 
 /* Helper function, for recognizing keywords */
-extern bool _token_identifier(lchar_t* input[], ltoken_buffer_t* buffer);
+extern bool _token_identifier(lnchar_t* input[], ltoken_buffer_t* buffer);
 
-static void _token_get_new(lchar_t* input[], ltoken_buffer_t* buffer) {
+static void _token_get_new(lnchar_t* input[], ltoken_buffer_t* buffer) {
 
 	/* Pass "trash" symbols */
 	/* Terminate process if it's EOF */
@@ -417,7 +417,7 @@ void ltoken_buffer_deinit(ltoken_buffer_t* buffer) {
 	buffer->index = 0;
 }
 
-void ltoken_get(lchar_t* input[], ltoken_buffer_t* buffer) {
+void ltoken_get(lnchar_t* input[], ltoken_buffer_t* buffer) {
 	while (true) {
 		_token_get_new(input, buffer);
 		if (!_is_token_valid(buffer)) {
