@@ -1,0 +1,1 @@
+savedcmd_/home/robotsvision/projects/lena-lang/lena-vm/linux/Module.symvers :=  scripts/mod/modpost -M -m       -o /home/robotsvision/projects/lena-lang/lena-vm/linux/Module.symvers -T /home/robotsvision/projects/lena-lang/lena-vm/linux/modules.order -i Module.symvers -e 

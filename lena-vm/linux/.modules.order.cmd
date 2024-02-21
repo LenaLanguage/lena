@@ -1,0 +1,1 @@
+savedcmd_/home/robotsvision/projects/lena-lang/lena-vm/linux/modules.order := {   echo /home/robotsvision/projects/lena-lang/lena-vm/linux/lena-vm.o; :; } > /home/robotsvision/projects/lena-lang/lena-vm/linux/modules.order
