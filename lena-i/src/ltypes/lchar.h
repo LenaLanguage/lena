@@ -63,4 +63,9 @@ extern bool is_lletter(lnchar_t sym);
 */
 extern bool is_lnull(lnchar_t sym);
 
+/**
+ * @brief Calculating lenght of the string
+*/
+extern size_t llen(lnchar_t* sym);
+
 #endif // __LENA_TYPES_LCHAR_H__

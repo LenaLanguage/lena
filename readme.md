@@ -1,4 +1,4 @@
-# Lena programming language
+# Lena programming language (UTF-8 BRANCH)
 
 ![Lena logo](images/lena-logo.jpeg)
 

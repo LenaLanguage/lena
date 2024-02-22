@@ -26,7 +26,7 @@
 
 
 /* Interpreter */
-#include "interpreter/lena_interpreter.h"
+// #include "interpreter/lena_interpreter.h"
 
 #else /* ERROR (__STDC_VERSION__ >= 201112L) */
 #error [lena-i.h]: Requires at least version C 2011 (__STDC_VERSION__ >= 201112L)
