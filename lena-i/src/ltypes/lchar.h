@@ -41,7 +41,7 @@ typedef wchar_t lnchar_t;
 #include <string.h>
 
 #define LCHAR_MAX INT8_MAX
-typedef lchar16_t lnchar_t;
+typedef lchar8_t lnchar_t;
 #define llen(str) strlen(str)
 #define l(data) data
 
