@@ -1,1 +1,0 @@
-savedcmd_/home/robotsvision/projects/lena-lang/lena-vm/linux/lena-vm.mod := printf '%s\n'   lena-vm.o | awk '!x[$$0]++ { print("/home/robotsvision/projects/lena-lang/lena-vm/linux/"$$0) }' > /home/robotsvision/projects/lena-lang/lena-vm/linux/lena-vm.mod

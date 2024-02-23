@@ -1,1 +1,0 @@
-C:\Projects\lena-lang\lena-vm\windows\lena-divm\x64\Debug\lena-divm.sys

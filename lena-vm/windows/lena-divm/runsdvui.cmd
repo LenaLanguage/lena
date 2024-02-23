@@ -1,2 +1,0 @@
-cd /d "C:\Projects\lena-lang\lena-vm\windows\lena-divm" &msbuild "lena-divm.vcxproj" /t:sdvViewer /p:configuration="Debug" /p:platform="x64" /p:SolutionDir="C:\Projects\lena-lang\lena-vm\windows\lena-divm" 
-exit %errorlevel% 

@@ -1,20 +1,37 @@
-# Lena programming language (UTF-8 BRANCH)
+# Lena programming language
 
 ![Lena logo](images/lena-logo.jpeg)
 
-## Main information
+## Basic information
 
-* Interpreted/Compiled programming language
+### Main
 
-* Lightning Execution and Native Adaptability (LENA)
+* Interpreted / Compiled
+* Runs on a Virtual Machine or DIVM
+* Syntax = Python + Assembly + Rust + C/C++
 
-* Syntax = Python + Assembler + C/C++
+### File formats
 
-* [Research link](https://docs.google.com/document/d/18Vgb9FWkAmmvgFri58sekGLDtFrS8Uyf9xnZg77Jj1I/edit?usp=sharing)
+* Code file format: `.le`
+* Bytecode file format `.x`
+* Decoded bytecode file format `.xx`
 
-* File format `.le`
+## Explanation of DIVM
 
-## The language uses alternative methods for interpreting and executing code, which can affect performance and improve the quality of interpreted programming languages
+DIVM is a deep integration technology for virtual machine. Programs on this are executed in the following sequence:
+
+0. Launch the executable file obtained after the code has been processed by the compiler.
+1. Loading the application bytecode into RAM.
+2. Lena system call, indicating the memory address.
+3. Lena clones itself with the launch parameter from the current address.
+4. The code is executed.
+5. The clone deletes itself from memory, and then the system function exits.
+6. The program closes.
+
+### Points worth paying attention to
+
+* DIVM has full control over the device, which eliminates any overhead at runtime
+* Rule of unity of Lena clones. During DIVM execution, it can create many clones for different applications. But in fact, for each application launch, only one main `Lena General Core` is used.
 
 ## Areas of application
 
