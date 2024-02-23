@@ -1,0 +1,3 @@
+[submodule "lena-i/external/llibs"]
+	path = lena-i/external/llibs
+	url = https://github.com/robotsvision/llibs
