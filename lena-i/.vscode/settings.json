@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "lena-i.h": "c"
+        "lena-i.h": "c",
+        "interpreter.h": "c",
+        "llibs.h": "c"
     }
 }

@@ -9,7 +9,6 @@
  ******************************************************************************/
 
 /* Check C standard */
-
 #if __STDC_VERSION__  >= 201112L
 
 /* Include llibs framework (external) */
