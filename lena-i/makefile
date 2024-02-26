@@ -26,7 +26,8 @@ LLIBS_CFLAGS = -Wall -MMD -std=c17 -Iinclude -I$(LLIBS_PATH)/cross/include
 LLIBS_NATIVE_PATH := $(shell node $(LLIBS_PATH)/scripts/native.js $(OS))
 
 # Different files --------------------->
-LLIBS_SRC_FILES := $(shell node scripts/find.js $(LLIBS_PATH)/$(LLIBS_NATIVE_PATH) .c)
+LLIBS_SRC_FILES := $(shell node scripts/find.js $(LLIBS_PATH)/$(LLIBS_NATIVE_PATH) .c)\
+	$(shell node scripts/find.js $(LLIBS_PATH)/cross/ .c)
 LLIBS_OBJ_FILES := $(LLIBS_SRC_FILES:.c=.o)
 LLIBS_DEP_FILES := $(LLIBS_OBJ_FILES:.o=.d)
 
