@@ -2,6 +2,7 @@
     "files.associations": {
         "lena-i.h": "c",
         "interpreter.h": "c",
-        "llibs.h": "c"
+        "llibs.h": "c",
+        "stdio.h": "c"
     }
 }

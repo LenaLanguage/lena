@@ -23,6 +23,9 @@ LLIBS_PATH = external/llibs
 
 LLIBS_CFLAGS = -Wall -MMD -std=c17 -Iinclude -I$(LLIBS_PATH)/cross/include
 
+# Use Lingua framework ------------------------------------------>
+LLIBS_CFLAGS += -D USE_LINGUA
+
 LLIBS_NATIVE_PATH := $(shell node $(LLIBS_PATH)/scripts/native.js $(OS))
 
 # Different files --------------------->
