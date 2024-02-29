@@ -1,6 +1,6 @@
 # Lena programming language
 
-![Lena logo](images/lena-logo.jpeg)
+![Lena logo](.github/img/lena-logo.jpeg)
 
 ## Basic information
 

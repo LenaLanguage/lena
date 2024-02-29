@@ -1,6 +1,7 @@
 #include <lena-i.h>
 
 lm lmain(lu32 argc, lc* argv[]) {
+    llibs_init();
     lc* my_str = X"你好莉娜!";
     lcoutn(my_str, 2);
     return 0;
