@@ -6,6 +6,7 @@
  * @brief    Project L - Lena programming language interpreter / main library
  * @version  V0.3.0
  * @date     5. Jan 2024
+ * @author   Matvey Rybalkin
  ******************************************************************************/
 
 /* Check C standard */

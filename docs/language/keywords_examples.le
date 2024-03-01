@@ -1,0 +1,29 @@
+
+if () {
+
+} else if () {
+
+} elif () {
+
+} else {
+
+}
+
+for (i, 0..100) {
+
+}
+
+do {
+    continue
+    ;...
+    ; continue here goes
+    ; here <-
+} while () {
+    ;...
+    continue
+    break   
+}
+
+repeat (200) {
+
+}

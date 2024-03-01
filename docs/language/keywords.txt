@@ -3,13 +3,24 @@ import
 
 default
 
+or
+and
+not
+
+match
 if
 else
 elif
 
 for
+do
 while
 repeat
+break
+continue
+
+new
+delete
 
 i8
 i16
@@ -24,6 +35,14 @@ u64
 bool
 str
 
+flow
+
+struct
+
 component
 private
 public
+
+type
+len
+mut

@@ -9,7 +9,5 @@
  * @author   Matvey Rybalkin
 ******************************************************************************/
 
-/* Include core libraries */
-
 
 #endif // LENA_INTERPRETER_CORE_H_
