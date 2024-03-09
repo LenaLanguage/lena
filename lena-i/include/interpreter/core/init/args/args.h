@@ -9,6 +9,8 @@
  * @author   Matvey Rybalkin
 ******************************************************************************/
 
+/* Include libraries */
+#include "args.enum.h"
 
 
 #endif // LENA_INTERPRETER_CORE_INIT_ARGS_H_

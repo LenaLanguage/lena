@@ -5,7 +5,7 @@
  * @file     args.h
  * @brief    Project L - Lena programming language interpreter / core / init / args enum
  * @version  V0.0.1
- * @date     29. Feb 2024
+ * @date     9. Mar 2024
  * @author   Matvey Rybalkin
 ******************************************************************************/
 
