@@ -2,7 +2,7 @@
 #define LENA_INTERPRETER_CORE_INIT_ARGS_ENUM_H_
 
 /**************************************************************************//**
- * @file     args.h
+ * @file     args.enum.h
  * @brief    Project L - Lena programming language interpreter / core / init / args enum
  * @version  V0.0.1
  * @date     9. Mar 2024
