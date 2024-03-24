@@ -1,8 +1,0 @@
-{
-    "aix":      [""],
-    "darwin":   [""],
-    "linux":    [""],
-    "openbsd":  [""],
-    "sunos":    [""],
-    "win32":    ["-municode"]
-}

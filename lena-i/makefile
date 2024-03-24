@@ -10,7 +10,10 @@ LENA_CFLAGS = -Wall -MMD -std=c17 -Iinclude
 OS := $(shell node scripts/os.js)
 
 # Add flags based on OS --------------------->
-LENA_CFLAGS += $(shell node scripts/flags.js $(OS))
+LENA_CFLAGS += $(shell node scripts/os-flags.js $(OS))
+
+# And based on CPU arch --------------------->
+LENA_CFLAGS += $(shell node scripts/arch-flags.js)
 
 # LENA_OUT --------------------->
 LENA_OUT := $(shell node scripts/out.js $(OS))
