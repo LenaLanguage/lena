@@ -38,7 +38,7 @@
 #include <llibs.h>
 
 /* Include Lena executor libraries */
-#include "exec/exec.h"
+#include "executor/exec.h"
 
 #else /* ERROR (__STDC_VERSION__ >= 201112L) */
 #error [lena-i.h]: Requires at least version C 2011 (__STDC_VERSION__ >= 201112L)
