@@ -7,18 +7,20 @@
 ### Main
 
 * Interpreted / Compiled
-* Runs on a Virtual Machine or DIVM
+* Runs on a Executor or PCHE
 * Syntax = Python + Assembly + Rust + C/C++
 
 ### File formats
 
 * Code file format: `.le`
 * Bytecode file format `.x`
-* Decoded bytecode file format `.xx`
+* Decoded bytecode file format `.dx`
 
-## Explanation of DIVM
+## Explanation of PCHE (Programmable Cloning Hypervisor Executor)
 
-DIVM is a deep integration technology for virtual machine. Programs on this are executed in the following sequence:
+PCHE is a complex of programs for ensuring isolated operation of copies of executors for each application in Lena.
+
+Application on this are executed in the following sequence:
 
 0. Launch the executable file obtained after the code has been processed by the compiler.
 1. Loading the application bytecode into RAM.
@@ -28,10 +30,6 @@ DIVM is a deep integration technology for virtual machine. Programs on this are 
 5. The clone deletes itself from memory, and then the system function exits.
 6. The program closes.
 
-### Points worth paying attention to
-
-* DIVM has full control over the device, which eliminates any overhead at runtime
-* Rule of unity of Lena clones. During DIVM execution, it can create many clones for different applications. But in fact, for each application launch, only one main `Lena General Core` is used.
 
 ## Areas of application
 
