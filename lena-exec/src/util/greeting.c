@@ -9,7 +9,7 @@ void greeting_lena() {
     lcout(X("Lena"));
     lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
     lcout(X("]["));
-    lccol(LC_COLOR_RED, LC_COLOR_BLACK);
+    lccol(LC_COLOR_YELLOW, LC_COLOR_BLACK);
     lcout(LENA_SUBNAME);
     lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
     lcout(X("]: "));
