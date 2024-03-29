@@ -1,0 +1,29 @@
+import gui
+import network
+
+; but we need to use `-m "modules"` flag
+
+app:component {
+
+public {
+
+run() {
+    ; do something
+}
+
+}
+
+private {
+
+app_status:type<u32> {
+    
+}
+
+lalala():u32 {
+    ; do something
+}
+
+}
+
+
+}

@@ -7,7 +7,7 @@ lm lmain(lu32 argc, lc* argv[]) {
     }
     /* If args don't exist */
     if (argc <= 1) {
-        return L_EXIT_FAILURE;
+        return lena_no_input_flags();
     }
     /* Execute file */
     return lena_execute(argc, argv);
