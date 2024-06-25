@@ -1,3 +1,3 @@
-[submodule "lena-exec/external/llibs"]
-	path = lena-exec/external/llibs
-	url = https://github.com/robotsvision/llibs
+[submodule "lena/external/llibs"]
+	path = lena/external/llibs
+	url = https://github.com/TheProjectL/llibs
