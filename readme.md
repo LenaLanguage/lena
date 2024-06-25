@@ -1,4 +1,4 @@
-# Lena programming language
+# The Lena programming language
 
 ![Lena logo](.github/img/lena-logo.jpeg)
 
@@ -6,19 +6,20 @@
 
 ### Main
 
-* Interpreted / Compiled
-* Runs on a Executor or PCHE
-* Syntax = Python + Assembly + Rust + C/C++
+* Compiled
+* Runs on SHE (Software-Cloneable Hypervisor Executor)
+* Syntax = Julia + Rust + Assembler + C/C++
+* Influenced by Julia, Rust, Java
 
-### File formats
+### File formats *.e.le.na*
 
+* Bytecode executable file format `.e`
 * Code file format: `.le`
-* Bytecode file format `.x`
-* Decoded bytecode file format `.dx`
+* Not abstracted code file format `.na`
 
-## Explanation of PCHE (Programmable Cloning Hypervisor Executor)
+## Explanation of SHE (Software-Cloneable Hypervisor Executor)
 
-PCHE is a complex of programs for ensuring isolated operation of copies of executors for each application in Lena.
+SHE is a complex of programs for ensuring isolated operation of copies of executors for each application in Lena.
 
 Application on this are executed in the following sequence:
 
@@ -26,16 +27,15 @@ Application on this are executed in the following sequence:
 1. Loading the application bytecode into RAM.
 2. Lena system call, indicating the memory address.
 3. Lena clones itself with the launch parameter from the current address.
-4. The code is executed.
+4. The code is executed on SHE.
 5. The clone deletes itself from memory, and then the system function exits.
 6. The program closes.
 
-
 ## Areas of application
 
-* Neural networks
+* System programming
 
-* Education
+* Game development
 
 * Computing and working with data
 
@@ -45,14 +45,8 @@ Application on this are executed in the following sequence:
 
 ```rust
 
-/* Hello World example 1 */
-cout << "Hello World!"
-
-; Or
-
-/* Hello World example 2 */
-"Hello World!" >> cout
-
+/* Hello World example */
+out("Hello World!")
 ```
 
 ## Arrays
@@ -64,5 +58,4 @@ array = (5 times 2000)
 ; Or
 
 array2 = {5, 5, 5, 5, 5} ; ... 2000 times
-
 ```

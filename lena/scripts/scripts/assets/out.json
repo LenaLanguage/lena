@@ -1,0 +1,8 @@
+{
+    "aix":      ["bin/lena-i"],
+    "darwin":   ["bin/lena-i"],
+    "linux":    ["bin/lena-i"],
+    "openbsd":  ["bin/lena-i"],
+    "sunos":    ["bin/lena-i"],
+    "win32":    ["bin/lena-i.exe"]
+}

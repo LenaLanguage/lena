@@ -1,8 +1,0 @@
-{
-    "aix":      ["bin/lena-exec"],
-    "darwin":   ["bin/lena-exec"],
-    "linux":    ["bin/lena-exec"],
-    "openbsd":  ["bin/lena-exec"],
-    "sunos":    ["bin/lena-exec"],
-    "win32":    ["bin/lena-exec.exe"]
-}
