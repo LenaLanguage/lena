@@ -39,8 +39,6 @@ Application on this are executed in the following sequence:
 
 * Computing and working with data
 
-* Thread-oriented programming
-
 ## Hello World
 
 ```rust
