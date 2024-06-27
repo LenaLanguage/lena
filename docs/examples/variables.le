@@ -1,0 +1,33 @@
+
+/* Data types in Lena */
+
+; Basic types ---->
+
+; Integers i8, i16, i32, i64, i128
+; Unsigned Integers u8, u16, u32, u64, u128
+
+a = 20 ; automatically is i64 type
+
+; Doubles f32, f64
+a = 14342.42 ; automatically is f64
+
+; Strings (str, String) and characters
+
+a = "Good morning Lena!"        ; is str type
+a = "Good night Lena!":String   ; mutable String type
+
+a = 'l' ; mutable character (UTF-8 encode)
+
+; Constants
+
+const a = 10000 ; automatically optimized, and it's a u16 data type
+
+; Complex types ---->
+
+; Arrays
+a = {123, 534, 325}
+
+; Tuples
+a = (456, "robot", 'a')
+; or
+a:(u16, str, char) = (456, "robot", 'a')

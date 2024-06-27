@@ -1,0 +1,11 @@
+; Example 1
+a, b = 10, 20
+out(a + b)
+
+; Example 2
+a = in():i32
+b = in():i32
+out(a + b)
+
+; Example 3
+out(in():i32 + in():i32)
