@@ -1,2 +1,23 @@
 ﻿  Building 'she' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(504,5): error MSB8040: для этого проекта требуются библиотеки с устранением рисков Spectre. Установите их с помощью установщика Visual Studio (вкладка "Отдельные компоненты") для всех используемых архитектур и наборов инструментов. Дополнительные сведения см. на странице https://aka.ms/Ofhn4c
+  Stamping x64\Debug\she.inf
+  Stamping [Version] section with DriverVer=06/28/2024,22.38.14.995
+  Driver.c
+  she.vcxproj -> C:\Projects\lena\she\os\windows\x64\Debug\she.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Projects\lena\she\os\windows\x64\Debug\she.sys
+  
+  Driver is 'Universal'.
+  ........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Projects\lena\she\os\windows\x64\Debug\she\she.cat
+  Done Adding Additional Store
+  Successfully signed: C:\Projects\lena\she\os\windows\x64\Debug\she\she.cat
+  
