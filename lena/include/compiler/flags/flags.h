@@ -23,7 +23,7 @@
  * @param[in] str string pointer
  * @return index of recognized flag
 */
-extern compiler_flag_t flags_recognize(lc8* str);
+extern compiler_flag_t flags_recognize(lc* str);
 
 /** 
  * @brief Recognize type of flag from str pointer

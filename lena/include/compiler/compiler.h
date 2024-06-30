@@ -33,7 +33,7 @@
 */
 extern lerr compile_file (
                         lu8 num_files,
-                        lc8* filenames[],
+                        lc* filenames[],
                         lu8 num_options,
                         compiler_flag_t* options_buffer
                         );

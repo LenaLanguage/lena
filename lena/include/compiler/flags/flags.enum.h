@@ -17,12 +17,28 @@ typedef enum {
     /* flags with prefix "-" */
     COMPILER_FLAG_D_VERSION,
     COMPILER_FLAG_D_OUT,
+
     /* flags with prefix "--" */
     COMPILER_FLAG_DD_VERSION,
     COMPILER_FLAG_DD_HELP,
     COMPILER_FLAG_DD_LICENSE,
+
+    COMPILER_FLAG_DD_NON_ABSTRACT,
+
+    /* Compiler filenames */
+    COMPILER_FLAG_FILENAME_E,
+    COMPILER_FLAG_FILENAME_EXE,
+    COMPILER_FLAG_FILENAME_LE,
+
+    /* Unrecognized flags (must be an error) */
     COMPILER_FLAG_UNRECOGNIZED = 0xFF,
 } compiler_flag_t;
+
+/* The last available flag with single dash */
+#define COMPILER_D_FLAG_MAX COMPILER_FLAG_D_OUT
+
+/* The last available flag with double dash */
+#define COMPILER_DD_FLAG_MAX COMPILER_FLAG_DD_NON_ABSTRACT
 
 /* The last available flag except COMPILER_FLAG_UNRECOGNIZED */
 #define COMPILER_FLAG_MAX COMPILER_FLAG_DD_LICENSE

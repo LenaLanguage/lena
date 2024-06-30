@@ -8,23 +8,20 @@
 #include <compiler/flags/flags.h>
 #include <compiler/compiler.h>
 
-lm compile(lu32 argc, lc8* argv[]) {
+lm compile(lu32 argc, lc* argv[]) {
     if (llibs_init() != L_OK) {
         return L_EXIT_FAILURE;
     }
     if (argc > 1) {
         /* We should recognize all flags here ->*/
-        if (argc > 2) {
-
+        if (argc >= 4) {
+            /* at least 3 flags: "lena main.le -o app.e" */
+            /* It must be flags for compilation here -> */
+            // Compilation
         } else {
-            /* One flag (no compilation)*/
-            compiler_flag_t flag = flags_recognize(argv[2]);
-            if (!is_building_flag(flag)) {
-
-            } else {
-                /* Error (compilation must be longer than 1 flag) */
-                
-            }
+            /* Just read first flag */
+            compiler_flag_t flag = flags_recognize(argv[1]);
+            printf("%d", flag);
         }
     } else {
         lcout(X("No flags provided. Please specify flags to compile your program.\n"));
