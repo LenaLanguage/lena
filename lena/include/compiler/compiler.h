@@ -11,6 +11,10 @@
  * @author   Matvey Rybalkin
  ******************************************************************************/
 
+/**
+ * @warning Current version of the compiler you can find in info/info.h
+ */
+
 /* Include llibs framework (external) */
 #include <llibs.h>
 

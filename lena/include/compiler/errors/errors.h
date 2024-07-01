@@ -14,6 +14,10 @@
 /* Include llibs framework (external) */
 #include <llibs.h>
 
+/* General greeting function, prints "[Lena]: " */
+extern void greeting(void);
 
+/* Extended greeting function, prints "[Lena][str]: " */
+extern void greeting_extended(const lc* str);
 
 #endif // LENA_COMPILER_ERRORS_H_

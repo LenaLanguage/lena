@@ -5,6 +5,8 @@
         "lena.h": "c",
         "compiler.h": "c",
         "flags.enum.h": "c",
-        "flags.h": "c"
+        "flags.h": "c",
+        "info.h": "c",
+        "errors.h": "c"
     }
 }

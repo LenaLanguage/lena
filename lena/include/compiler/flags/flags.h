@@ -34,6 +34,6 @@ extern compiler_flag_t flags_recognize(lc* str);
  * @param[in] str string pointer
  * @return index of recognized flag
 */
-extern lbool is_building_flag(compiler_flag_t flag);
+extern lbool is_compilation_flag(compiler_flag_t flag);
 
 #endif // LENA_COMPILER_FLAGS_RECOGNITION_H_
