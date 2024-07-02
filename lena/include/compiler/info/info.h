@@ -21,8 +21,8 @@
 /* Prints current Lena's version */
 extern void version(void);
 
-/* Prints full current Lena's version */
-extern void version_extention(void);
+/* Prints full Lena's version information */
+extern void version_extented(void);
 
 /* Prints Lena's license */
 extern void license(void);

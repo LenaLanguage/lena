@@ -36,9 +36,11 @@ lm compile(lu32 argc, lc* argv[]) {
                 /* Short version information */
                 case COMPILER_FLAG_DD_VERSION:
                     version();
+                    break;
+                    
                 /* Full version information */
                 case COMPILER_FLAG_D_VERSION:
-                    version_extention();
+                    version_extented();
                     break;
 
                 /* Help information */
