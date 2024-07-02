@@ -28,11 +28,11 @@ SHE - это комплекс программ для запуска прило�
 Пример компиляции файлов *.e* и *.exe*
 
 ```shell
-lena app.le -o app.e --non-abstracted
+lena app.le -o app.e --non-abstract
 ```
 
 ```shell
-lena app.le -o app.exe --non-abstracted
+lena app.le -o app.exe --non-abstract
 ```
 
 * *в UNIX подобных системах формат .exe указывать не надо*
