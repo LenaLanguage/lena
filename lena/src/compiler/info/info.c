@@ -47,6 +47,12 @@ void version_extented(void) {
 
     lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
     lcout(LENA_BUILD_ARCH_STR);
+
+    lccol(LC_COLOR_YELLOW, LC_COLOR_BLACK);
+    lcout(X("\n\nBuild time: "));
+
+    lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+    lcout(LENA_BUILD_TIME_STR);
 }
 
 /* Prints Lena's license */

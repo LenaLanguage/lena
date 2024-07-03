@@ -61,9 +61,12 @@ compiler_flag_t flags_recognize(lc* str) {
             return COMPILER_FLAG_FILENAME_EXE;
         }
     }
-    return COMPILER_FLAG_UNRECOGNIZED;
+    return COMPILER_FLAG_FILENAME;
 }
 
 lbool is_compilation_flag(compiler_flag_t flag) {
-    return (lbool)(flag == COMPILER_FLAG_D_OUT || flag == COMPILER_FLAG_UNRECOGNIZED);
+    return (lbool)
+    ((flag >= COMPILER_FLAG_FILENAME_E && flag <= COMPILER_FLAG_FILENAME) 
+    || flag == COMPILER_FLAG_D_OUT 
+    || flag == COMPILER_FLAG_DD_NON_ABSTRACT);
 }

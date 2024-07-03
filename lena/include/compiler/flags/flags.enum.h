@@ -29,9 +29,7 @@ typedef enum {
     COMPILER_FLAG_FILENAME_E,
     COMPILER_FLAG_FILENAME_EXE,
     COMPILER_FLAG_FILENAME_LE,
-
-    /* Unrecognized flags (must be an error) */
-    COMPILER_FLAG_UNRECOGNIZED = 0xFF,
+    COMPILER_FLAG_FILENAME,
 } compiler_flag_t;
 
 /* The last available flag with single dash */
@@ -40,7 +38,7 @@ typedef enum {
 /* The last available flag with double dash */
 #define COMPILER_DD_FLAG_MAX COMPILER_FLAG_DD_NON_ABSTRACT
 
-/* The last available flag except COMPILER_FLAG_UNRECOGNIZED */
-#define COMPILER_FLAG_MAX COMPILER_FLAG_DD_LICENSE
+/* Is filename macros */
+#define COMPILER_IS_FILENAME(file) (file >= COMPILER_FLAG_FILENAME_E && file <= COMPILER_FLAG_FILENAME)
 
 #endif // LENA_COMPILER_FLAGS_ENUM_H_

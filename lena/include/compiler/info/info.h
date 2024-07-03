@@ -4,7 +4,7 @@
 /* PUBLIC HEADER FILE */
 
 /**************************************************************************//**
- * @file     error.enum.h
+ * @file     info.h
  * @brief    Project L - Lena programming language / compiler information header
  * @version  V0.4.0
  * @date     30. June 2024
@@ -23,8 +23,8 @@
 
 /* Build information is stored in macros: LENA_BUILD_OS_STR, LENA_BUILD_ARCH_STR */
 // Chech JavaScript...
-#if !defined(LENA_BUILD_OS_STR) || !defined(LENA_BUILD_ARCH_STR)
-#error [info.h]: LENA_BUILD_OS_STR and LENA_BUILD_ARCH_STR are undefined!
+#if !defined(LENA_BUILD_OS_STR) || !defined(LENA_BUILD_ARCH_STR) || !defined(LENA_BUILD_TIME_STR)
+#error [info.h]: OS, ARCH and TIME are not defined!
 #endif
 
 /* Prints current Lena's version */

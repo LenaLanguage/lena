@@ -15,6 +15,9 @@ LENA_CFLAGS += $(shell node scripts/os-flags.js $(OS))
 # And based on CPU arch --------------------->
 LENA_CFLAGS += $(shell node scripts/arch-flags.js)
 
+# Add current time for Lena build information --------------------->
+LENA_CFLAGS += $(shell node scripts/date.js)
+
 # LENA_OUT --------------------->
 LENA_OUT := $(shell node scripts/out.js $(OS))
 

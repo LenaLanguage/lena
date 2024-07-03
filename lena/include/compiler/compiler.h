@@ -31,15 +31,17 @@
  * 
  * @param[in] num_files number of files
  * @param[in] filenames filenames buffer
- * @param[in] num_options number of options
- * @param[in] options_buffer options buffer
+ * @param[in] non_abstract generate .na files
+ * @param[in] targetfile target filename
  * @return compilation status L_OK or error index
 */
-extern lerr compile_file (
-                        lu8 num_files,
-                        lc* filenames[],
-                        lu8 num_options,
-                        compiler_flag_t* options_buffer
-                        );
+extern lerr compile_files   (    
+                            lu8 num_files,
+                            lc* filenames[],
+                            lbool non_abstract,
+                            lc* targetfile,
+                            lu8 num_flags,
+                            compiler_flag_t flags[]
+                            );
 
 #endif // LENA_COMPILER_H_
