@@ -11,12 +11,42 @@ void version(void) {
     lcout(LENA_VERSION_STR);
 }
 
+/* Static buffer for C version string */
+lc c_version_buffer[65];
+
 /* Prints full current Lena's version */
 void version_extented(void) {
     version();
     lccol(LC_COLOR_RED, LC_COLOR_BLACK);
     lcout(X("\n\n"));
-    // Build information must be here....
+
+    lccol(LC_COLOR_YELLOW, LC_COLOR_BLACK);
+    lcout(X("Build information\n\n"));
+
+    lccol(LC_COLOR_CYAN, LC_COLOR_BLACK);
+    lcout(X("Compiler: "));
+
+    lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+    lcout(LENA_C_COMPILER_STR);
+
+    lccol(LC_COLOR_CYAN, LC_COLOR_BLACK);
+    lcout(X("\nC language standard: "));
+
+    lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+    lsi64dec(c_version_buffer, (li64)(__STDC_VERSION__));
+    lcout(c_version_buffer);
+
+    lccol(LC_COLOR_CYAN, LC_COLOR_BLACK);
+    lcout(X("\n\nTarget operating system: "));
+
+    lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+    lcout(LENA_BUILD_OS_STR);
+
+    lccol(LC_COLOR_CYAN, LC_COLOR_BLACK);
+    lcout(X("\nTarget architecture: "));
+
+    lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+    lcout(LENA_BUILD_ARCH_STR);
 }
 
 /* Prints Lena's license */

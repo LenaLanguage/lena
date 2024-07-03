@@ -1,8 +1,8 @@
 {
-    "aix":      [""],
-    "darwin":   [""],
-    "linux":    [""],
-    "openbsd":  [""],
-    "sunos":    [""],
-    "win32":    ["-municode"]
+    "aix":      ["-DLENA_EXE_FORMAT=false"],
+    "darwin":   ["-DLENA_EXE_FORMAT=false"],
+    "linux":    ["-DLENA_EXE_FORMAT=false"],
+    "openbsd":  ["-DLENA_EXE_FORMAT=false"],
+    "sunos":    ["-DLENA_EXE_FORMAT=false"],
+    "win32":    ["-municode '-DLENA_BUILD_OS_STR=X(\"Windows NT\")' -DLENA_EXE_FORMAT=true"]
 }

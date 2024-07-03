@@ -18,6 +18,15 @@
 #define LENA_VERSION 40UL
 #define LENA_VERSION_STR X("0.4.0")
 
+/* Build information */
+#define LENA_C_COMPILER_STR X("GCC")
+
+/* Build information is stored in macros: LENA_BUILD_OS_STR, LENA_BUILD_ARCH_STR */
+// Chech JavaScript...
+#if !defined(LENA_BUILD_OS_STR) || !defined(LENA_BUILD_ARCH_STR)
+#error [info.h]: LENA_BUILD_OS_STR and LENA_BUILD_ARCH_STR are undefined!
+#endif
+
 /* Prints current Lena's version */
 extern void version(void);
 
