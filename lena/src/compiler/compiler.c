@@ -13,9 +13,14 @@ lc* target = NULL;
 
 #if LENA_EXE_FORMAT == true
 /** 
- * @brief Target executable file buffer
+ * @brief Target executable file buffer (Windows)
 */
-lc* exe = NULL;
+lc* executable_exe = NULL;
+#else
+/** 
+ * @brief Target executable file buffer (Linux)
+*/
+lc* executable = NULL;
 #endif
 
 lerr compile_files (    
@@ -27,5 +32,19 @@ lerr compile_files (
                 compiler_flag_t flags[]
                 ) {
     
+    /* Source code tokenization */
+    for (lu8 i = 0; i < num_files; ++i) {
+
+    }
+
+    /* Source code parsing */
+    for (lu8 i = 0; i < num_files; ++i) {
+        
+    }
+
+    /* Converting permanent code to bytecode */
+    // ...
+
+
     return L_OK;
 }

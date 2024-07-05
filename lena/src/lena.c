@@ -90,7 +90,7 @@ lm compile(lu32 argc, lc* argv[]) {
                         lccol(LC_COLOR_CYAN, LC_COLOR_BLACK);
                         lcout(argv[i]);
                         lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
-                        lcout(X(" is an unsupported file format.\n\n"));
+                        lcout(X(" cannot be an output file format or a source code file.\n\n"));
 
                         help_formats();
                         break;

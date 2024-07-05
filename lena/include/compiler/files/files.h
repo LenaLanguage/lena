@@ -1,5 +1,5 @@
-#ifndef LENA_COMPILER_FIELS_H_
-#define LENA_COMPILER_FIELS_H_
+#ifndef LENA_COMPILER_FILES_H_
+#define LENA_COMPILER_FILES_H_
 
 /* PUBLIC HEADER FILE */
 
@@ -17,4 +17,4 @@
 #include "le/le.h"
 #include "na/na.h"
 
-#endif // LENA_COMPILER_FIELS_H_
+#endif // LENA_COMPILER_FILES_H_
