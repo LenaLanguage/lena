@@ -35,18 +35,20 @@ compiler_flag_t flags_recognize(lc* str) {
             for (lu8 i = COMPILER_D_FLAG_MAX + 1; 
                 i <= COMPILER_DD_FLAG_MAX; ++i) {
                 /* (str + 2) pass two symbols "--" */
-                if (lscmp(str + 2, flags_buffer[i])) {
+                if (lscmp(str + 2, flags_buffer[i]) && (lslen(str) == lslen(flags_buffer[i]) + 2)) {
                     return (compiler_flag_t)(i);
                 }
             }
+            return COMPILER_FLAG_UNRECOGNIZED;
         } else {
             /* Check every available flag single dasg flag */
             for (lu8 i = 0; i <= COMPILER_D_FLAG_MAX; ++i) {
                 /* (str + 1) pass first symbol "-" */
-                if (lscmp(str + 1, flags_buffer[i])) {
+                if (lscmp(str + 1, flags_buffer[i]) && (lslen(str) == lslen(flags_buffer[i]) + 1)) {
                     return (compiler_flag_t)(i);
                 }
             }
+            return COMPILER_FLAG_UNRECOGNIZED;
         }
     } else {
         /* It doesn't have any prefix */
@@ -60,13 +62,20 @@ compiler_flag_t flags_recognize(lc* str) {
         if (is_postfix(str, X(".exe"))) {
             return COMPILER_FLAG_FILENAME_EXE;
         }
+
+        /* Check '.' symbol */
+        for (lu8 i = 0; i < lslen(str); ++i) {
+            if (str[i] == (lc)('.')) {
+                return COMPILER_FLAG_FILENAME_OTHER;
+            }
+        }
     }
     return COMPILER_FLAG_FILENAME;
 }
 
 lbool is_compilation_flag(compiler_flag_t flag) {
     return (lbool)
-    ((flag >= COMPILER_FLAG_FILENAME_E && flag <= COMPILER_FLAG_FILENAME) 
+    ((flag >= COMPILER_FLAG_FILENAME_E && flag <= COMPILER_FLAG_FILENAME_OTHER) 
     || flag == COMPILER_FLAG_D_OUT 
     || flag == COMPILER_FLAG_DD_NON_ABSTRACT);
 }

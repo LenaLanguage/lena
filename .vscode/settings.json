@@ -7,6 +7,7 @@
         "flags.enum.h": "c",
         "flags.h": "c",
         "info.h": "c",
-        "errors.h": "c"
+        "errors.h": "c",
+        "files.h": "c"
     }
 }

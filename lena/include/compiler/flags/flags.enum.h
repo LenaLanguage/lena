@@ -26,10 +26,14 @@ typedef enum {
     COMPILER_FLAG_DD_NON_ABSTRACT,
 
     /* Compiler filenames */
-    COMPILER_FLAG_FILENAME_E,
-    COMPILER_FLAG_FILENAME_EXE,
-    COMPILER_FLAG_FILENAME_LE,
-    COMPILER_FLAG_FILENAME,
+    COMPILER_FLAG_FILENAME_E,   // "app.e"
+    COMPILER_FLAG_FILENAME_EXE, // "app.exe"
+    COMPILER_FLAG_FILENAME_LE,  // "app.le"
+    COMPILER_FLAG_FILENAME,     // empty file format like "app"
+
+    COMPILER_FLAG_FILENAME_OTHER, // unrecognized file formats...
+
+    COMPILER_FLAG_UNRECOGNIZED,
 } compiler_flag_t;
 
 /* The last available flag with single dash */

@@ -54,6 +54,19 @@ lm compile(lu32 argc, lc* argv[]) {
                             target = argv[i];
                         } else {
                             /* It's an error! */
+                            greeting();
+                            lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+                            lcout(X("Output file: "));
+                            lccol(LC_COLOR_CYAN, LC_COLOR_BLACK);
+                            lcout(argv[i]);
+                            lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+                            lcout(X(" must be provided after "));
+                            lccol(LC_COLOR_GREEN, LC_COLOR_BLACK);
+                            lcout(X("-o "));
+                            lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+                            lcout(X("flag.\n\n"));
+
+                            help_formats();
                         }
                         break;
 
@@ -67,6 +80,21 @@ lm compile(lu32 argc, lc* argv[]) {
                     case COMPILER_FLAG_DD_NON_ABSTRACT:
                         is_non_abstract = true;
                         break;
+
+                    /* other file format */
+                    case COMPILER_FLAG_FILENAME_OTHER:
+                        /* It must be an error. Invalid format file */
+                        greeting();
+                        lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+                        lcout(X("File: "));
+                        lccol(LC_COLOR_CYAN, LC_COLOR_BLACK);
+                        lcout(argv[i]);
+                        lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+                        lcout(X(" is an unsupported file format.\n\n"));
+
+                        help_formats();
+                        break;
+
                     default:
                         file_index = i;
                         goto read_first_flag;
@@ -88,8 +116,8 @@ lm compile(lu32 argc, lc* argv[]) {
             if (is_compilation_flag(flag)) {
                 /* Error */
                 greeting();
-                lcout(X("Too few flags to compile."));
-                // We can add some details later.....
+                lcout(X("Too few flags to compile.\n\n"));
+                help_usage();
             } else {
                 /* Execute the certain instruction */
                 switch (flag) {
@@ -116,8 +144,8 @@ lm compile(lu32 argc, lc* argv[]) {
                 default:
                     // let's try to find out similar flag....
                     greeting();
-                    lcout(X("Unrecognized flag, it will be useful for you to read:\n"));
-                    help();
+                    lcout(X("Unrecognized flag, it will be useful for you to read:\n\n"));
+                    help_flags();
                     break;
                 }
             }
@@ -129,5 +157,6 @@ lm compile(lu32 argc, lc* argv[]) {
     }
     /* Deinitialization */
     lccol(LC_COLOR_WHITE, LC_COLOR_BLACK);
+    lcout(X("\n"));
     return L_EXIT_SUCCESS;
 }

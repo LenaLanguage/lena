@@ -39,4 +39,11 @@ extern void license(void);
 /* Prints help message */
 extern void help(void);
 
+/* Additional help_ functions */
+extern void help_about(void);
+extern void help_formats(void);
+extern void help_flags(void);
+extern void help_usage(void);
+extern void help_about_she(void);
+
 #endif // LENA_COMPILER_INFO_H_
