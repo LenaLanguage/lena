@@ -24,7 +24,7 @@
 
 /* Multi-byte tokens */
 #define LE_TOKEN_MULTI_BYTE_BEGIN (LE_TOKEN_ONE_BYTE_END ) + 1
-#define LE_TOKEN_MULTI_BYTE_END (27 + LE_TOKEN_MULTI_BYTE_BEGIN)
+#define LE_TOKEN_MULTI_BYTE_END (33 + LE_TOKEN_MULTI_BYTE_BEGIN)
 
 /* Undefined value tokens */
 #define LE_TOKEN_UNDEF_BYTE_BEGIN (LE_TOKEN_MULTI_BYTE_END) + 1
@@ -58,6 +58,12 @@ typedef enum {
     LE_TOKEN_MATH_CDIV  = 2 + LE_TOKEN_MULTI_BYTE_BEGIN,  /* // */
     LE_TOKEN_MATH_MOD   = 6 + LE_TOKEN_ONE_BYTE_BEGIN,    /* % */
     
+    LE_TOKEN_MATH_PLUS_EQ  = 28 + LE_TOKEN_MULTI_BYTE_BEGIN,    /* += */
+    LE_TOKEN_MATH_MINUS_EQ = 29 + LE_TOKEN_MULTI_BYTE_BEGIN,    /* -= */
+    LE_TOKEN_MATH_MUL_EQ   = 30 + LE_TOKEN_MULTI_BYTE_BEGIN,    /* *= */
+    LE_TOKEN_MATH_DIV_EQ   = 31 + LE_TOKEN_MULTI_BYTE_BEGIN,    /* /= */
+    LE_TOKEN_MATH_CDIV_EQ  = 32 + LE_TOKEN_MULTI_BYTE_BEGIN,    /* //= */
+    LE_TOKEN_MATH_MOD_EQ   = 33 + LE_TOKEN_MULTI_BYTE_BEGIN,    /* %= */
 
     /* ----- Comparison ----- */
     LE_TOKEN_CMP_E  = 3 + LE_TOKEN_MULTI_BYTE_BEGIN,      /* == */
