@@ -9,6 +9,7 @@
         "info.h": "c",
         "errors.h": "c",
         "files.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "types.h": "c"
     }
 }

@@ -11,6 +11,9 @@
  * @author   Matvey Rybalkin
  ******************************************************************************/
 
+/* Include every part of .le format headers */
 
+/* Tokenization */
+#include "tokenizer/tokenizer.h"
 
 #endif // LENA_COMPILER_FILES_LE_H_

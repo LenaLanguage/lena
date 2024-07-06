@@ -11,6 +11,7 @@
  * @author   Matvey Rybalkin
  ******************************************************************************/
 
-
+/* Include enum header */
+#include "tokenizer.enum.h"
 
 #endif // LENA_COMPILER_FILES_LE_TOKENIZER_H_
