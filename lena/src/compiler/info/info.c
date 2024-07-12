@@ -12,7 +12,7 @@ void version(void) {
 }
 
 /* Static buffer for C version string */
-lc c_version_buffer[65];
+lc c_version_buffer[LINGUA_LC_I64_BUFFER_SIZE];
 
 /* Prints full current Lena's version */
 void version_extented(void) {

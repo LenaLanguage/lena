@@ -24,5 +24,5 @@ if (args.length > 1) {
 	const extension = args[1];
 	findFiles(directory, extension);
 } else {
-	console.log('[lena-i->scripts]: Usage: node find.js <directory> <extension>');
+	console.log('[lena->scripts]: Usage: node find.js <directory> <extension>');
 }

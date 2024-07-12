@@ -12,7 +12,8 @@
                 "LENA_BUILD_OS_STR",
                 "LENA_BUILD_ARCH_STR",
                 "LENA_BUILD_TIME_STR",
-                "LENA_EXE_FORMAT=true"
+                "LENA_EXE_FORMAT=true",
+                "USE_LINGUA"
             ],
             "windowsSdkVersion": "10.0.26100.0",
             "compilerPath": "C:\\msys64\\mingw64\\bin\\gcc.exe",

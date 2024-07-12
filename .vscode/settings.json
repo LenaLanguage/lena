@@ -10,6 +10,7 @@
         "errors.h": "c",
         "files.h": "c",
         "cstdlib": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "external.h": "c"
     }
 }
