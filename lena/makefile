@@ -1,4 +1,4 @@
-# This is makefile for Lena interpreter + Llibs
+# This is makefile for Lena compiler + Llibs
 
 # Compiler --------------------->
 CC = gcc
@@ -68,7 +68,7 @@ $(LENA_OUT): $(LENA_OBJ_FILES) $(LLIBS_OBJ_FILES)
 	$(CC) $(LENA_CFLAGS) -Wa,-adhln -S -fverbose-asm $< -o $@
 
 # Compiling Llibs object files --------------------->
-$(LLIBS_PATH)/native/Windows/src/%.o: $(LLIBS_PATH)/native/Windows/src/%.c
+$(LLIBS_NATIVE_PATH)/src/%.o: $(LLIBS_NATIVE_PATH)/src/%.c
 	$(CC) $(LLIBS_CFLAGS) -c $< -o $@
 
 $(LLIBS_PATH)/cross/src/%.o: $(LLIBS_PATH)/cross/src/%.c
