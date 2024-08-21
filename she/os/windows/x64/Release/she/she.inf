@@ -1,0 +1,48 @@
+;
+; Minimal she.inf
+;
+
+[Version]
+Signature   = "$WINDOWS NT$"
+Class       = System
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider    = %ManufacturerName%
+CatalogFile = she.cat
+DriverVer = 07/18/2024,11.49.4.316
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,
+
+[SourceDisksFiles]
+she.sys = 1,,
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64
+
+[Standard.NTamd64]
+%she.DeviceDesc% = Install, Root\she
+
+[Install]
+CopyFiles = File_Copy
+
+[File_Copy]
+she.sys
+
+[Install.Services]
+AddService = she, 0x00000002, Service_Inst
+
+[Service_Inst]
+DisplayName = %she.SVCDESC%
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %12%\she.sys
+
+[Strings]
+ManufacturerName = "Matvey Rybalkin"
+DiskName = "SHE Installation Disk"
+she.DeviceDesc = "SHE (The Lena Programming language)"
+she.SVCDESC = "SHE Service"

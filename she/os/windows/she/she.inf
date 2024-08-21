@@ -1,15 +1,14 @@
 ;
-; she.inf
+; Minimal she.inf
 ;
 
 [Version]
 Signature   = "$WINDOWS NT$"
-Class       = System ; TODO: specify appropriate Class
-ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Class       = System
+ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318}
 Provider    = %ManufacturerName%
 CatalogFile = she.cat
 DriverVer   = 06/28/2024, 1.0.0.0
-PnpLockdown = 1
 
 [DestinationDirs]
 DefaultDestDir = 12
@@ -20,43 +19,30 @@ DefaultDestDir = 12
 [SourceDisksFiles]
 she.sys = 1,,
 
-;*****************************************
-; Install Section
-;*****************************************
-
 [Manufacturer]
-%ManufacturerName% = Standard,NT$ARCH$.10.0...16299 ; %13% support introduced in build 16299
+%ManufacturerName% = Standard,NTamd64
 
-[Standard.NT$ARCH$.10.0...16299]
-%she.DeviceDesc% = she_Device, Root\she ; TODO: edit hw-id
+[Standard.NTamd64]
+%she.DeviceDesc% = Install, Root\she
 
-[she_Device.NT]
+[Install]
 CopyFiles = File_Copy
 
 [File_Copy]
 she.sys
 
-;-------------- Service installation
-[she_Device.NT.Services]
-AddService = she,%SPSVCINST_ASSOCSERVICE%, she_Service_Inst
+[Install.Services]
+AddService = she, 0x00000002, Service_Inst
 
-; -------------- she driver install sections
-[she_Service_Inst]
-DisplayName    = %she.SVCDESC%
-ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
-StartType      = 3               ; SERVICE_DEMAND_START
-ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
-ServiceBinary  = %12%\she.sys
-
-[she_Device.NT.Wdf]
-KmdfService = she, she_wdfsect
-
-[she_wdfsect]
-KmdfLibraryVersion = $KMDFVERSION$
+[Service_Inst]
+DisplayName = %she.SVCDESC%
+ServiceType = 1
+StartType = 3
+ErrorControl = 1
+ServiceBinary = %12%\she.sys
 
 [Strings]
-SPSVCINST_ASSOCSERVICE = 0x00000002
 ManufacturerName = "Matvey Rybalkin"
-DiskName = "she Installation Disk"
-she.DeviceDesc = "Lena Programming language / SHE"
+DiskName = "SHE Installation Disk"
+she.DeviceDesc = "SHE (The Lena Programming language)"
 she.SVCDESC = "SHE Service"

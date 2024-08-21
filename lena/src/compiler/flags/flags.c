@@ -2,7 +2,7 @@
 #include <compiler/flags/flags.h>
 
 /* Flags buffer */
-static lc* flags_buffer[] = {
+static const lc* flags_buffer[] = {
 
     /* Single dash */
     [COMPILER_FLAG_D_VERSION]       = X("v"),

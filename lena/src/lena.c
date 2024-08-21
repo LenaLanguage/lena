@@ -9,11 +9,14 @@
 #include <compiler/compiler.h>
 
 /* For information messages */
-#include <compiler/errors/errors.h>
+#include <compiler/msg/msg.h>
 #include <compiler/info/info.h>
 #include <compiler/info/config.h>
 
+
+
 lm compile(lu32 argc, lc* argv[]) {
+    /* Initialize Llibs framework: console and etc... */
     if (llibs_init() != L_OK) {
         return L_EXIT_FAILURE;
     }
@@ -67,8 +70,8 @@ lm compile(lu32 argc, lc* argv[]) {
                             lcout(X("flag.\n\n"));
 
                             help_formats();
+                            return L_EXIT_FAILURE;
                         }
-                        break;
 
                     /* .le filename, source code file */
                     case COMPILER_FLAG_FILENAME_LE:
@@ -93,7 +96,7 @@ lm compile(lu32 argc, lc* argv[]) {
                         lcout(X(" cannot be an output file format or a source code file.\n\n"));
 
                         help_formats();
-                        break;
+                        return L_EXIT_FAILURE;
 
                     default:
                         file_index = i;
@@ -101,58 +104,60 @@ lm compile(lu32 argc, lc* argv[]) {
                     }
                 }
             }
+            /* Main part of compilation. Entry ---> */
             compile_files  (
-                            source_code_file_index, 
-                            source_code_files, 
-                            is_non_abstract, 
-                            target, 
-                            0, NULL); // temporary solution
+                source_code_file_index, 
+                source_code_files, 
+                is_non_abstract, 
+                target, 
+                0, NULL); // temporary solution
 
-            
         } else {
-            read_first_flag:
-            /* Just read first flag */
-            compiler_flag_t flag = flags_recognize(argv[file_index]);
-            if (is_compilation_flag(flag)) {
-                /* Error */
-                greeting();
-                lcout(X("Too few flags to compile.\n\n"));
-                help_usage();
-            } else {
-                /* Execute the certain instruction */
-                switch (flag) {
-                /* Short version information */
-                case COMPILER_FLAG_DD_VERSION:
-                    version();
-                    break;
-                    
-                /* Full version information */
-                case COMPILER_FLAG_D_VERSION:
-                    version_extented();
-                    break;
-
-                /* Help information */
-                case COMPILER_FLAG_DD_HELP:
-                    help();
-                    break;
-
-                /* Help information */
-                case COMPILER_FLAG_DD_LICENSE:
-                    license();
-                    break;
-
-                default:
-                    // let's try to find out similar flag....
+            read_first_flag: {
+                /* Just read first flag */
+                compiler_flag_t flag = flags_recognize(argv[file_index]);
+                if (is_compilation_flag(flag)) {
+                    /* Error */
                     greeting();
-                    lcout(X("Unrecognized flag, it will be useful for you to read:\n\n"));
-                    help_flags();
-                    break;
+                    lcout(X("Too few flags to compile.\n\n"));
+                    help_usage();
+                } else {
+
+                    /* Execute the certain instruction */
+                    switch (flag) {
+                    /* Short version information */
+                    case COMPILER_FLAG_DD_VERSION:
+                        version();
+                        break;
+                        
+                    /* Full version information */
+                    case COMPILER_FLAG_D_VERSION:
+                        version_extented();
+                        break;
+
+                    /* Help information */
+                    case COMPILER_FLAG_DD_HELP:
+                        help();
+                        break;
+
+                    /* License information */
+                    case COMPILER_FLAG_DD_LICENSE:
+                        license();
+                        break;
+
+                    default:
+                        // let's try to find out similar flag....
+                        greeting();
+                        lcout(X("Unrecognized flag, it will be useful for you to read:\n\n"));
+                        help_flags();
+                        break;
+                    }
                 }
-            }
+            }            
         }
     } else {
         greeting();
-        lcout(X("No flags provided. Please specify flags to compile your program.\n"));
+        lcout(X("No flags provided. Please specify flags to compile your program."));
         // continue
     }
     /* Deinitialization */

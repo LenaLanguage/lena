@@ -20,15 +20,15 @@
 
 /* One byte tokens */
 #define LE_TOKEN_ONE_BYTE_BEGIN 1
-#define LE_TOKEN_ONE_BYTE_END (18 + LE_TOKEN_ONE_BYTE_BEGIN)
+#define LE_TOKEN_ONE_BYTE_END (17 + LE_TOKEN_ONE_BYTE_BEGIN)
 
 /* Multi-byte tokens */
 #define LE_TOKEN_MULTI_BYTE_BEGIN (LE_TOKEN_ONE_BYTE_END ) + 1
-#define LE_TOKEN_MULTI_BYTE_END (33 + LE_TOKEN_MULTI_BYTE_BEGIN)
+#define LE_TOKEN_MULTI_BYTE_END (27 + LE_TOKEN_MULTI_BYTE_BEGIN)
 
 /* Undefined value tokens */
 #define LE_TOKEN_UNDEF_BYTE_BEGIN (LE_TOKEN_MULTI_BYTE_END) + 1
-#define LE_TOKEN_UNDEF_BYTE_END (5 + LE_TOKEN_UNDEF_BYTE_BEGIN)
+#define LE_TOKEN_UNDEF_BYTE_END (4 + LE_TOKEN_UNDEF_BYTE_BEGIN)
 
 /* Invalid tokens */
 #define LE_TOKEN_INVALID_BYTE_BEGIN 0xFE
@@ -110,12 +110,12 @@ typedef enum {
 
     /* ----- Brackets (all ONE_BYTE) ----- */
 
-    LENA_TOKEN_SLBRACKET    = 9 + LE_TOKEN_ONE_BYTE_BEGIN,        /* [ */
-    LENA_TOKEN_SRBRACKET    = 10 + LE_TOKEN_ONE_BYTE_BEGIN,       /* ] */
-    LENA_TOKEN_LPARENTHESIS = 11 + LE_TOKEN_ONE_BYTE_BEGIN,       /* ( */
-    LENA_TOKEN_RPARENTHESIS = 12 + LE_TOKEN_ONE_BYTE_BEGIN,       /* ) */
-    LENA_TOKEN_LBRACE       = 13 + LE_TOKEN_ONE_BYTE_BEGIN,       /* { */
-    LENA_TOKEN_RBRACE       = 14 + LE_TOKEN_ONE_BYTE_BEGIN,       /* } */
+    LE_TOKEN_SLBRACKET    = 9 + LE_TOKEN_ONE_BYTE_BEGIN,        /* [ */
+    LE_TOKEN_SRBRACKET    = 10 + LE_TOKEN_ONE_BYTE_BEGIN,       /* ] */
+    LE_TOKEN_LPARENTHESIS = 11 + LE_TOKEN_ONE_BYTE_BEGIN,       /* ( */
+    LE_TOKEN_RPARENTHESIS = 12 + LE_TOKEN_ONE_BYTE_BEGIN,       /* ) */
+    LE_TOKEN_LBRACE       = 13 + LE_TOKEN_ONE_BYTE_BEGIN,       /* { */
+    LE_TOKEN_RBRACE       = 14 + LE_TOKEN_ONE_BYTE_BEGIN,       /* } */
 
     /* ----- Values and identifiers (all UNDEF_BYTE) ----- */
 
@@ -125,13 +125,17 @@ typedef enum {
     LE_TOKEN_CHAR       = 3 + LE_TOKEN_UNDEF_BYTE_BEGIN,  /* like: 'l' */
 
     LE_TOKEN_IDENTIFIER_UNDEF   = 4 + LE_TOKEN_UNDEF_BYTE_BEGIN,  /* source code ids like func() and etc. */
-    LE_TOKEN_IDENTIFIER_STD     = 5 + LE_TOKEN_UNDEF_BYTE_BEGIN,  /* source code stdlib ids */
+    // LE_TOKEN_IDENTIFIER_STD     = 5 + LE_TOKEN_UNDEF_BYTE_BEGIN,  /* source code stdlib ids */
 
     /* ----- Other general tokens (all ONE_BYTE) ----- */
-    LE_TOKEN_NEWLINE    = 15 + LE_TOKEN_ONE_BYTE_BEGIN,   // '\n'
-    LE_TOKEN_COLON      = 16 + LE_TOKEN_ONE_BYTE_BEGIN,   // ':'
-    LE_TOKEN_PERIOD     = 17 + LE_TOKEN_ONE_BYTE_BEGIN,   // '.'
-    LE_TOKEN_COMMA      = 18 + LE_TOKEN_ONE_BYTE_BEGIN,   // ','
+    LE_TOKEN_COLON      = 15 + LE_TOKEN_ONE_BYTE_BEGIN,   // ':'
+    LE_TOKEN_PERIOD     = 16 + LE_TOKEN_ONE_BYTE_BEGIN,   // '.'
+    LE_TOKEN_COMMA      = 17 + LE_TOKEN_ONE_BYTE_BEGIN,   // ','
+
+    /* ---------- SPECIFIC TOKENS ---------- */
+
+    /* ----- Specific token (can be ONE_BYTE and MULTI_BYTE) ----- */
+    LE_TOKEN_NEWLINE    = 0xFD,
 
     /* Invalid tokens */
     LE_TOKEN_INVALID_CHARACTER  = 0xFE,
@@ -152,9 +156,18 @@ typedef struct {
  * @brief Struct of tokens buffer.
 */
 typedef struct {
-    le_token_t* token;
-    lsz num;
-    lsz i; // counter.
+    le_token_t* token;  // token buffer token
+    lsz num;            // number of tokens
+    lsz i;              // counter.
+    lu64 loc;           // lines of code 
 } le_token_buffer_t;
+
+/** IMPORTANT INFORMATION!
+ * 
+ *  if `le_token_type_t type` = LE_TOKEN_SYNTAX_ERROR:
+ *      `lc* value` must be used as brief of the error.
+ *      `lsz size` in this case always = 0
+ * 
+ */
 
 #endif // LENA_COMPILER_FILES_LE_TOKENIZER_ENUM_H_

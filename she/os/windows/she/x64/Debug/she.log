@@ -1,13 +1,10 @@
 ﻿  Building 'she' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
   Stamping x64\Debug\she.inf
-  Stamping [Version] section with DriverVer=06/28/2024,22.38.14.995
-  Driver.c
+  Stamping [Version] section with DriverVer=07/18/2024,11.48.44.608
+C:\Projects\lena\she\os\windows\she\she.inf(5-5): warning 1324: [Version] section should specify PnpLockdown=1 to prevent external apps from modifying installed driver files.
   she.vcxproj -> C:\Projects\lena\she\os\windows\x64\Debug\she.sys
-  Done Adding Additional Store
-  Successfully signed: C:\Projects\lena\she\os\windows\x64\Debug\she.sys
-  
   Driver is 'Universal'.
-  ........................
+  .........................
   Signability test complete.
   
   Errors:

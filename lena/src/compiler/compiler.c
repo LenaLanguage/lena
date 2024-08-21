@@ -23,6 +23,7 @@ lc* executable_exe = NULL;
 lc* executable = NULL;
 #endif
 
+
 lerr compile_files (    
                 lu8 num_files,
                 lc* filenames[],
@@ -32,9 +33,29 @@ lerr compile_files (
                 compiler_flag_t flags[]
                 ) {
     
-    /* Source code tokenization */
-    for (lu8 i = 0; i < num_files; ++i) {
+    
+    /* --------- Source code ".le" tokenization --------- */
 
+    le_token_buffer_t* token_buffer = lcalloc(num_files, sizeof(le_token_buffer_t) * num_files);
+
+    if (lmemchk(token_buffer) == L_ERROR_MALLOC) {
+        printf("Error!");
+        return L_ERROR_MALLOC;
+    }
+
+    for (lu8 i = 0; i < num_files; ++i) {
+        static lfile file;
+        if (lfopen(filenames[i], &file) == L_OK) {
+            lc* src_code = NULL;
+            if (lfget(&src_code, &file) != L_OK) {
+                return L_ERROR;
+            }
+            le_token_get(src_code, &token_buffer[i]);
+        } else {
+            free(token_buffer);
+            return L_ERROR_COMPILER_INVALID_FILENAME;
+        }
+        
     }
 
     /* Source code parsing */
@@ -45,6 +66,6 @@ lerr compile_files (
     /* Converting permanent code to bytecode */
     // ...
 
-
+    free(token_buffer);
     return L_OK;
 }

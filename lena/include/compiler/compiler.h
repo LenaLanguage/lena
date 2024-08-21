@@ -15,6 +15,14 @@
  * @warning Current version of the compiler you can find in info/info.h
  */
 
+/**
+ * IN ANY CASE:
+ *  "SIZE" - means bytes.
+ *  "LEN" - means number of characters.
+ * 
+ * Lena usually uses SIZE for optimization, but in some cases uses LEN.
+ */
+
 /* Include llibs framework (external) */
 #include <llibs.h>
 
@@ -22,8 +30,8 @@
 #include "flags/flags.enum.h"
 
 /* Define error index */
-#define L_COMPILER_NO_INPUT_FLAGS   2
-#define L_COMPILER_INVALID_FILENAME 3
+#define L_ERROR_COMPILER_NO_INPUT_FLAGS   2
+#define L_ERROR_COMPILER_INVALID_FILENAME 3
 
 /** 
  * @brief Compile multiple files with number of parameters.
@@ -43,5 +51,6 @@ extern lerr compile_files   (
                             lu8 num_flags,
                             compiler_flag_t flags[]
                             );
+
 
 #endif // LENA_COMPILER_H_

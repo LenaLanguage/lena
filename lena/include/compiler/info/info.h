@@ -13,6 +13,7 @@
 
 /* Include llibs framework (external) */
 #include <llibs.h>
+#include <lingua.h>
 
 /* Lena's version */
 #define LENA_VERSION 40UL
