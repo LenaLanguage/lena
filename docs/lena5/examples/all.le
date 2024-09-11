@@ -1,0 +1,84 @@
+; This is Lena programming language large example
+
+a:i32 = 0, b = "string"
+
+sum(a, b)
+    <- a + b
+
+sub(a, b)
+    <- a - b
+
+
+print (
+    for i in 0..10
+        a += 10
+        if a > 20
+            <- a
+)
+
+; Modules
+
+my_type_t:type = u8
+
+; just in time type (unnamed type)
+my_value:(
+    [
+        SYS,
+        IO,
+        TIMER,
+    ]:enum
+)
+
+reg_t:type = [
+    value:u64
+    class:type = [
+        SYS,
+        IO,
+        TIMER,
+    ]:enum
+]:struct
+
+gpio(reg:reg_value_t, reg_class:reg_class_t):module
+
+
+while ()
+    ; do something
+
+
+do
+    ; do something
+while()
+
+/** Types
+
+Any type:
+    any
+
+Signed types:
+    i8, i16, i32, i64
+
+Unsigned types:
+    u8, u16, u32, u64
+
+Floats:
+    f16, f32, f64
+
+Characters:
+    char ; UTF-8 encode
+
+Strings:
+    str
+
+
+*/
+
+/** Standard functions:
+
+out(a:any) - console out
+in():any - console in
+err() - console error stream
+
+rand(min, max):(f16, f32, f64, i8, i16, i32, i64, u8, u16, u32, u64)
+sqrt(a)
+
+*/
