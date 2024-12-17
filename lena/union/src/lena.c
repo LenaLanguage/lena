@@ -1,0 +1,2 @@
+#include <lena.h>
+
