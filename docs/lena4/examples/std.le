@@ -1,6 +1,0 @@
-
-; Supports any type in Lena
-out(any)
-err(any)
-any = in():any
-
