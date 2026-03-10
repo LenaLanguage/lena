@@ -1,0 +1,24 @@
+
+#=
+  @file cli.le
+  @author Matvey Rybalkin
+  @date 08 March 2026
+  @brief Console interface I/O operations.
+=#
+
+main(argc:i32, argv:str[]):exit_status {
+
+    cli::err("This is an error message! You can see this in stderr stream.\n")
+    cli::out("This is a simple message! You can see this in stdout stream.\n")
+    
+    let number:i32 = cli::in("Put number here:"):i32
+    let y_name:str = cli::in("Put your name here:"):str
+
+    let a:i32, b:i32, c:i32, d:i64
+    cli::in("{@a}, {@b}, {@c}, {@d}") # aka (nil)(cli::in()) return nothing
+
+    cli::flush(cli::stdout)
+
+    return ::SUCCESS
+}
+

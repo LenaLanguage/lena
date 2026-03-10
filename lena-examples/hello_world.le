@@ -1,0 +1,12 @@
+
+#=
+  @file hello_world.le
+  @author Matvey Rybalkin
+  @date 08 March 2026
+  @brief Basic Hello World code in Lena programming language.
+=#
+
+main():exit_status {
+    cli::out("Hello World!")
+    return ::SUCCESS
+}

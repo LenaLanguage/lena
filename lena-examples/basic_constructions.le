@@ -1,0 +1,93 @@
+
+#=
+  @file cli.le
+  @author Matvey Rybalkin
+  @date 08 March 2026
+  @brief Basic loops and constructions
+=#
+
+main(argc:i32, argv:str[]):exit_status {
+
+    # Syntactic sugar
+    let limits:i32[] = 0..100 # {0, 100}
+    let variables:i32[] = .0..100 # {0, 1, 2, ... 99, 100}
+
+    # Operators
+    let res:bool = false # 0. false = 0, true = not(0). Only as literals.
+    # (func():i32 and true) <- Error. You must use bool operands for 'and', 'or', 'not'
+
+    # Logical
+    res = (0 and 1) # false 
+    res = (0 or 1) # true
+    res = (not(0) and 1) # true
+    
+    let a = 0b1100, b = 0b0111
+
+    # Bitwise
+
+    a = (a | b)     # or
+    a = (a & b)     # and
+    a = (a ^ b)     # xor
+    a = ~a          # not
+    a |= (1 << 3)   # bit shift left
+    a >>= 3   # bit shift right
+
+    # Syntactic sugar
+    res = (1 in .0..100)    # checks every element from 0 to 100
+    res = (1 on 0..100)     # aka (1 >= 0 && 1 <= 100)
+
+    if (a == b) {
+        # do something
+    } else if (a > b) {
+        # do something
+    } else {
+        # do something
+    }
+
+    # --- Inclusive
+
+    # prints from 0 to 1000
+    .1..1000 -> i { # generator, use array of {1, 2, ... 1000} to map into i variable
+        cli::out("i = {@i}")
+    }
+
+    # prints from 0 to 1000 
+    {
+        let i = 0
+        while (i on 0..1000) { 
+            cli::out("i = {@i++}\n")
+        }
+    }
+
+    #= 
+        i = 0
+        ...
+        i = 999
+        i = 1000
+    =#
+
+    # --- Exclusive
+
+    for i = 0...1000 by 1 {
+        cli::out("i = {@i}\n")
+    } 
+
+    let array:i32[] = {10, 30, 32, 235, 65, 83}
+
+    for i = array by 1 {
+        cli::out("i = {@i}\n") # 10 30 32
+    }
+
+    for i = array by 2 {
+        cli::out("i = {@i}\n") # 10 32 65
+    }
+
+    .1...1000 -> i { # generator, {1, 2, ... 999} to map into i variable
+        cli::out("i = {@i}")
+    }
+    
+
+
+    return ::SUCCESS
+}
+

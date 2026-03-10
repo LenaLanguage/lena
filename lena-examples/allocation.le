@@ -1,0 +1,52 @@
+
+#=
+  @file allocation.le
+  @author Matvey Rybalkin
+  @date 08 March 2026
+  @brief Memory managment and allocation.
+=#
+
+max(ar:i32[*]):i32 {
+    let mx_v:i32 = LIMITS::I32_MIN
+    for val = ar by 1 {
+        if (val > mx_v)
+            mx_v = val
+    }
+    return mx_v
+}
+
+main():exit_status {
+
+    let a:i32[*] = {10, 20, 30}
+
+    cli::out("Original first element: {@a[0]}")
+    
+    # Secure borrowing:
+    secure (a) {
+        # do something. Other processes can't change `a`
+        # like: let ans = @Julia.func1(a).
+    }
+
+    let mx = max(a) # mx = maximum in `a`
+
+    # but
+
+    # Handover:
+    mx = max(yield a) # the array is no longer available and will be deleted.
+    #=
+        let mx_v:i32 = LIMITS::I32_MIN
+        for val = ar by 1 {
+            if (val > mx_v)
+                mx_v = val
+        }
+        free(ar) + <-------
+        return mx_v
+
+    =#
+
+    # now you can fill it with other data
+    a = {100, 200, 300}
+    
+
+    return ::SUCCESS
+}

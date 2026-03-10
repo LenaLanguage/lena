@@ -1,0 +1,84 @@
+
+# Creating struct `piano`
+
+let piano = struct {
+
+    name:str = "NO_NAME", # <- default value
+
+    color = enum {
+        BLACK, BROWN, WHITE
+    },
+    
+    price = struct {
+        value:u64,
+        currency = enum {
+            RUBLE, DOLLAR, EURO, TENGE
+        }
+    }
+
+}
+
+# Guitar has the same labels as piano
+let guitar:type = piano # alias
+# or
+let sensor_data:type = i32
+
+# UFCS. You can call print_info(my_piano) or my_piano.print_info()
+print_info(p: piano):nil {
+    cli::out("Piano: {@p.name}, Color: {@p.color}\n")
+}
+
+
+main():exit_status {
+
+    let my_unsigned_var:u8 = 100 # u8-u64 available
+    let my_signed_var:i16 = -100 # i8-i64 available
+
+    let my_piano:piano = {
+        .name = "YAMAHA",
+        .color = BLACK,
+        .price = {
+            .value = 1000,
+            .currency = DOLLAR
+        }
+    }
+
+    cli::out("My piano costs: {@my_piano.price.value}\n")
+
+    const lower_limit:u64 = 100, upper_limit:u64 = 10000
+
+    # Let's recall math
+    let result:bool = (my_piano.price.value on lower_limit..upper_limit)
+
+    if (result)
+        cli::out("Yes! your result: {@result}\n")
+    else
+        cli::out("No! How is it even happened??\n")
+
+    # Call function
+    my_piano.print_info()
+
+    # Arrays
+
+    let array1:i32[] = {100, 500, 600}
+    cli::out("array[0] = {0}\n", array1[0]) # or ("array[0] = {@array1[0]}\n")
+
+    # Checking array bounds 
+
+    let a_var:i32 # a_var = 0
+    result = (a_var = array.get(4)) # false, a_var = 0
+    result = (a_var = array.get(2)) # true, a_var = 600
+
+
+    # Matrix
+    let mt:i32[][] = {
+        {10, 20}, 
+        {30, 40}, 
+        {50, 60}
+    }
+
+    let array_len = array1.len(), mt_x_len = mt[]
+    cli::out(")
+
+    return ::SUCCESS
+}

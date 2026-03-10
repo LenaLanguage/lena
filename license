@@ -631,11 +631,10 @@ to attach them to the start of each source file to most effectively
 state the exclusion of warranty; and each file should have at least
 the "copyright" line and a pointer to where the full notice is found.
 
-    Lena interpreted/compiled programming language (on VM). 
-	It has a mixed and unique syntax consisting of Python, C/C++ 
-	and NASM syntax. The main philosophy of the language: 
-	“Complete the task set by the programmer, at any cost, 
-	in an extremely short time and with minimal costs.”
+    Lena programming language: compiler, examples and utilites.
+    It has a set of utilities for converting a library of another 
+    programming language into a set of files available for integration.
+    The backend is implemented in LLVM.
     Copyright (C) 2024  Matvey Rybalkin
 
     This program is free software: you can redistribute it and/or modify

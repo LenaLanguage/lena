@@ -52,5 +52,5 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# SHE existing files
-**/Debug/
+.cproject
+.project
